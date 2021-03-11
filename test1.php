@@ -1,5 +1,5 @@
 <?php
-$im = imagecreatefrompng("test3.png");
+$im = imagecreatefrompng("test7.png");
 
 $rOld = 0;
 $gOld = 0;
@@ -14,17 +14,19 @@ $MinG = 1000;
 $MaxB = 0;
 $MinB = 1000;
 
-for ($x = 0; $x < 150; $x++) {
-    for ($y = 0; $y < 150; $y++) {
+for ($x = 0; $x < 35; $x++) {
+    for ($y = 0; $y < 33; $y++) {
         $rgb = imagecolorat($im, $x, $y);
         $r = ($rgb >> 16) & 0xFF;
         $g = ($rgb >> 8) & 0xFF;
         $b = $rgb & 0xFF;
 
-        if($r >= 230 && $r <= 255 && $g >= 230 && $g <= 255 && $b >= 230 && $b <= 255){
+        if ($r == 0 && $g == 0 && $b == 0) {
+
+        }else if($r >= 230 && $r <= 255 && $g >= 230 && $g <= 255 && $b >= 230 && $b <= 255){
 
         }else{
-            if(!($r == $rOld && $g == $gld && $b == $bOld)){
+            if(!($r == $rOld && $g == $gOld && $b == $bOld)){
                 if($r > $MaxR){
                     $MaxR = $r;
                 }
@@ -56,4 +58,3 @@ for ($x = 0; $x < 150; $x++) {
 }
 
 echo "if (\$r >= $MinR && \$r <= $MaxR && \$g >= $MinG && \$g <= $MaxG && \$b >= $MinB && \$b <= $MaxB) {}";
-?>

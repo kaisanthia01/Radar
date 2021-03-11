@@ -1,0 +1,634 @@
+<?php
+echo "Crop Image Circle And Remove Background";
+require('cropImage.php');
+//---------------------- Crop Image ------------------------------------
+// load your source image
+$src = imagecreatefromjpeg('svp120_latest.jpg');
+// create an image resource of your expected size 30x20
+$dest = imagecreatetruecolor(760, 785);
+// Copy the image
+imagecopy(
+	$dest,
+	$src,
+	0,    // 0x of your destination
+	0,    // 0y of your destination
+	37,   // middle x of your source 
+	0,   // middle y of your source
+	760,  // 30px of width
+	785   // 20px of height
+);
+
+// The second parameter should be the path of your destination
+imagepng($dest, 'svp120_latest.png');
+imagedestroy($dest);
+imagedestroy($src);
+
+//---------------------- Crop Image Circle -----------------------------
+$image = imagecreatefrompng('svp120_latest.png');
+$crop = new CircleCrop($image, 760, 785);
+$crop->crop()->display();
+//----------------------------------------------------------------------
+
+
+//---------------------- Remove Background ------------------------------
+//$o_pic = 'svp120_latest.png';
+$o_pic = 'svp120_latest.png';
+$name = pngMerge($o_pic, 'test2.png');
+
+function pngMerge($o_pic, $out_pic)
+{
+	$begin_r = 255;
+	$begin_g = 250;
+	$begin_b = 250;
+	list($src_w, $src_h) = getimagesize($o_pic); // Get the original image information
+	$src_im = imagecreatefrompng($o_pic); // Read png picture
+	print_r($src_im);
+	imagesavealpha($src_im, true); //This is very important. It means don't lose the transparent color of the $src_im image.
+	$src_white = imagecolorallocatealpha($src_im, 255, 255, 255, 127); // Create a white transparent canvas
+	$green = imagecolorallocatealpha($src_im, 255, 255, 255, 127); // Create a white transparent canvas
+	for ($x = 0; $x < $src_w; $x++) {
+		for ($y = 0; $y < $src_h; $y++) {
+			$rgb = imagecolorat($src_im, $x, $y);
+			$r = ($rgb >> 16) & 0xFF;
+			$g = ($rgb >> 8) & 0xFF;
+			$b = $rgb & 0xFF;
+
+			if ($r == 94 && $g == 240 && $b == 141) {
+			} else if ($r == 94 && $g == 240 && $b == 141) {
+			} else if ($r == 69 && $g == 254 && $b == 135) {
+			} else if ($r == 66 && $g == 255 && $b == 132) {
+			} else if ($r == 80 && $g == 251 && $b == 123) {
+			} else if ($r == 81 && $g == 250 && $b == 125) {
+			} else if ($r == 75 && $g == 250 && $b == 67) {
+			} else if ($r == 73 && $g == 209 && $b == 83) {
+			} else if ($r == 77 && $g == 201 && $b == 89) {
+			} else if ($r == 89 && $g == 249 && $b == 79) {
+			} else if ($r == 62 && $g == 255 && $b == 51) {
+			} else if ($r == 71 && $g == 245 && $b == 51) {
+			} else if ($r == 75 && $g == 198 && $b == 45) {
+			} else if ($r == 84 && $g == 191 && $b == 53) {
+			} else if ($r == 67 && $g == 204 && $b == 39) {
+			} else if ($r == 60 && $g == 226 && $b == 32) {
+			} else if ($r == 104 && $g == 250 && $b == 123) {
+			} else if ($r == 66 && $g == 255 && $b == 102) {
+			} else if ($r == 71 && $g == 255 && $b == 105) {
+			} else if ($r == 102 && $g == 250 && $b == 126) {
+			} else if ($r == 95 && $g == 229 && $b == 80) {
+			} else if ($r == 77 && $g == 235 && $b == 62) {
+			} else if ($r == 75 && $g == 232 && $b == 53) {
+			} else if ($r == 80 && $g == 220 && $b == 53) {
+			} else if ($r == 75 && $g == 208 && $b == 54) {
+			} else if ($r == 61 && $g == 207 && $b == 46) {
+			} else if ($r == 91 && $g == 240 && $b == 76) {
+			} else if ($r == 100 && $g == 255 && $b == 119) {
+			} else if ($r == 73 && $g == 255 && $b == 103) {
+			} else if ($r == 74 && $g == 255 && $b == 105) {
+			} else if ($r == 93 && $g == 255 && $b == 129) {
+			} else if ($r == 94 && $g == 254 && $b == 148) {
+			} else if ($r == 89 && $g == 252 && $b == 161) {
+			} else if ($r == 87 && $g == 231 && $b == 55) {
+			} else if ($r == 105 && $g == 228 && $b == 77) {
+			} else if ($r == 93 && $g == 199 && $b == 67) {
+			} else if ($r == 87 && $g == 202 && $b == 59) {
+			} else if ($r == 77 && $g == 217 && $b == 48) {
+			} else if ($r == 88 && $g == 248 && $b == 64) {
+			} else if ($r == 79 && $g == 243 && $b == 68) {
+			} else if ($r == 85 && $g == 236 && $b == 83) {
+			} else if ($r == 98 && $g == 255 && $b == 106) {
+			} else if ($r == 98 && $g == 247 && $b == 104) {
+			} else if ($r == 104 && $g == 245 && $b == 107) {
+			} else if ($r == 109 && $g == 253 && $b == 121) {
+			} else if ($r == 104 && $g == 253 && $b == 133) {
+			} else if ($r == 98 && $g == 254 && $b == 147) {
+			} else if ($r == 94 && $g == 255 && $b == 55) {
+			} else if ($r == 106 && $g == 236 && $b == 68) {
+			} else if ($r == 93 && $g == 189 && $b == 53) {
+			} else if ($r == 98 && $g == 197 && $b == 54) {
+			} else if ($r == 85 && $g == 219 && $b == 44) {
+			} else if ($r == 81 && $g == 255 && $b == 61) {
+			} else if ($r == 73 && $g == 255 && $b == 72) {
+			} else if ($r == 100 && $g == 249 && $b == 105) {
+			} else if ($r == 77 && $g == 248 && $b == 71) {
+			} else if ($r == 72 && $g == 222 && $b == 63) {
+			} else if ($r == 93 && $g == 203 && $b == 80) {
+			} else if ($r == 101 && $g == 201 && $b == 89) {
+			} else if ($r == 89 && $g == 207 && $b == 85) {
+			} else if ($r == 84 && $g == 210 && $b == 87) {
+			} else if ($r == 118 && $g == 239 && $b == 124) {
+			} else if ($r == 104 && $g == 251 && $b == 61) {
+			} else if ($r == 105 && $g == 237 && $b == 66) {
+			} else if ($r == 98 && $g == 211 && $b == 57) {
+			} else if ($r == 96 && $g == 210 && $b == 50) {
+			} else if ($r == 106 && $g == 246 && $b == 63) {
+			} else if ($r == 85 && $g == 255 && $b == 61) {
+			} else if ($r == 77 && $g == 255 && $b == 76) {
+			} else if ($r == 106 && $g == 248 && $b == 112) {
+			} else if ($r == 73 && $g == 251 && $b == 53) {
+			} else if ($r == 78 && $g == 217 && $b == 54) {
+			} else if ($r == 102 && $g == 196 && $b == 86) {
+			} else if ($r == 101 && $g == 196 && $b == 106) {
+			} else if ($r == 82 && $g == 207 && $b == 103) {
+			} else if ($r == 80 && $g == 212 && $b == 93) {
+			} else if ($r == 95 && $g == 213 && $b == 93) {
+			} else if ($r == 89 && $g == 225 && $b == 55) {
+			} else if ($r == 88 && $g == 225 && $b == 60) {
+			} else if ($r == 88 && $g == 222 && $b == 63) {
+			} else if ($r == 97 && $g == 233 && $b == 65) {
+			} else if ($r == 103 && $g == 249 && $b == 64) {
+			} else if ($r == 85 && $g == 252 && $b == 60) {
+			} else if ($r == 79 && $g == 250 && $b == 73) {
+			} else if ($r == 109 && $g == 247 && $b == 108) {
+			} else if ($r == 83 && $g == 251 && $b == 140) {
+			} else if ($r == 93 && $g == 246 && $b == 68) {
+			} else if ($r == 80 && $g == 244 && $b == 51) {
+			} else if ($r == 87 && $g == 212 && $b == 50) {
+			} else if ($r == 102 && $g == 195 && $b == 78) {
+			} else if ($r == 94 && $g == 197 && $b == 105) {
+			} else if ($r == 76 && $g == 208 && $b == 109) {
+			} else if ($r == 77 && $g == 211 && $b == 98) {
+			} else if ($r == 95 && $g == 215 && $b == 91) {
+			} else if ($r == 92 && $g == 224 && $b == 63) {
+			} else if ($r == 92 && $g == 223 && $b == 67) {
+			} else if ($r == 93 && $g == 222 && $b == 67) {
+			} else if ($r == 112 && $g == 244 && $b == 80) {
+			} else if ($r == 104 && $g == 249 && $b == 68) {
+			} else if ($r == 88 && $g == 254 && $b == 60) {
+			} else if ($r == 81 && $g == 251 && $b == 67) {
+			} else if ($r == 105 && $g == 244 && $b == 99) {
+			} else if ($r == 114 && $g == 233 && $b == 139) {
+			} else if ($r == 82 && $g == 251 && $b == 136) {
+			} else if ($r == 60 && $g == 255 && $b == 140) {
+			} else if ($r == 65 && $g == 255 && $b == 135) {
+			} else if ($r == 86 && $g == 248 && $b == 113) {
+			} else if ($r == 70 && $g == 209 && $b == 54) {
+			} else if ($r == 90 && $g == 234 && $b == 58) {
+			} else if ($r == 90 && $g == 248 && $b == 63) {
+			} else if ($r == 74 && $g == 222 && $b == 42) {
+			} else if ($r == 91 && $g == 203 && $b == 43) {
+			} else if ($r == 170 && $g == 253 && $b == 113) {
+			} else if ($r == 113 && $g == 192 && $b == 67) {
+			} else if ($r == 108 && $g == 196 && $b == 74) {
+			} else if ($r == 111 && $g == 198 && $b == 68) {
+			} else if ($r == 123 && $g == 204 && $b == 65) {
+			} else if ($r == 106 && $g == 216 && $b == 57) {
+			} else if ($r == 112 && $g == 211 && $b == 56) {
+			} else if ($r == 109 && $g == 203 && $b == 47) {
+			} else if ($r == 131 && $g == 237 && $b == 69) {
+			} else if ($r == 108 && $g == 246 && $b == 62) {
+			} else if ($r == 86 && $g == 255 && $b == 60) {
+			} else if ($r == 81 && $g == 255 && $b == 70) {
+			} else if ($r == 112 && $g == 246 && $b == 99) {
+			} else if ($r == 86 && $g == 198 && $b == 100) {
+			} else if ($r == 67 && $g == 215 && $b == 103) {
+			} else if ($r == 76 && $g == 253 && $b == 139) {
+			} else if ($r == 72 && $g == 255 && $b == 137) {
+			} else if ($r == 73 && $g == 255 && $b == 106) {
+			} else if ($r == 76 && $g == 252 && $b == 65) {
+			} else if ($r == 82 && $g == 253 && $b == 50) {
+			} else if ($r == 84 && $g == 248 && $b == 57) {
+			} else if ($r == 72 && $g == 212 && $b == 45) {
+			} else if ($r == 96 && $g == 197 && $b == 41) {
+			} else if ($r == 203 && $g == 255 && $b == 103) {
+			} else if ($r == 235 && $g == 255 && $b == 97) {
+			} else if ($r == 234 && $g == 240 && $b == 80) {
+			} else if ($r == 235 && $g == 241 && $b == 81) {
+			} else if ($r == 231 && $g == 242 && $b == 78) {
+			} else if ($r == 149 && $g == 214 && $b == 50) {
+			} else if ($r == 159 && $g == 212 && $b == 46) {
+			} else if ($r == 161 && $g == 210 && $b == 40) {
+			} else if ($r == 161 && $g == 239 && $b == 59) {
+			} else if ($r == 112 && $g == 246 && $b == 51) {
+			} else if ($r == 79 && $g == 255 && $b == 61) {
+			} else if ($r == 80 && $g == 255 && $b == 76) {
+			} else if ($r == 61 && $g == 202 && $b == 64) {
+			} else if ($r == 60 && $g == 194 && $b == 61) {
+			} else if ($r == 66 && $g == 186 && $b == 78) {
+			} else if ($r == 70 && $g == 180 && $b == 91) {
+			} else if ($r == 80 && $g == 175 && $b == 94) {
+			} else if ($r == 72 && $g == 181 && $b == 92) {
+			} else if ($r == 80 && $g == 206 && $b == 109) {
+			} else if ($r == 83 && $g == 222 && $b == 123) {
+			} else if ($r == 79 && $g == 227 && $b == 115) {
+			} else if ($r == 75 && $g == 235 && $b == 87) {
+			} else if ($r == 79 && $g == 247 && $b == 63) {
+			} else if ($r == 84 && $g == 252 && $b == 53) {
+			} else if ($r == 87 && $g == 245 && $b == 60) {
+			} else if ($r == 75 && $g == 210 && $b == 48) {
+			} else if ($r == 101 && $g == 194 && $b == 43) {
+			} else if ($r == 216 && $g == 252 && $b == 92) {
+			} else if ($r == 255 && $g == 237 && $b == 65) {
+			} else if ($r == 250 && $g == 204 && $b == 23) {
+			} else if ($r == 255 && $g == 228 && $b == 42) {
+			} else if ($r == 255 && $g == 233 && $b == 45) {
+			} else if ($r == 228 && $g == 246 && $b == 72) {
+			} else if ($r == 232 && $g == 245 && $b == 69) {
+			} else if ($r == 227 && $g == 248 && $b == 67) {
+			} else if ($r == 209 && $g == 255 && $b == 87) {
+			} else if ($r == 106 && $g == 240 && $b == 47) {
+			} else if ($r == 80 && $g == 255 && $b == 70) {
+			} else if ($r == 78 && $g == 236 && $b == 81) {
+			} else if ($r == 86 && $g == 230 && $b == 98) {
+			} else if ($r == 74 && $g == 197 && $b == 55) {
+			} else if ($r == 87 && $g == 182 && $b == 52) {
+			} else if ($r == 82 && $g == 182 && $b == 68) {
+			} else if ($r == 62 && $g == 187 && $b == 83) {
+			} else if ($r == 72 && $g == 182 && $b == 93) {
+			} else if ($r == 68 && $g == 183 && $b == 92) {
+			} else if ($r == 66 && $g == 183 && $b == 92) {
+			} else if ($r == 67 && $g == 185 && $b == 89) {
+			} else if ($r == 67 && $g == 190 && $b == 76) {
+			} else if ($r == 70 && $g == 201 && $b == 59) {
+			} else if ($r == 74 && $g == 217 && $b == 50) {
+			} else if ($r == 77 && $g == 225 && $b == 53) {
+			} else if ($r == 79 && $g == 221 && $b == 59) {
+			} else if ($r == 82 && $g == 203 && $b == 50) {
+			} else if ($r == 108 && $g == 189 && $b == 35) {
+			} else if ($r == 223 && $g == 247 && $b == 91) {
+			} else if ($r == 247 && $g == 222 && $b == 60) {
+			} else if ($r == 249 && $g == 201 && $b == 33) {
+			} else if ($r == 255 && $g == 227 && $b == 46) {
+			} else if ($r == 255 && $g == 235 && $b == 42) {
+			} else if ($r == 247 && $g == 237 && $b == 54) {
+			} else if ($r == 248 && $g == 235 && $b == 60) {
+			} else if ($r == 242 && $g == 250 && $b == 77) {
+			} else if ($r == 173 && $g == 241 && $b == 60) {
+			} else if ($r == 85 && $g == 218 && $b == 33) {
+			} else if ($r == 77 && $g == 234 && $b == 67) {
+			} else if ($r == 75 && $g == 201 && $b == 75) {
+			} else if ($r == 95 && $g == 215 && $b == 92) {
+			} else if ($r == 80 && $g == 199 && $b == 47) {
+			} else if ($r == 184 && $g == 247 && $b == 94) {
+			} else if ($r == 174 && $g == 194 && $b == 60) {
+			} else if ($r == 171 && $g == 210 && $b == 85) {
+			} else if ($r == 111 && $g == 191 && $b == 68) {
+			} else if ($r == 84 && $g == 180 && $b == 70) {
+			} else if ($r == 86 && $g == 178 && $b == 67) {
+			} else if ($r == 85 && $g == 178 && $b == 71) {
+			} else if ($r == 78 && $g == 181 && $b == 72) {
+			} else if ($r == 72 && $g == 186 && $b == 65) {
+			} else if ($r == 77 && $g == 198 && $b == 57) {
+			} else if ($r == 74 && $g == 201 && $b == 49) {
+			} else if ($r == 72 && $g == 204 && $b == 56) {
+			} else if ($r == 74 && $g == 205 && $b == 63) {
+			} else if ($r == 91 && $g == 197 && $b == 49) {
+			} else if ($r == 168 && $g == 226 && $b == 62) {
+			} else if ($r == 234 && $g == 241 && $b == 76) {
+			} else if ($r == 243 && $g == 213 && $b == 65) {
+			} else if ($r == 252 && $g == 212 && $b == 78) {
+			} else if ($r == 255 && $g == 221 && $b == 78) {
+			} else if ($r == 255 && $g == 228 && $b == 66) {
+			} else if ($r == 255 && $g == 225 && $b == 59) {
+			} else if ($r == 255 && $g == 224 && $b == 71) {
+			} else if ($r == 254 && $g == 247 && $b == 96) {
+			} else if ($r == 147 && $g == 204 && $b == 37) {
+			} else if ($r == 95 && $g == 216 && $b == 37) {
+			} else if ($r == 103 && $g == 239 && $b == 81) {
+			} else if ($r == 91 && $g == 189 && $b == 78) {
+			} else if ($r == 104 && $g == 202 && $b == 53) {
+			} else if ($r == 180 && $g == 255 && $b == 74) {
+			} else if ($r == 239 && $g == 253 && $b == 72) {
+			} else if ($r == 252 && $g == 218 && $b == 58) {
+			} else if ($r == 245 && $g == 219 && $b == 72) {
+			} else if ($r == 223 && $g == 229 && $b == 81) {
+			} else if ($r == 188 && $g == 227 && $b == 86) {
+			} else if ($r == 149 && $g == 178 && $b == 36) {
+			} else if ($r == 145 && $g == 179 && $b == 43) {
+			} else if ($r == 118 && $g == 187 && $b == 60) {
+			} else if ($r == 80 && $g == 185 && $b == 57) {
+			} else if ($r == 77 && $g == 198 && $b == 59) {
+			} else if ($r == 79 && $g == 198 && $b == 54) {
+			} else if ($r == 77 && $g == 200 && $b == 60) {
+			} else if ($r == 79 && $g == 199 && $b == 65) {
+			} else if ($r == 136 && $g == 225 && $b == 73) {
+			} else if ($r == 232 && $g == 255 && $b == 85) {
+			} else if ($r == 255 && $g == 227 && $b == 51) {
+			} else if ($r == 253 && $g == 195 && $b == 52) {
+			} else if ($r == 225 && $g == 158 && $b == 51) {
+			} else if ($r == 232 && $g == 157 && $b == 56) {
+			} else if ($r == 241 && $g == 155 && $b == 42) {
+			} else if ($r == 241 && $g == 168 && $b == 40) {
+			} else if ($r == 255 && $g == 199 && $b == 75) {
+			} else if ($r == 255 && $g == 225 && $b == 90) {
+			} else if ($r == 170 && $g == 205 && $b == 41) {
+			} else if ($r == 120 && $g == 225 && $b == 44) {
+			} else if ($r == 96 && $g == 216 && $b == 59) {
+			} else if ($r == 112 && $g == 200 && $b == 36) {
+			} else if ($r == 191 && $g == 255 && $b == 57) {
+			} else if ($r == 240 && $g == 246 && $b == 50) {
+			} else if ($r == 255 && $g == 217 && $b == 40) {
+			} else if ($r == 242 && $g == 189 && $b == 23) {
+			} else if ($r == 251 && $g == 210 && $b == 42) {
+			} else if ($r == 243 && $g == 224 && $b == 59) {
+			} else if ($r == 252 && $g == 218 && $b == 58) {
+			} else if ($r == 244 && $g == 220 && $b == 68) {
+			} else if ($r == 209 && $g == 234 && $b == 91) {
+			} else if ($r == 128 && $g == 208 && $b == 73) {
+			} else if ($r == 85 && $g == 187 && $b == 60) {
+			} else if ($r == 86 && $g == 187 && $b == 65) {
+			} else if ($r == 82 && $g == 181 && $b == 55) {
+			} else if ($r == 100 && $g == 191 && $b == 51) {
+			} else if ($r == 161 && $g == 218 && $b == 53) {
+			} else if ($r == 250 && $g == 241 && $b == 62) {
+			} else if ($r == 255 && $g == 203 && $b == 38) {
+			} else if ($r == 255 && $g == 181 && $b == 54) {
+			} else if ($r == 255 && $g == 146 && $b == 55) {
+			} else if ($r == 255 && $g == 142 && $b == 63) {
+			} else if ($r == 255 && $g == 136 && $b == 56) {
+			} else if ($r == 248 && $g == 149 && $b == 56) {
+			} else if ($r == 251 && $g == 150 && $b == 42) {
+			} else if ($r == 251 && $g == 185 && $b == 47) {
+			} else if ($r == 218 && $g == 236 && $b == 64) {
+			} else if ($r == 149 && $g == 246 && $b == 68) {
+			} else if ($r == 113 && $g == 225 && $b == 78) {
+			} else if ($r == 113 && $g == 224 && $b == 68) {
+			} else if ($r == 131 && $g == 231 && $b == 45) {
+			} else if ($r == 207 && $g == 242 && $b == 64) {
+			} else if ($r == 247 && $g == 222 && $b == 60) {
+			} else if ($r == 236 && $g == 193 && $b == 29) {
+			} else if ($r == 246 && $g == 215 && $b == 39) {
+			} else if ($r == 255 && $g == 220 && $b == 44) {
+			} else if ($r == 255 && $g == 215 && $b == 55) {
+			} else if ($r == 255 && $g == 216 && $b == 63) {
+			} else if ($r == 238 && $g == 238 && $b == 80) {
+			} else if ($r == 202 && $g == 246 && $b == 99) {
+			} else if ($r == 99 && $g == 165 && $b == 55) {
+			} else if ($r == 91 && $g == 154 && $b == 73) {
+			} else if ($r == 104 && $g == 160 && $b == 59) {
+			} else if ($r == 188 && $g == 231 && $b == 79) {
+			} else if ($r == 224 && $g == 236 && $b == 52) {
+			} else if ($r == 249 && $g == 208 && $b == 42) {
+			} else if ($r == 255 && $g == 186 && $b == 63) {
+			} else if ($r == 255 && $g == 173 && $b == 78) {
+			} else if ($r == 255 && $g == 141 && $b == 55) {
+			} else if ($r == 255 && $g == 139 && $b == 58) {
+			} else if ($r == 255 && $g == 137 && $b == 62) {
+			} else if ($r == 248 && $g == 147 && $b == 67) {
+			} else if ($r == 255 && $g == 156 && $b == 42) {
+			} else if ($r == 255 && $g == 198 && $b == 43) {
+			} else if ($r == 231 && $g == 250 && $b == 73) {
+			} else if ($r == 93 && $g == 193 && $b == 33) {
+			} else if ($r == 80 && $g == 225 && $b == 84) {
+			} else if ($r == 70 && $g == 209 && $b == 48) {
+			} else if ($r == 128 && $g == 192 && $b == 44) {
+			} else if ($r == 209 && $g == 199 && $b == 67) {
+			} else if ($r == 255 && $g == 241 && $b == 93) {
+			} else if ($r == 237 && $g == 236 && $b == 60) {
+			} else if ($r == 250 && $g == 223 && $b == 46) {
+			} else if ($r == 245 && $g == 214 && $b == 61) {
+			} else if ($r == 198 && $g == 172 && $b == 25) {
+			} else if ($r == 233 && $g == 228 && $b == 62) {
+			} else if ($r == 221 && $g == 241 && $b == 82) {
+			} else if ($r == 117 && $g == 151 && $b == 54) {
+			} else if ($r == 105 && $g == 134 && $b == 86) {
+			} else if ($r == 132 && $g == 150 && $b == 74) {
+			} else if ($r == 249 && $g == 251 && $b == 92) {
+			} else if ($r == 251 && $g == 227 && $b == 29) {
+			} else if ($r == 241 && $g == 180 && $b == 29) {
+			} else if ($r == 249 && $g == 153 && $b == 67) {
+			} else if ($r == 233 && $g == 120 && $b == 54) {
+			} else if ($r == 230 && $g == 115 && $b == 32) {
+			} else if ($r == 241 && $g == 136 && $b == 44) {
+			} else if ($r == 248 && $g == 149 && $b == 64) {
+			} else if ($r == 241 && $g == 151 && $b == 65) {
+			} else if ($r == 255 && $g == 164 && $b == 36) {
+			} else if ($r == 255 && $g == 208 && $b == 39) {
+			} else if ($r == 233 && $g == 255 && $b == 87) {
+			} else if ($r == 89 && $g == 197 && $b == 59) {
+			} else if ($r == 80 && $g == 188 && $b == 68) {
+			} else if ($r == 71 && $g == 199 && $b == 63) {
+			} else if ($r == 81 && $g == 193 && $b == 57) {
+			} else if ($r == 151 && $g == 219 && $b == 70) {
+			} else if ($r == 242 && $g == 255 && $b == 73) {
+			} else if ($r == 255 && $g == 252 && $b == 32) {
+			} else if ($r == 246 && $g == 222 && $b == 74) {
+			} else if ($r == 242 && $g == 211 && $b == 69) {
+			} else if ($r == 237 && $g == 209 && $b == 73) {
+			} else if ($r == 214 && $g == 224 && $b == 91) {
+			} else if ($r == 109 && $g == 173 && $b == 63) {
+			} else if ($r == 76 && $g == 178 && $b == 102) {
+			} else if ($r == 68 && $g == 169 && $b == 99) {
+			} else if ($r == 107 && $g == 170 && $b == 56) {
+			} else if ($r == 247 && $g == 253 && $b == 83) {
+			} else if ($r == 255 && $g == 212 && $b == 38) {
+			} else if ($r == 255 && $g == 164 && $b == 44) {
+			} else if ($r == 255 && $g == 126 && $b == 70) {
+			} else if ($r == 254 && $g == 87 && $b == 55) {
+			} else if ($r == 255 && $g == 86 && $b == 51) {
+			} else if ($r == 255 && $g == 87 && $b == 52) {
+			} else if ($r == 252 && $g == 88 && $b == 61) {
+			} else if ($r == 238 && $g == 108 && $b == 59) {
+			} else if ($r == 255 && $g == 154 && $b == 54) {
+			} else if ($r == 255 && $g == 200 && $b == 43) {
+			} else if ($r == 243 && $g == 255 && $b == 78) {
+			} else if ($r == 114 && $g == 200 && $b == 47) {
+			} else if ($r == 114 && $g == 189 && $b == 71) {
+			} else if ($r == 192 && $g == 236 && $b == 101) {
+			} else if ($r == 243 && $g == 254 && $b == 88) {
+			} else if ($r == 250 && $g == 240 && $b == 47) {
+			} else if ($r == 232 && $g == 205 && $b == 88) {
+			} else if ($r == 180 && $g == 156 && $b == 30) {
+			} else if ($r == 198 && $g == 179 && $b == 51) {
+			} else if ($r == 181 && $g == 175 && $b == 61) {
+			} else if ($r == 127 && $g == 150 && $b == 68) {
+			} else if ($r == 100 && $g == 155 && $b == 100) {
+			} else if ($r == 104 && $g == 174 && $b == 104) {
+			} else if ($r == 116 && $g == 166 && $b == 41) {
+			} else if ($r == 248 && $g == 252 && $b == 77) {
+			} else if ($r == 255 && $g == 215 && $b == 38) {
+			} else if ($r == 255 && $g == 168 && $b == 44) {
+			} else if ($r == 232 && $g == 110 && $b == 45) {
+			} else if ($r == 244 && $g == 91 && $b == 57) {
+			} else if ($r == 255 && $g == 87 && $b == 54) {
+			} else if ($r == 255 && $g == 88 && $b == 52) {
+			} else if ($r == 253 && $g == 90 && $b == 59) {
+			} else if ($r == 235 && $g == 109 && $b == 58) {
+			} else if ($r == 255 && $g == 141 && $b == 45) {
+			} else if ($r == 255 && $g == 188 && $b == 33) {
+			} else if ($r == 226 && $g == 255 && $b == 80) {
+			} else if ($r == 90 && $g == 209 && $b == 41) {
+			} else if ($r == 199 && $g == 246 && $b == 108) {
+			} else if ($r == 236 && $g == 254 && $b == 110) {
+			} else if ($r == 202 && $g == 193 && $b == 52) {
+			} else if ($r == 226 && $g == 204 && $b == 121) {
+			} else if ($r == 149 && $g == 144 && $b == 40) {
+			} else if ($r == 163 && $g == 168 && $b == 48) {
+			} else if ($r == 235 && $g == 236 && $b == 132) {
+			} else if ($r == 134 && $g == 135 && $b == 69) {
+			} else if ($r == 122 && $g == 142 && $b == 93) {
+			} else if ($r == 121 && $g == 163 && $b == 89) {
+			} else if ($r == 118 && $g == 155 && $b == 23) {
+			} else if ($r == 251 && $g == 251 && $b == 75) {
+			} else if ($r == 255 && $g == 213 && $b == 43) {
+			} else if ($r == 255 && $g == 167 && $b == 47) {
+			} else if ($r == 249 && $g == 127 && $b == 60) {
+			} else if ($r == 244 && $g == 91 && $b == 57) {
+			} else if ($r == 255 && $g == 87 && $b == 59) {
+			} else if ($r == 255 && $g == 88 && $b == 55) {
+			} else if ($r == 253 && $g == 90 && $b == 57) {
+			} else if ($r == 231 && $g == 113 && $b == 51) {
+			} else if ($r == 255 && $g == 155 && $b == 56) {
+			} else if ($r == 255 && $g == 206 && $b == 57) {
+			} else if ($r == 217 && $g == 255 && $b == 88) {
+			} else if ($r == 84 && $g == 216 && $b == 45) {
+			} else if ($r == 141 && $g == 232 && $b == 69) {
+			} else if ($r == 157 && $g == 198 && $b == 68) {
+			} else if ($r == 135 && $g == 174 && $b == 57) {
+			} else if ($r == 121 && $g == 155 && $b == 60) {
+			} else if ($r == 119 && $g == 160 && $b == 84) {
+			} else if ($r == 116 && $g == 165 && $b == 76) {
+			} else if ($r == 190 && $g == 225 && $b == 97) {
+			} else if ($r == 239 && $g == 231 && $b == 71) {
+			} else if ($r == 255 && $g == 202 && $b == 49) {
+			} else if ($r == 255 && $g == 160 && $b == 52) {
+			} else if ($r == 250 && $g == 107 && $b == 49) {
+			} else if ($r == 254 && $g == 83 && $b == 53) {
+			} else if ($r == 255 && $g == 82 && $b == 55) {
+			} else if ($r == 255 && $g == 85 && $b == 55) {
+			} else if ($r == 250 && $g == 90 && $b == 58) {
+			} else if ($r == 247 && $g == 143 && $b == 56) {
+			} else if ($r == 255 && $g == 167 && $b == 55) {
+			} else if ($r == 255 && $g == 213 && $b == 66) {
+			} else if ($r == 168 && $g == 208 && $b == 47) {
+			} else if ($r == 118 && $g == 242 && $b == 70) {
+			} else if ($r == 124 && $g == 181 && $b == 68) {
+			} else if ($r == 116 && $g == 191 && $b == 62) {
+			} else if ($r == 107 && $g == 200 && $b == 59) {
+			} else if ($r == 103 && $g == 199 && $b == 73) {
+			} else if ($r == 99 && $g == 179 && $b == 68) {
+			} else if ($r == 189 && $g == 228 && $b == 111) {
+			} else if ($r == 240 && $g == 228 && $b == 92) {
+			} else if ($r == 233 && $g == 171 && $b == 38) {
+			} else if ($r == 240 && $g == 133 && $b == 37) {
+			} else if ($r == 242 && $g == 100 && $b == 50) {
+			} else if ($r == 249 && $g == 81 && $b == 54) {
+			} else if ($r == 255 && $g == 82 && $b == 53) {
+			} else if ($r == 253 && $g == 87 && $b == 49) {
+			} else if ($r == 255 && $g == 121 && $b == 80) {
+			} else if ($r == 252 && $g == 160 && $b == 51) {
+			} else if ($r == 255 && $g == 202 && $b == 70) {
+			} else if ($r == 242 && $g == 229 && $b == 73) {
+			} else if ($r == 154 && $g == 195 && $b == 41) {
+			} else if ($r == 99 && $g == 179 && $b == 58) {
+			} else if ($r == 88 && $g == 210 && $b == 50) {
+			} else if ($r == 80 && $g == 215 && $b == 53) {
+			} else if ($r == 96 && $g == 196 && $b == 61) {
+			} else if ($r == 134 && $g == 175 && $b == 55) {
+			} else if ($r == 208 && $g == 200 && $b == 76) {
+			} else if ($r == 223 && $g == 184 && $b == 65) {
+			} else if ($r == 237 && $g == 173 && $b == 83) {
+			} else if ($r == 213 && $g == 117 && $b == 66) {
+			} else if ($r == 223 && $g == 96 && $b == 61) {
+			} else if ($r == 235 && $g == 93 && $b == 47) {
+			} else if ($r == 235 && $g == 95 && $b == 33) {
+			} else if ($r == 255 && $g == 129 && $b == 57) {
+			} else if ($r == 247 && $g == 165 && $b == 40) {
+			} else if ($r == 244 && $g == 219 && $b == 67) {
+			} else if ($r == 222 && $g == 255 && $b == 90) {
+			} else if ($r == 140 && $g == 210 && $b == 52) {
+			} else if ($r == 99 && $g == 176 && $b == 60) {
+			} else if ($r == 87 && $g == 205 && $b == 57) {
+			} else if ($r == 80 && $g == 209 && $b == 56) {
+			} else if ($r == 99 && $g == 196 && $b == 54) {
+			} else if ($r == 180 && $g == 221 && $b == 89) {
+			} else if ($r == 193 && $g == 192 && $b == 66) {
+			} else if ($r == 165 && $g == 151 && $b == 42) {
+			} else if ($r == 177 && $g == 161 && $b == 83) {
+			} else if ($r == 164 && $g == 127 && $b == 74) {
+			} else if ($r == 193 && $g == 113 && $b == 60) {
+			} else if ($r == 236 && $g == 125 && $b == 53) {
+			} else if ($r == 251 && $g == 141 && $b == 44) {
+			} else if ($r == 245 && $g == 150 && $b == 42) {
+			} else if ($r == 254 && $g == 186 && $b == 41) {
+			} else if ($r == 224 && $g == 226 && $b == 65) {
+			} else if ($r == 164 && $g == 242 && $b == 71) {
+			} else if ($r == 109 && $g == 205 && $b == 54) {
+			} else if ($r == 100 && $g == 202 && $b == 66) {
+			} else if ($r == 88 && $g == 195 && $b == 66) {
+			} else if ($r == 89 && $g == 197 && $b == 77) {
+			} else if ($r == 99 && $g == 188 && $b == 60) {
+			} else if ($r == 209 && $g == 254 && $b == 112) {
+			} else if ($r == 245 && $g == 247 && $b == 112) {
+			} else if ($r == 186 && $g == 178 && $b == 77) {
+			} else if ($r == 136 && $g == 136 && $b == 74) {
+			} else if ($r == 145 && $g == 127 && $b == 77) {
+			} else if ($r == 215 && $g == 146 && $b == 77) {
+			} else if ($r == 255 && $g == 155 && $b == 55) {
+			} else if ($r == 255 && $g == 183 && $b == 61) {
+			} else if ($r == 253 && $g == 200 && $b == 70) {
+			} else if ($r == 255 && $g == 238 && $b == 59) {
+			} else if ($r == 210 && $g == 226 && $b == 67) {
+			} else if ($r == 115 && $g == 189 && $b == 52) {
+			} else if ($r == 107 && $g == 242 && $b == 80) {
+			} else if ($r == 75 && $g == 215 && $b == 54) {
+			} else if ($r == 79 && $g == 190 && $b == 70) {
+			} else if ($r == 89 && $g == 186 && $b == 93) {
+			} else if ($r == 98 && $g == 186 && $b == 76) {
+			} else if ($r == 186 && $g == 240 && $b == 102) {
+			} else if ($r == 206 && $g == 216 && $b == 81) {
+			} else if ($r == 212 && $g == 208 && $b == 109) {
+			} else if ($r == 158 && $g == 162 && $b == 101) {
+			} else if ($r == 143 && $g == 128 && $b == 69) {
+			} else if ($r == 225 && $g == 150 && $b == 67) {
+			} else if ($r == 255 && $g == 157 && $b == 46) {
+			} else if ($r == 255 && $g == 193 && $b == 68) {
+			} else if ($r == 160 && $g == 142 && $b == 16) {
+			} else if ($r == 255 && $g == 254 && $b == 55) {
+			} else if ($r == 188 && $g == 215 && $b == 58) {
+			} else if ($r == 99 && $g == 237 && $b == 81) {
+			} else if ($r == 66 && $g == 214 && $b == 56) {
+			} else if ($r == 71 && $g == 192 && $b == 76) {
+			} else if ($r == 80 && $g == 185 && $b == 93) {
+			} else if ($r == 89 && $g == 184 && $b == 82) {
+			} else if ($r == 109 && $g == 175 && $b == 52) {
+			} else if ($r == 133 && $g == 165 && $b == 40) {
+			} else if ($r == 143 && $g == 171 && $b == 61) {
+			} else if ($r == 118 && $g == 159 && $b == 63) {
+			} else if ($r == 139 && $g == 160 && $b == 65) {
+			} else if ($r == 191 && $g == 153 && $b == 54) {
+			} else if ($r == 251 && $g == 177 && $b == 72) {
+			} else if ($r == 250 && $g == 206 && $b == 97) {
+			} else if ($r == 174 && $g == 184 && $b == 72) {
+			} else if ($r == 231 && $g == 255 && $b == 73) {
+			} else if ($r == 161 && $g == 209 && $b == 61) {
+			} else if ($r == 67 && $g == 197 && $b == 61) {
+			} else if ($r == 63 && $g == 194 && $b == 66) {
+			} else if ($r == 73 && $g == 189 && $b == 78) {
+			} else if ($r == 110 && $g == 186 && $b == 60) {
+			} else if ($r == 98 && $g == 201 && $b == 58) {
+			} else if ($r == 133 && $g == 221 && $b == 82) {
+			} else if ($r == 118 && $g == 157 && $b == 40) {
+			} else if ($r == 181 && $g == 181 && $b == 85) {
+			} else if ($r == 162 && $g == 169 && $b == 76) {
+			} else if ($r == 84 && $g == 213 && $b == 71) {
+			} else if ($r == 85 && $g == 232 && $b == 79) {
+			} else if ($r == 89 && $g == 211 && $b == 77) {
+			} else if ($r == 85 && $g == 212 && $b == 60) {
+			} else if ($r == 93 && $g == 216 && $b == 65) {
+			} else if ($r == 74 && $g == 170 && $b == 45) {
+			} else if ($r == 109 && $g == 179 && $b == 81) {
+			} else if ($r == 96 && $g == 154 && $b == 67) {
+			} else if ($r == 85 && $g == 242 && $b == 65) {
+			} else if ($r == 80 && $g == 246 && $b == 62) {
+			} else if ($r == 104 && $g == 191 && $b == 87) {
+			} else if ($r == 132 && $g == 210 && $b == 124) {
+			} else if ($r == 82 && $g == 242 && $b == 58) {
+			} else if ($r == 77 && $g == 234 && $b == 57) {
+			} else {
+				imagefill($src_im, $x, $y, $src_white); // replaced with white
+				imagecolortransparent($src_im, $src_white); // Replace the original picture color with a transparent color
+
+			}
+		}
+	}
+
+	$target_im = imagecreatetruecolor($src_w, $src_h); //new map
+	imagealphablending($target_im, true); //This is very important, meaning that the color is not merged and replaced directly with the $target_im image color, including the transparent color;
+	imagesavealpha($target_im, true); //This is very important, meaning not to lose the transparent color of the $target_im image;
+	$tag_white = imagecolorallocatealpha($target_im, 255, 255, 255, 127); // Change the white of the new map to a transparent color Save as tag_white
+	imagefill($target_im, 0, 0, $tag_white); // Fill the empty new white in the target new map
+	imagecolortransparent($target_im, $tag_white); // Replace with a transparent color
+	imagecopymerge($target_im, $src_im, 0, 0, 0, 0, $src_w, $src_h, 100); // Merge the original image and the newly generated transparent map
+	imagepng($target_im, $out_pic);
+	return $out_pic;
+}
+//----------------------------------------------------------------------

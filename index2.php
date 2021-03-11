@@ -198,13 +198,6 @@ function pngMerge($o_pic, $out_pic)
 				imagefill($src_im, $x, $y, $src_white); // Fill the color of a point
 				imagecolortransparent($src_im, $src_white); // Replace the original picture color with a transparent color
 			}
-
-			
-
-			/*if (!($r <= $begin_r && $g <= $begin_g && $b <= $begin_b)) {
-				imagefill($src_im, $x, $y, $src_white); // replaced with white
-				imagecolortransparent($src_im, $src_white); // Replace the original picture color with a transparent color
-			}*/
 		}
 	}
 
@@ -222,5 +215,5 @@ function pngMerge($o_pic, $out_pic)
 }
 
 $o_pic = 'svp120_latest.png';
-$name = pngMerge($o_pic, 'test3.png');
+$name = pngMerge($o_pic, 'test4.png');
 print_r($name);
