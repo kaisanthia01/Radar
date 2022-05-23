@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Weather Radar of Royal Thai Air Force">
+    <meta name="author" content="KRiT KAiSAnTHiA">
+    <title>Weather Radar of Royal Thai Air Force</title>
+    <!-- Custom styles for this template -->
+    <link href="assets/images/logo/VTMD-1.ico" rel="shortcut icon">
+    <link href="assets/plugins/fonts/thaisarabun.css" rel="stylesheet">
+    <link href="assets/plugins/fontawesome-6.1.1/css/all.css" rel="stylesheet">
+    <link href='assets/plugins/bootstrap-5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet">
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" rel="stylesheet">
+    <link href="assets/styles/index.css" rel="stylesheet">
+
+</head>
+
+<body class="h-100">
+    <div id="Map">
+        <div id="Map-Body">
+            <div id="Map-Title">Weather Radar of Royal Thai Air Force</div>
+            <!-- Map-Control-Top-Right -->
+            <div id="Map-Control-Top-Right">
+                <div class="accordion mb-0 pb-0" id="accordionStation">
+                    <div class="accordion-item">
+                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Station"
+                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
+                            สถานีรายงานข่าวอากาศ
+                        </p>
+                        <div id="Map-Control-Station" class="accordion-collapse collapse m-0 p-0"
+                            data-bs-parent="#accordionStation">
+                            <div class="accordion-body m-0 p-0" style="height: 500px; width: 100%; overflow: auto;">
+                                <table class="table table-borderless w-100 text-center m-0 p-0">
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMD">
+                                                <img src="assets/images/logo/StationRTAF/VTMD-1.png" alt="VTMD"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMD<br>( DonMuang )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTNI">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="RTAF"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTNI<br>( DoiIntanon )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTNC">
+                                                <img src="assets/images/logo/StationRTAF/VTNC-1.png" alt="VTNC"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTNC<br>( ChaiMai )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTNP">
+                                                <img src="assets/images/logo/StationRTAF/VTNP.png" alt="VTNP"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTNP<br>( PhitSanulok )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTED">
+                                                <img src="assets/images/logo/StationRTAF/VTED.png" alt="VTED"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTED<br>( Udon )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTEU">
+                                                <img src="assets/images/logo/StationRTAF/VTEU.png" alt="VTEU"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTEU<br>( Ubon )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTEN">
+                                                <img src="assets/images/logo/StationRTAF/VTEN.png" alt="VTEN"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTEN<br>( Korat )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTEZ">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTEZ"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTEZ<br>( NamPhong )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTET">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTET"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTET<br>( NongTaku )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMG">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMG"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMG<br>( KaoKieo )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMI">
+                                                <img src="assets/images/logo/StationRTAF/VTMI-1.png" alt="VTMI"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMI<br>( TaKhli )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTML">
+                                                <img src="assets/images/logo/StationRTAF/VTML.png" alt="VTML"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTML<br>( KokeKathiem )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMM">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMM"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMM<br>( MuangKom )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMK">
+                                                <img src="assets/images/logo/StationRTAF/VTMK.png" alt="VTMK"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMK<br>( Kamphaengsaen )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMW">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMW"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMW<br>( WatthanaNakhon )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMU">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMU"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMU<br>( U-Taphao )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMP">
+                                                <img src="assets/images/logo/StationRTAF/VTMP.png" alt="VTMP"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMP<br>( Prachuap )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTDB">
+                                                <img src="assets/images/logo/StationRTAF/VTDB.png" alt="VTDB"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTDB<br>( SuratThani )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTDS">
+                                                <img src="assets/images/logo/StationRTAF/VTDS.png" alt="VTDS"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTDS<br>( HatYai )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTMH">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMH"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMH<br>( HuaHin )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Station-Wing-VTDT">
+                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTDT"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTDT<br>( BhoThong )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Radar"
+                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
+                            เรดาร์ตรวจอากาศ</p>
+                        <div id="Map-Control-Radar" class="accordion-collapse collapse m-0 p-0"
+                            data-bs-parent="#accordionStation">
+                            <div class="accordion-body m-0 p-0">
+                                <table class="table table-borderless w-100 text-center m-0 p-0">
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Radar-Wing-VTEN">
+                                                <img src="assets/images/logo/StationRTAF/VTEN.png" alt="VTEN"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTEN<br>( Korat )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Radar-Wing-VTEU">
+                                                <img src="assets/images/logo/StationRTAF/VTEU.png" alt="VTEU"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTEU<br>( Ubon )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Radar-Wing-VTED">
+                                                <img src="assets/images/logo/StationRTAF/VTED.png" alt="VTED"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTED<br>( Udon )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Radar-Wing-VTMI">
+                                                <img src="assets/images/logo/StationRTAF/VTMI-1.png" alt="VTMI"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMI<br>( TaKhli )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Radar-Wing-VTMK">
+                                                <img src="assets/images/logo/StationRTAF/VTMK.png" alt="VTMK"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTMK<br>( Kamphaengsaen )</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Radar-Wing-VTDB">
+                                                <img src="assets/images/logo/StationRTAF/VTDB.png" alt="VTDB"
+                                                    width="25px" height="25px"><br>
+                                                <label class="form-check-label">VTDB<br>( SuratThani )</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Fight-Plan"
+                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
+                            เส้นทางบิน
+                        </p>
+                        <div id="Map-Control-Fight-Plan" class="accordion-collapse collapse m-0 p-0"
+                            data-bs-parent="#accordionStation">
+                            <div class="accordion-body p-1 text-center">
+                                <div class="col">
+                                    <form id="Map-Control-Fight-Plan-Form" class="needs-validation" novalidate>
+                                        <div class="col-12 mt-1 mb-1">
+                                            <select class="form-select form-select-sm"
+                                                id="Map-Control-Fight-Plan-TakeOff"
+                                                name="Map-Control-Fight-Plan-TakeOff" required>
+                                                <option value="" selected>สนามบินต้นทาง</option>
+                                                <option value="VTMD">VTMD ( DonMuang )</option>
+                                                <option value="VTNI">VTNI ( DoiIntanon )</option>
+                                                <option value="VTNC">VTNC ( ChaiMai )</option>
+                                                <option value="VTNP">VTNP ( PhitSanulok )</option>
+                                                <option value="VTED">VTED ( Udon )</option>
+                                                <option value="VTEU">VTEU ( Ubon )</option>
+                                                <option value="VTEN">VTEN ( Korat )</option>
+                                                <option value="VTEZ">VTEZ ( NamPhong )</option>
+                                                <option value="VTET">VTET ( NongTaku )</option>
+                                                <option value="VTMG">VTMG ( KaoKieo )</option>
+                                                <option value="VTMI">VTMI ( TaKhli )</option>
+                                                <option value="VTML">VTML ( KokeKathiem )</option>
+                                                <option value="VTMM">VTMM ( MuangKom )</option>
+                                                <option value="VTMK">VTMK ( Kamphaengsaen )</option>
+                                                <option value="VTMW">VTMW ( WatthanaNakhon)</option>
+                                                <option value="VTMU">VTMU ( U-Taphao )</option>
+                                                <option value="VTMP">VTMP ( Prachuap )</option>
+                                                <option value="VTDB">VTDB ( SuratThani )</option>
+                                                <option value="VTDS">VTDS ( HatYai )</option>
+                                                <option value="VTMH">VTMH ( HuaHin )</option>
+                                                <option value="VTDT">VTDT ( BhoThong )</option>
+                                            </select>
+                                            <select class="form-select form-select-sm"
+                                                id="Map-Control-Fight-Plan-Landing"
+                                                name="Map-Control-Fight-Plan-Landing" required>
+                                                <option value="" selected>สนามบินปลายทาง</option>
+                                                <option value="VTMD">VTMD ( DonMuang )</option>
+                                                <option value="VTNI">VTNI ( DoiIntanon )</option>
+                                                <option value="VTNC">VTNC ( ChaiMai )</option>
+                                                <option value="VTNP">VTNP ( PhitSanulok )</option>
+                                                <option value="VTED">VTED ( Udon )</option>
+                                                <option value="VTEU">VTEU ( Ubon )</option>
+                                                <option value="VTEN">VTEN ( Korat )</option>
+                                                <option value="VTEZ">VTEZ ( NamPhong )</option>
+                                                <option value="VTET">VTET ( NongTaku )</option>
+                                                <option value="VTMG">VTMG ( KaoKieo )</option>
+                                                <option value="VTMI">VTMI ( TaKhli )</option>
+                                                <option value="VTML">VTML ( KokeKathiem )</option>
+                                                <option value="VTMM">VTMM ( MuangKom )</option>
+                                                <option value="VTMK">VTMK ( Kamphaengsaen )</option>
+                                                <option value="VTMW">VTMW ( WatthanaNakhon)</option>
+                                                <option value="VTMU">VTMU ( U-Taphao )</option>
+                                                <option value="VTMP">VTMP ( Prachuap )</option>
+                                                <option value="VTDB">VTDB ( SuratThani )</option>
+                                                <option value="VTDS">VTDS ( HatYai )</option>
+                                                <option value="VTMH">VTMH ( HuaHin )</option>
+                                                <option value="VTDT">VTDT ( BhoThong )</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 mt-1 mb-1">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="Map-Control-Fight-Plan-Date-TakeOff"
+                                                        class="form-label">ออกจากสนามบินต้นทางวันที่</label>
+                                                    <input type="text" class="form-control"
+                                                        id="Map-Control-Fight-Plan-Date-TakeOff"
+                                                        name="Map-Control-Fight-Plan-Date-TakeOff"
+                                                        placeholder="dd-mm-yyyy" required>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="Map-Control-Fight-Plan-Time-TakeOff"
+                                                        class="form-label">เวลาออกจากสนามบินต้นทาง</label>
+                                                    <input type="time" class="form-control"
+                                                        id="Map-Control-Fight-Plan-Time-TakeOff"
+                                                        name="Map-Control-Fight-Plan-Time-TakeOff" placeholder="hh:mm"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-1 mb-1">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label">โดยใช้เวลาบินไปถึงสนามบินปลายทาง</label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="number" class="form-control"
+                                                        id="Map-Control-Fight-Plan-Time-HH"
+                                                        name="Map-Control-Fight-Plan-Time-HH" placeholder="ชั่วโมง"
+                                                        required>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="number" class="form-control"
+                                                        id="Map-Control-Fight-Plan-Time-MM"
+                                                        name="Map-Control-Fight-Plan-Time-MM" placeholder="นาที"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-1 mb-1">
+                                            <label for="Map-Control-Fight-Plan-Level-Feet"
+                                                class="form-label">ระดับความสูง
+                                                (ฟุต)</label>
+                                            <input type="number" class="form-control"
+                                                id="Map-Control-Fight-Plan-Level-Feet"
+                                                name="Map-Control-Fight-Plan-Level-Feet" required>
+                                        </div>
+
+                                        <div class="col-12 mt-1 mb-1">
+                                            <label for="Map-Control-Fight-Plan-Reserve-Airport"
+                                                class="form-label">สนามบินสำรอง (กรณีฉุกเฉิน)</label>
+                                            <select class="form-select form-select-sm"
+                                                id="Map-Control-Fight-Plan-Reserve-Airport"
+                                                name="Map-Control-Fight-Plan-Reserve-Airport" required>
+                                                <option value="" selected>สนามบินปลายทาง</option>
+                                                <option value="VTMD">VTMD ( DonMuang )</option>
+                                                <option value="VTNI">VTNI ( DoiIntanon )</option>
+                                                <option value="VTNC">VTNC ( ChaiMai )</option>
+                                                <option value="VTNP">VTNP ( PhitSanulok )</option>
+                                                <option value="VTED">VTED ( Udon )</option>
+                                                <option value="VTEU">VTEU ( Ubon )</option>
+                                                <option value="VTEN">VTEN ( Korat )</option>
+                                                <option value="VTEZ">VTEZ ( NamPhong )</option>
+                                                <option value="VTET">VTET ( NongTaku )</option>
+                                                <option value="VTMG">VTMG ( KaoKieo )</option>
+                                                <option value="VTMI">VTMI ( TaKhli )</option>
+                                                <option value="VTML">VTML ( KokeKathiem )</option>
+                                                <option value="VTMM">VTMM ( MuangKom )</option>
+                                                <option value="VTMK">VTMK ( Kamphaengsaen )</option>
+                                                <option value="VTMW">VTMW ( WatthanaNakhon)</option>
+                                                <option value="VTMU">VTMU ( U-Taphao )</option>
+                                                <option value="VTMP">VTMP ( Prachuap )</option>
+                                                <option value="VTDB">VTDB ( SuratThani )</option>
+                                                <option value="VTDS">VTDS ( HatYai )</option>
+                                                <option value="VTMH">VTMH ( HuaHin )</option>
+                                                <option value="VTDT">VTDT ( BhoThong )</option>
+                                                <option value="BLANK">ไม่มีสนามบินสำรอง</option>
+                                            </select>
+                                        </div>
+                                    </form>
+
+                                    <div class="col-12 mt-2 mb-1">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-success w-100"
+                                                    id="Map-Control-Fight-Plan-Button-Submit">ตกลง</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-danger w-100"
+                                                    id="Map-Control-Fight-Plan-Button-Close">ยกเลิก</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Tools"
+                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
+                            เครื่องมือต่างๆ
+                        </p>
+                        <div id="Map-Control-Tools" class="accordion-collapse collapse m-0 p-0"
+                            data-bs-parent="#accordionStation">
+                            <div class="accordion-body m-0 p-0">
+                                <table class="table table-borderless w-100 text-center m-0 p-0">
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Tools-Title" checked>
+                                                <label class="form-check-label">หัวเรื่อง</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="Map-Control-Tools-Rain-Rate" checked>
+                                                <label class="form-check-label">ค่าความเข้นข้นของฝน(dBZ)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-1 mb-1 text-center">
+                    <p class="text-center mb-0 bg-danger text-white" style="font-size: 10px; padding: 5px;"
+                        id="Map-Control-Top-Right-Button-Close">
+                        ปิด
+                    </p>
+                </div>
+            </div>
+            <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+
+            <!-- Map-Control-Bottom-Left -->
+            <div id="Map-Control-Bottom-Left">
+                <p class="text-center mb-0"
+                    style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
+                    ค่าความเข้มของฝน (dBZ)
+                </p>
+                <table style="width:100px">
+                    <tr>
+                        <td style="width:50px; background: #f8d0f8;"></td>
+                        <td style="padding-left: 10px">66.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #f898f8;"></td>
+                        <td style="padding-left: 10px">64.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #f860f8;"></td>
+                        <td style="padding-left: 10px">61.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #f830f8;"></td>
+                        <td style="padding-left: 10px">59.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #f800f8;"></td>
+                        <td style="padding-left: 10px">56.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #e00000;"></td>
+                        <td style="padding-left: 10px">54.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #ee0000;"></td>
+                        <td style="padding-left: 10px">51.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #ef0000;"></td>
+                        <td style="padding-left: 10px">49.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #e82800;"></td>
+                        <td style="padding-left: 10px">46.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #e84000;"></td>
+                        <td style="padding-left: 10px">44.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #d85800;"></td>
+                        <td style="padding-left: 10px">41.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #d87000;"></td>
+                        <td style="padding-left: 10px">39.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #d88800;"></td>
+                        <td style="padding-left: 10px">36.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #e8a800;"></td>
+                        <td style="padding-left: 10px">34.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #e8c800;"></td>
+                        <td style="padding-left: 10px">31.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #fffe00;"></td>
+                        <td style="padding-left: 10px">29.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #00f500;"></td>
+                        <td style="padding-left: 10px">26.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #02e600;"></td>
+                        <td style="padding-left: 10px">24.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #01df04;"></td>
+                        <td style="padding-left: 10px">21.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #00d708;"></td>
+                        <td style="padding-left: 10px">19.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #00c820;"></td>
+                        <td style="padding-left: 10px">16.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #00ba27;"></td>
+                        <td style="padding-left: 10px">14.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #04a32b;"></td>
+                        <td style="padding-left: 10px">11.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #03a550;"></td>
+                        <td style="padding-left: 10px">9.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #008356;"></td>
+                        <td style="padding-left: 10px">6.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #086a60;"></td>
+                        <td style="padding-left: 10px">4.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #00666a;"></td>
+                        <td style="padding-left: 10px">1.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #004a85;"></td>
+                        <td style="padding-left: 10px">-1.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #004887;"></td>
+                        <td style="padding-left: 10px">-3.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #003c92;"></td>
+                        <td style="padding-left: 10px">-6.0</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #0022a6;"></td>
+                        <td style="padding-left: 10px">-8.5</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50px; background: #0007b8;"></td>
+                        <td style="padding-left: 10px">-10.5</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+
+            <!-- Map-Control-Bottom-Left -->
+            <div id="Map-Control-Bottom-Right">
+            </div>
+            <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+        </div>
+    </div>
+</body>
+<!-- Custom script for this template -->
+<script src="assets/plugins/jQuery/jquery-3.6.0.min.js"></script>
+<script src="assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="assets/plugins/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/plugins/leaflet/leaflet.js"></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+    integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="assets/scripts/index-map.js"></script>
+<script src="assets/scripts/index-station.js"></script>
+<script src="assets/scripts/index-radar.js"></script>
+<script src="assets/scripts/index-fight-plan.js"></script>
+<script src="assets/scripts/index-tools.js"></script>
+
+</html>
