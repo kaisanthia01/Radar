@@ -21,6 +21,6 @@ $(document).ready(function () {
 
     /* Map-Control-Top-Right-Button-Close */
     $('p[id="Map-Control-Top-Right-Button-Close"]').click(function () {
-        $('#Map-Control-Bottom-Left').addClass("d-none");
+        //$('#Map-Control-Bottom-Left').addClass("d-none");
     });
 });

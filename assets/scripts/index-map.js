@@ -23,7 +23,7 @@ var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
 */
 var radarUrlWing1 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
 var latLngBoundsWing1 = L.latLngBounds([[14.9343853, 102.0810221], [14.9343853, 102.0810221]]);
-var imageOverlayWing1 = L.imageOverlay(radarUrlWing1, latLngBoundsWing1, { opacity: 1, interactive: false });
+var imageOverlayWing1 = L.imageOverlay(radarUrlWing1, latLngBoundsWing1, { opacity: 1, interactive: false }).addTo(map);
 
 var radarUrlWing4 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
 var latLngBoundsWing4 = L.latLngBounds([[15.276924, 100.291916], [15.276924, 100.291916]]);
