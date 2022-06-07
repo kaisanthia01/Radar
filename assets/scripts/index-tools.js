@@ -21,6 +21,9 @@ $(document).ready(function () {
 
     /* Map-Control-Top-Right-Button-Close */
     $('p[id="Map-Control-Top-Right-Button-Close"]').click(function () {
-        //$('#Map-Control-Bottom-Left').addClass("d-none");
+        $('#accordionStation').toggle("slow", function () {
+            $('p[id="Map-Control-Top-Right-Button-Close"]').text($('p[id="Map-Control-Top-Right-Button-Close"]').text() == 'ปิด' ? 'เปิด' : 'ปิด');
+            $("#Map-Control-Top-Right").width($('#Map-Control-Top-Right').width() == 350 ? 75 : 350);
+        });
     });
 });

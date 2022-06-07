@@ -1,9 +1,18 @@
 /*
+* ตั้งค่าวันที่เวลา
+*/
+realtime = new Date();
+/*
+* -------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
 * แผนที่เริ่มต้น OpenStreetMap
 */
 var map = L.map('Map', {
-  center: [13.83493614196777, 100.8463897705078],
-  zoom: 7,
+  //center: [13.83493614196777, 100.8463897705078],
+  center: [15.277034, 100.291933],
+  zoom: 8,
   fullscreenControl: true
 });
 
@@ -21,13 +30,14 @@ var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
 /*
 * ภาพเรดาร์ Overlay บนแผนที่
 */
-var radarUrlWing1 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
+var radarUrlWing1 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_PPI_latest.png';
 var latLngBoundsWing1 = L.latLngBounds([[14.9343853, 102.0810221], [14.9343853, 102.0810221]]);
-var imageOverlayWing1 = L.imageOverlay(radarUrlWing1, latLngBoundsWing1, { opacity: 1, interactive: false }).addTo(map);
+var imageOverlayWing1 = L.imageOverlay(radarUrlWing1, latLngBoundsWing1, { opacity: 1, interactive: false });
 
-var radarUrlWing4 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
-var latLngBoundsWing4 = L.latLngBounds([[15.276924, 100.291916], [15.276924, 100.291916]]);
+var radarUrlWing4 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_PPI_latest.png?' + realtime.getTime();
+var latLngBoundsWing4 = L.latLngBounds([[17.425, 98.057], [13.11, 102.538]]);
 var imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, { opacity: 1, interactive: false });
+imageOverlayWing4.addTo(map);
 
 var radarUrlWing7 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
 var latLngBoundsWing7 = L.latLngBounds([[12.75026910981639, 99.7364238735863], [14.91950740666351, 101.9563556674292]]);
@@ -71,7 +81,8 @@ var iconWing3 = L.icon({ iconUrl: 'assets/images/logo/StationRTAF/RTAF.png', ico
 var markerWing3 = L.marker([13.7680476, 102.3151012], { icon: iconWing3 }).bindPopup('I am a green leaf.');
 
 var iconWing4 = L.icon({ iconUrl: 'assets/images/logo/StationRTAF/VTMI-1.png', iconSize: [25, 25] });
-var markerWing4 = L.marker([15.276924, 100.291916], { icon: iconWing4 }).bindPopup('I am a green leaf.');
+var markerWing4 = L.marker([15.277034, 100.291933], { icon: iconWing4 }).bindPopup('I am a green leaf.');
+markerWing4.addTo(map);
 
 var iconWing5 = L.icon({ iconUrl: 'assets/images/logo/StationRTAF/VTMP.png', iconSize: [25, 25] });
 var markerWing5 = L.marker([11.7866226, 99.8077392], { icon: iconWing5 }).bindPopup('I am a green leaf.');
@@ -99,6 +110,16 @@ var markerWingSS = L.marker([14.098889, 99.923629], { icon: iconWingSS }).bindPo
 /*
 * -------------------------------------------------------------------------------------------------------------------------
 */
+
+/*
+* อัพเดทภาพเรดาร์ Overlay บนแผนที่
+*/
+window.setInterval(function () {
+  radarUrlWing4 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_PPI_latest.png?' + realtime.getTime();
+  imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, { opacity: 1, interactive: false });
+  map.removeLayer(imageOverlayWing4);
+  imageOverlayWing4.addTo(map);
+}, 150000);
 
 // add polyline to map
 /*var latlngs = [[14.098889, 99.923629], [18.7734933, 98.9653736]];

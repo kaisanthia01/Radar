@@ -25,10 +25,10 @@
 <body>
     <div id="Map">
         <div id="Map-Body">
-            <div id="Map-Title">Weather Radar of Royal Thai Air Force</div>
+            <div id="Map-Title" class="d-none">Weather Radar of Royal Thai Air Force</div>
             <!-- Map-Control-Top-Right -->
             <div id="Map-Control-Top-Right">
-                <div class="accordion mb-0 pb-0" id="accordionStation">
+                <div class="accordion mb-0 pb-0" id="accordionStation" style="display:none;">
                     <div class="accordion-item">
                         <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Station"
                             style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
@@ -502,14 +502,14 @@
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Tools-Title" checked>
+                                                    id="Map-Control-Tools-Title">
                                                 <label class="form-check-label">หัวเรื่อง</label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Tools-Rain-Rate" checked>
+                                                    id="Map-Control-Tools-Rain-Rate">
                                                 <label class="form-check-label">ค่าความเข้นข้นของฝน(dBZ)</label>
                                             </div>
                                         </td>
@@ -522,14 +522,14 @@
                 <div class="col-12 mt-1 mb-1 text-center">
                     <p class="text-center mb-0 bg-danger text-white" style="font-size: 10px; padding: 5px;"
                         id="Map-Control-Top-Right-Button-Close">
-                        ปิด
+                        เปิด
                     </p>
                 </div>
             </div>
             <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
 
             <!-- Map-Control-Bottom-Left -->
-            <div id="Map-Control-Bottom-Left">
+            <div id="Map-Control-Bottom-Left" class="d-none">
                 <p class="text-center mb-0"
                     style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
                     ค่าความเข้มของฝน<br>(dBZ)
