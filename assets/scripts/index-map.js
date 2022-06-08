@@ -1,7 +1,7 @@
 /*
 * ตั้งค่าวันที่เวลา
 */
-realtime = new Date();
+var realtime = new Date();
 /*
 * -------------------------------------------------------------------------------------------------------------------------
 */
@@ -13,6 +13,7 @@ var map = L.map('Map', {
   //center: [13.83493614196777, 100.8463897705078],
   center: [15.277034, 100.291933],
   zoom: 8,
+  doubleClickZoom: false,
   fullscreenControl: true
 });
 
@@ -115,7 +116,7 @@ var markerWingSS = L.marker([14.098889, 99.923629], { icon: iconWingSS }).bindPo
 * อัพเดทภาพเรดาร์ Overlay บนแผนที่
 */
 window.setInterval(function () {
-  radarUrlWing4 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_PPI_latest.png?' + realtime.getTime();
+  radarUrlWing4 = '/assets/images/radar/wing4/latest/wing4_PPI_latest.png?' + realtime.getTime();
   imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, { opacity: 1, interactive: false });
   map.removeLayer(imageOverlayWing4);
   imageOverlayWing4.addTo(map);
@@ -149,26 +150,7 @@ var seqGroup = L.motion.seq([
     }).motionDuration(5000)
   ])
 ]);
-
-var radarDevice = new L.Radar({
-  radius:24000,
-  status:1,
-  angle:60,
-  direction:65,
-  location:"14.098889, 99.923629"
-},{
-  animat: {
-  color: '#ccc',
-  weight: 0,
-  opacity: 1,
-  fillColor: "#f00",
-  fillOpacity: 1,
-  pmIgnore: true
-},
-step:1
-});
-
-radarDevice.addTo(map);*/
+*/
 
 
 
