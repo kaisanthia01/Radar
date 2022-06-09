@@ -5,7 +5,7 @@ var date = new Date();
 var year = date.getFullYear();
 var month = date.getMonth() + 1;
 var day = date.getDate();
-var hour = date.getHours() - 7;
+var hour = date.getHours();
 var minute = date.getMinutes();
 /* ตั้งค่ารูปแบบตัวเลขวันที่และเวลา */
 var txtmonth = month < 10 ? month = '0' + month : month;
@@ -25,7 +25,7 @@ if (minute >= 0 && minute < 15) {
 } else {
   curentMM = '45';
 }
-document.getElementById('txt-radar-time').innerHTML = 'อัพเดทล่าสุด ' + txtdate + ' | ' + txthour + ':' + curentMM + ' UTZ';
+document.getElementById('txt-radar-time').innerHTML = txtdate + ' | ' + txthour + ':' + curentMM;
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */
@@ -34,9 +34,8 @@ document.getElementById('txt-radar-time').innerHTML = 'อัพเดทล่�
  * แผนที่เริ่มต้น OpenStreetMap
  */
 var map = L.map('Map', {
-  center: [13.83493614196777, 100.8463897705078],
-  //center: [15.277034, 100.291933],
-  //center: [9.1358421, 99.1366254],
+  //center: [13.83493614196777, 100.8463897705078],
+  center: [15.277034, 100.291933],
   zoom: 8,
   doubleClickZoom: false,
   fullscreenControl: true
@@ -56,6 +55,16 @@ var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
 /*
  * ภาพเรดาร์ Overlay บนแผนที่
  */
+var radarUrlWing1 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_PPI_latest.png';
+var latLngBoundsWing1 = L.latLngBounds([
+  [14.9343853, 102.0810221],
+  [14.9343853, 102.0810221]
+]);
+var imageOverlayWing1 = L.imageOverlay(radarUrlWing1, latLngBoundsWing1, {
+  opacity: 1,
+  interactive: false
+});
+
 var radarUrlWing4 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_ppi_latest.png?' + realtime;
 var latLngBoundsWing4 = L.latLngBounds([
   [17.425, 98.057],
@@ -67,42 +76,45 @@ var imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, {
 });
 imageOverlayWing4.addTo(map);
 
-var radarUrlWing7 = 'http://radar.climate4.esy.es/assets/images/radar/wing7/latest/wing7_ppi_latest.png?' + realtime;
+var radarUrlWing7 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
 var latLngBoundsWing7 = L.latLngBounds([
-  [11.315, 96.92],
-  [6.9, 101.36]
+  [12.75026910981639, 99.7364238735863],
+  [14.91950740666351, 101.9563556674292]
 ]);
 var imageOverlayWing7 = L.imageOverlay(radarUrlWing7, latLngBoundsWing7, {
   opacity: 1,
   interactive: false
 });
-imageOverlayWing7.addTo(map);
 
-//var radarUrlNongkam = 'https://weather.bangkok.go.th/Images/Radar/nkradar.jpg?' + realtime;
-var radarUrlNongkam = 'https://weather.bangkok.go.th/Images/Radar/NKKML/nkRadarOnGoogle.png?' + realtime;
-var latLngBoundsNongkam = L.latLngBounds([
-  [12.38196, 98.97206],
-  [15.09352, 101.74581]
-]);
-var imageOverlayNongkam = L.imageOverlay(radarUrlNongkam, latLngBoundsNongkam, {
-  opacity: 1,
-  interactive: false
-});
-imageOverlayNongkam.addTo(map);
-//center: { lat: 13.73781, lng: 100.35894 }
-
-//var radarUrlNongkam = 'https://weather.bangkok.go.th/Images/Radar/radar.jpg?' + realtime;
-var radarUrlNongchok = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png?' + realtime;
-var latLngBoundsNongchok = L.latLngBounds([
-  [12.75026910981639, 99.73642387358632],
+var radarUrlWing21 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
+var latLngBoundsWing21 = L.latLngBounds([
+  [12.75026910981639, 99.7364238735863],
   [14.91950740666351, 101.9563556674292]
 ]);
-var imageOverlayNongchok = L.imageOverlay(radarUrlNongchok, latLngBoundsNongchok, {
+var imageOverlayWing21 = L.imageOverlay(radarUrlWing21, latLngBoundsWing21, {
   opacity: 1,
   interactive: false
 });
-imageOverlayNongchok.addTo(map);
-//center: { lat: 13.83493614196777, lng: 100.8463897705078 }
+
+var radarUrlWing23 = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
+var latLngBoundsWing23 = L.latLngBounds([
+  [12.75026910981639, 99.7364238735863],
+  [14.91950740666351, 101.9563556674292]
+]);
+var imageOverlayWing23 = L.imageOverlay(radarUrlWing23, latLngBoundsWing23, {
+  opacity: 1,
+  interactive: false
+});
+
+var radarUrlWingSS = 'https://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
+var latLngBoundsWingSS = L.latLngBounds([
+  [12.75026910981639, 99.7364238735863],
+  [14.91950740666351, 101.9563556674292]
+]);
+var imageOverlayWingSS = L.imageOverlay(radarUrlWingSS, latLngBoundsWingSS, {
+  opacity: 1,
+  interactive: false
+});
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */
@@ -223,18 +235,15 @@ var markerWingSS = L.marker([14.098889, 99.923629], {
 /*
  * อัพเดทภาพเรดาร์ Overlay บนแผนที่
  */
-window.setInterval(function () {
+/*window.setInterval(function () {
+  radarUrlWing4 = '/assets/images/radar/wing4/latest/wing4_PPI_latest.png?' + realtime.getTime();
+  imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, {
+    opacity: 1,
+    interactive: false
+  });
   map.removeLayer(imageOverlayWing4);
-  map.removeLayer(imageOverlayWing7);
-  map.removeLayer(imageOverlayNongkam);
-  map.removeLayer(imageOverlayNongchok);
   imageOverlayWing4.addTo(map);
-  imageOverlayWing7.addTo(map);
-  imageOverlayNongkam.addTo(map);
-  imageOverlayNongchok.addTo(map);
-  console.log('อัพเดทล่าสุด ' + txtdate + ' | ' + txthour + ':' + txtminute + ' UTZ');
-  $('#txt-radar-time').text('อัพเดทล่าสุด ' + txtdate + ' | ' + txthour + ':' + txtminute + ' UTZ');
-}, 100000);
+}, 150000);*/
 
 // add polyline to map
 /*var latlngs = [[14.098889, 99.923629], [18.7734933, 98.9653736]];
