@@ -67,6 +67,8 @@ var imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, {
 });
 imageOverlayWing4.addTo(map);
 
+var radarUrlWing7RemoveBG = $.post("assets/images/radar/wing7/latest/wing7removeBG.php");
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 var radarUrlWing7 = 'http://radar.climate4.esy.es/assets/images/radar/wing7/latest/wing7_ppi_latest.png?' + realtime;
 var latLngBoundsWing7 = L.latLngBounds([
   [11.315, 96.92],

@@ -1,9 +1,7 @@
 <?php
 //---------------------- Remove Background ------------------------------
-$o_pic = 'assets/images/radar/wing7/latest/wing7_ppi_latest.png';
-echo $name = pngMerge($o_pic, 'wing7_ppi_latest.png');
-echo '<br>';
-
+$o_pic = 'wing7_ppi_latest.png';
+$name = pngMerge($o_pic, 'wing7_ppi_latest.png');
 function pngMerge($o_pic, $out_pic)
 {
     list($src_w, $src_h) = getimagesize($o_pic); // Get the original image information
@@ -21,9 +19,9 @@ function pngMerge($o_pic, $out_pic)
             if ($r == 0 && $g == 0 && $b == 0) {
                 imagefill($src_im, $x, $y, $src_white); // replaced with white
                 imagecolortransparent($src_im, $src_white); // Replace the original picture color with a transparent color
-            } else {
-
-               
+            } else if ($r == 255 && $g == 255 && $b == 255) {
+                imagefill($src_im, $x, $y, $src_white); // replaced with white
+                imagecolortransparent($src_im, $src_white); // Replace the original picture color with a transparent color
             }
         }
     }
@@ -39,6 +37,3 @@ function pngMerge($o_pic, $out_pic)
     return $out_pic;
 }
 //----------------------------------------------------------------------
-
-
-echo '<body style="background: #f00;"><img src="' . $name . '"></body>';

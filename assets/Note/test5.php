@@ -32,8 +32,8 @@ $crop->crop()->display();
 
 //---------------------- Remove Background ------------------------------
 //$o_pic = 'svp120_latest.png';
-$o_pic = 'svp120_latest.png';
-$name = pngMerge($o_pic, 'test8.png');
+$o_pic = '/assets/images/radar/wing7/latest/wing7_ppi_latest.png';
+$name = pngMerge($o_pic, 'test9.png');
 
 function pngMerge($o_pic, $out_pic)
 {
