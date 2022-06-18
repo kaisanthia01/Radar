@@ -12,701 +12,519 @@
     <link href="assets/plugins/fonts/thaisarabun.css" rel="stylesheet">
     <link href="assets/plugins/fontawesome-6.1.1/css/all.css" rel="stylesheet">
     <link href='assets/plugins/bootstrap-5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href="assets/plugins/bootstrap-5.0.2/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet">
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
-        rel='stylesheet'>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
-        integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" rel="stylesheet">
+    <link href='assets/plugins/leaflet/leaflet.fullscreen.css' rel='stylesheet'>
     <link href="assets/styles/index.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <div id="Map">
-        <div id="Map-Body">
-            <div id="Map-Title" class="d-none">Weather Radar of Royal Thai Air Force</div>
-            <!-- Map-Control-Top-Right -->
-            <div id="Map-Control-Top-Right" class="d-none">
-                <div class="accordion mb-0 pb-0" id="accordionStation" style="display:none;">
-                    <div class="accordion-item">
-                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Station"
-                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
-                            สถานีรายงานข่าวอากาศ
-                        </p>
-                        <div id="Map-Control-Station" class="accordion-collapse collapse m-0 p-0"
-                            data-bs-parent="#accordionStation">
-                            <div class="accordion-body m-0 p-0" style="height: 500px; width: 100%; overflow: auto;">
-                                <table class="table table-borderless w-100 text-center m-0 p-0">
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMD">
-                                                <img src="assets/images/logo/StationRTAF/VTMD-1.png" alt="VTMD"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMD<br>( DonMuang )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTNI">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="RTAF"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTNI<br>( DoiIntanon )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTNC">
-                                                <img src="assets/images/logo/StationRTAF/VTNC-1.png" alt="VTNC"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTNC<br>( ChaiMai )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTNP">
-                                                <img src="assets/images/logo/StationRTAF/VTNP.png" alt="VTNP"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTNP<br>( PhitSanulok )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTED">
-                                                <img src="assets/images/logo/StationRTAF/VTED.png" alt="VTED"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTED<br>( Udon )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTEU">
-                                                <img src="assets/images/logo/StationRTAF/VTEU.png" alt="VTEU"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTEU<br>( Ubon )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTEN">
-                                                <img src="assets/images/logo/StationRTAF/VTEN.png" alt="VTEN"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTEN<br>( Korat )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTEZ">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTEZ"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTEZ<br>( NamPhong )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTET">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTET"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTET<br>( NongTaku )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMG">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMG"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMG<br>( KaoKieo )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMI">
-                                                <img src="assets/images/logo/StationRTAF/VTMI-1.png" alt="VTMI"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMI<br>( TaKhli )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTML">
-                                                <img src="assets/images/logo/StationRTAF/VTML.png" alt="VTML"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTML<br>( KokeKathiem )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMM">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMM"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMM<br>( MuangKom )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMK">
-                                                <img src="assets/images/logo/StationRTAF/VTMK.png" alt="VTMK"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMK<br>( Kamphaengsaen )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMW">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMW"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMW<br>( WatthanaNakhon )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMU">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMU"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMU<br>( U-Taphao )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMP">
-                                                <img src="assets/images/logo/StationRTAF/VTMP.png" alt="VTMP"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMP<br>( Prachuap )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTDB">
-                                                <img src="assets/images/logo/StationRTAF/VTDB.png" alt="VTDB"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTDB<br>( SuratThani )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTDS">
-                                                <img src="assets/images/logo/StationRTAF/VTDS.png" alt="VTDS"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTDS<br>( HatYai )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTMH">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTMH"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMH<br>( HuaHin )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Station-Wing-VTDT">
-                                                <img src="assets/images/logo/StationRTAF/RTAF.png" alt="VTDT"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTDT<br>( BhoThong )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Radar"
-                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
-                            เรดาร์ตรวจอากาศ</p>
-                        <div id="Map-Control-Radar" class="accordion-collapse collapse m-0 p-0"
-                            data-bs-parent="#accordionStation">
-                            <div class="accordion-body m-0 p-0">
-                                <table class="table table-borderless w-100 text-center m-0 p-0">
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Radar-Wing-VTEN">
-                                                <img src="assets/images/logo/StationRTAF/VTEN.png" alt="VTEN"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTEN<br>( Korat )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Radar-Wing-VTEU">
-                                                <img src="assets/images/logo/StationRTAF/VTEU.png" alt="VTEU"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTEU<br>( Ubon )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Radar-Wing-VTED">
-                                                <img src="assets/images/logo/StationRTAF/VTED.png" alt="VTED"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTED<br>( Udon )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Radar-Wing-VTMI">
-                                                <img src="assets/images/logo/StationRTAF/VTMI-1.png" alt="VTMI"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMI<br>( TaKhli )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Radar-Wing-VTMK">
-                                                <img src="assets/images/logo/StationRTAF/VTMK.png" alt="VTMK"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTMK<br>( Kamphaengsaen )</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Radar-Wing-VTDB">
-                                                <img src="assets/images/logo/StationRTAF/VTDB.png" alt="VTDB"
-                                                    width="25px" height="25px"><br>
-                                                <label class="form-check-label">VTDB<br>( SuratThani )</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Fight-Plan"
-                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
-                            เส้นทางบิน
-                        </p>
-                        <div id="Map-Control-Fight-Plan" class="accordion-collapse collapse m-0 p-0"
-                            data-bs-parent="#accordionStation">
-                            <div class="accordion-body p-1 text-center">
-                                <div class="col">
-                                    <form id="Map-Control-Fight-Plan-Form" class="needs-validation" novalidate>
-                                        <div class="col-12 mt-1 mb-1">
-                                            <select class="form-select form-select-sm"
-                                                id="Map-Control-Fight-Plan-TakeOff"
-                                                name="Map-Control-Fight-Plan-TakeOff" required>
-                                                <option value="" selected>สนามบินต้นทาง</option>
-                                                <option value="VTMD">VTMD ( DonMuang )</option>
-                                                <option value="VTNI">VTNI ( DoiIntanon )</option>
-                                                <option value="VTNC">VTNC ( ChaiMai )</option>
-                                                <option value="VTNP">VTNP ( PhitSanulok )</option>
-                                                <option value="VTED">VTED ( Udon )</option>
-                                                <option value="VTEU">VTEU ( Ubon )</option>
-                                                <option value="VTEN">VTEN ( Korat )</option>
-                                                <option value="VTEZ">VTEZ ( NamPhong )</option>
-                                                <option value="VTET">VTET ( NongTaku )</option>
-                                                <option value="VTMG">VTMG ( KaoKieo )</option>
-                                                <option value="VTMI">VTMI ( TaKhli )</option>
-                                                <option value="VTML">VTML ( KokeKathiem )</option>
-                                                <option value="VTMM">VTMM ( MuangKom )</option>
-                                                <option value="VTMK">VTMK ( Kamphaengsaen )</option>
-                                                <option value="VTMW">VTMW ( WatthanaNakhon)</option>
-                                                <option value="VTMU">VTMU ( U-Taphao )</option>
-                                                <option value="VTMP">VTMP ( Prachuap )</option>
-                                                <option value="VTDB">VTDB ( SuratThani )</option>
-                                                <option value="VTDS">VTDS ( HatYai )</option>
-                                                <option value="VTMH">VTMH ( HuaHin )</option>
-                                                <option value="VTDT">VTDT ( BhoThong )</option>
-                                            </select>
-                                            <select class="form-select form-select-sm"
-                                                id="Map-Control-Fight-Plan-Landing"
-                                                name="Map-Control-Fight-Plan-Landing" required>
-                                                <option value="" selected>สนามบินปลายทาง</option>
-                                                <option value="VTMD">VTMD ( DonMuang )</option>
-                                                <option value="VTNI">VTNI ( DoiIntanon )</option>
-                                                <option value="VTNC">VTNC ( ChaiMai )</option>
-                                                <option value="VTNP">VTNP ( PhitSanulok )</option>
-                                                <option value="VTED">VTED ( Udon )</option>
-                                                <option value="VTEU">VTEU ( Ubon )</option>
-                                                <option value="VTEN">VTEN ( Korat )</option>
-                                                <option value="VTEZ">VTEZ ( NamPhong )</option>
-                                                <option value="VTET">VTET ( NongTaku )</option>
-                                                <option value="VTMG">VTMG ( KaoKieo )</option>
-                                                <option value="VTMI">VTMI ( TaKhli )</option>
-                                                <option value="VTML">VTML ( KokeKathiem )</option>
-                                                <option value="VTMM">VTMM ( MuangKom )</option>
-                                                <option value="VTMK">VTMK ( Kamphaengsaen )</option>
-                                                <option value="VTMW">VTMW ( WatthanaNakhon)</option>
-                                                <option value="VTMU">VTMU ( U-Taphao )</option>
-                                                <option value="VTMP">VTMP ( Prachuap )</option>
-                                                <option value="VTDB">VTDB ( SuratThani )</option>
-                                                <option value="VTDS">VTDS ( HatYai )</option>
-                                                <option value="VTMH">VTMH ( HuaHin )</option>
-                                                <option value="VTDT">VTDT ( BhoThong )</option>
-                                            </select>
-                                        </div>
+    <div class="text-center m-0 p-1 h1" style="background-color: #1d345d; color:#ffc107; text-shadow: 1.5px 1px #fff;">
+        <i class="fa-brands fa-connectdevelop"></i>
+        แผนพัฒนาการบริการข่าวอากาศ ศขอ.กขอ.คปอ.
+    </div>
 
-                                        <div class="col-12 mt-1 mb-1">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="Map-Control-Fight-Plan-Date-TakeOff"
-                                                        class="form-label">ออกจากสนามบินต้นทางวันที่</label>
-                                                    <input type="text" class="form-control"
-                                                        id="Map-Control-Fight-Plan-Date-TakeOff"
-                                                        name="Map-Control-Fight-Plan-Date-TakeOff"
-                                                        placeholder="dd-mm-yyyy" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Map-Control-Fight-Plan-Time-TakeOff"
-                                                        class="form-label">เวลาออกจากสนามบินต้นทาง</label>
-                                                    <input type="time" class="form-control"
-                                                        id="Map-Control-Fight-Plan-Time-TakeOff"
-                                                        name="Map-Control-Fight-Plan-Time-TakeOff" placeholder="hh:mm"
-                                                        required>
-                                                </div>
-                                            </div>
-                                        </div>
+    <!-- Map -->
+    <div id="Map"></div>
+    <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
 
-                                        <div class="col-12 mt-1 mb-1">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label class="form-label">โดยใช้เวลาบินไปถึงสนามบินปลายทาง</label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <input type="number" class="form-control"
-                                                        id="Map-Control-Fight-Plan-Time-HH"
-                                                        name="Map-Control-Fight-Plan-Time-HH" placeholder="ชั่วโมง"
-                                                        required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <input type="number" class="form-control"
-                                                        id="Map-Control-Fight-Plan-Time-MM"
-                                                        name="Map-Control-Fight-Plan-Time-MM" placeholder="นาที"
-                                                        required>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 mt-1 mb-1">
-                                            <label for="Map-Control-Fight-Plan-Level-Feet"
-                                                class="form-label">ระดับความสูง
-                                                (ฟุต)</label>
-                                            <input type="number" class="form-control"
-                                                id="Map-Control-Fight-Plan-Level-Feet"
-                                                name="Map-Control-Fight-Plan-Level-Feet" required>
-                                        </div>
-
-                                        <div class="col-12 mt-1 mb-1">
-                                            <label for="Map-Control-Fight-Plan-Reserve-Airport"
-                                                class="form-label">สนามบินสำรอง (กรณีฉุกเฉิน)</label>
-                                            <select class="form-select form-select-sm"
-                                                id="Map-Control-Fight-Plan-Reserve-Airport"
-                                                name="Map-Control-Fight-Plan-Reserve-Airport" required>
-                                                <option value="" selected>สนามบินปลายทาง</option>
-                                                <option value="VTMD">VTMD ( DonMuang )</option>
-                                                <option value="VTNI">VTNI ( DoiIntanon )</option>
-                                                <option value="VTNC">VTNC ( ChaiMai )</option>
-                                                <option value="VTNP">VTNP ( PhitSanulok )</option>
-                                                <option value="VTED">VTED ( Udon )</option>
-                                                <option value="VTEU">VTEU ( Ubon )</option>
-                                                <option value="VTEN">VTEN ( Korat )</option>
-                                                <option value="VTEZ">VTEZ ( NamPhong )</option>
-                                                <option value="VTET">VTET ( NongTaku )</option>
-                                                <option value="VTMG">VTMG ( KaoKieo )</option>
-                                                <option value="VTMI">VTMI ( TaKhli )</option>
-                                                <option value="VTML">VTML ( KokeKathiem )</option>
-                                                <option value="VTMM">VTMM ( MuangKom )</option>
-                                                <option value="VTMK">VTMK ( Kamphaengsaen )</option>
-                                                <option value="VTMW">VTMW ( WatthanaNakhon)</option>
-                                                <option value="VTMU">VTMU ( U-Taphao )</option>
-                                                <option value="VTMP">VTMP ( Prachuap )</option>
-                                                <option value="VTDB">VTDB ( SuratThani )</option>
-                                                <option value="VTDS">VTDS ( HatYai )</option>
-                                                <option value="VTMH">VTMH ( HuaHin )</option>
-                                                <option value="VTDT">VTDT ( BhoThong )</option>
-                                                <option value="BLANK">ไม่มีสนามบินสำรอง</option>
-                                            </select>
-                                        </div>
-                                    </form>
-
-                                    <div class="col-12 mt-2 mb-1">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-success w-100"
-                                                    id="Map-Control-Fight-Plan-Button-Submit">ตกลง</button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-danger w-100"
-                                                    id="Map-Control-Fight-Plan-Button-Close">ยกเลิก</button>
-                                            </div>
-                                        </div>
+    <!-- Map-Control-Center-Left -->
+    <div id="Map-Control-Center-Left">
+        <div id="Map-Control-Center-Left-Sidebar">
+            <div id="Map-Control-Center-Left-Sidebar-Logo">
+                <span class="text-center" id="Map-Control-Center-Left-Sidebar-Logo-Wx-Layer">Wx.Layer</span>
+            </div>
+            <div class="text-center" id="Map-Control-Center-Left-Sidebar-Menu">
+                <img class="p-3" src="assets/images/logo/DAOC-TH.png" width="150px" height="150px" alt="weather">
+                <div class="accordion" id="Map-Control-Center-Left-Sidebar-Menu-Layer">
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Radar-RTAF">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-radar-rtaf" aria-expanded="true" aria-controls="col-radar-rtaf">
+                                <i class="fa-solid fa-satellite-dish fs-5"></i><span class="fs-5 ms-2 fw-bold">Radar
+                                    RTAF</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="col-radar-rtaf">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
+                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 1</label>
                                     </div>
-                                </div>
-                            </div>
+                                    <span class="badge">
+                                        <img src="assets/images/logo/StationRTAF/VTEN.png" width="25px" height="25px"
+                                            alt="VTEN">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
+                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 4</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/logo/StationRTAF/VTMI-1.png" width="25px" height="25px"
+                                            alt="VTEN">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
+                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 7</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/logo/StationRTAF/VTDB.png" width="25px" height="25px"
+                                            alt="VTEN">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
+                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 21</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/logo/StationRTAF/VTEU.png" width="25px" height="25px"
+                                            alt="VTEN">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
+                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 23</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/logo/StationRTAF/VTED.png" width="25px" height="25px"
+                                            alt="VTEN">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
+                                        <label class="form-check-label" for="Radar-Wing1">โรงเรียนการบิน</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/logo/StationRTAF/VTMK.png" width="25px" height="25px"
+                                            alt="VTEN">
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <p class="text-center mb-0" data-bs-toggle="collapse" data-bs-target="#Map-Control-Tools"
-                            style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
-                            เครื่องมือต่างๆ
-                        </p>
-                        <div id="Map-Control-Tools" class="accordion-collapse collapse m-0 p-0"
-                            data-bs-parent="#accordionStation">
-                            <div class="accordion-body m-0 p-0">
-                                <table class="table table-borderless w-100 text-center m-0 p-0">
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Tools-Title">
-                                                <label class="form-check-label">หัวเรื่อง</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="Map-Control-Tools-Rain-Rate">
-                                                <label class="form-check-label">ค่าความเข้นข้นของฝน(dBZ)</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Radar-TMD">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-radar-tmd" aria-expanded="false" aria-controls="col-radar-tmd">
+                                <i class="fa-solid fa-satellite-dish fs-5"></i><span class="fs-5 ms-2 fw-bold">Radar
+                                    TMD</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="col-radar-tmd">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Nongkhame">
+                                        <label class="form-check-label" for="Radar-Nongkhame">Nongkhame</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/nkradar.jpg" width="25px" height="25px"
+                                            alt="Nongkhame">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Nongchok">
+                                        <label class="form-check-label" for="Radar-Nongchok">Nongchok</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/ncradar.jpg" width="25px" height="25px"
+                                            alt="Nongchok">
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 mt-1 mb-1 text-center">
-                    <p class="text-center mb-0 bg-danger text-white" style="font-size: 10px; padding: 5px;"
-                        id="Map-Control-Top-Right-Button-Close">
-                        เปิด
-                    </p>
-                </div>
-            </div>
-            <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-
-            <!-- Map-Control-Bottom-Left -->
-            <div id="Map-Control-Bottom-Left" class="d-none">
-                <p class="text-center mb-0"
-                    style="font-size: 10px; background-color: #1d345d; color: #FFFFFF;padding: 5px;">
-                    ค่าความเข้มของฝน<br>(dBZ)
-                </p>
-                <table style="width:100px; height: 100%;">
-                    <tr>
-                        <td style="width:50px; background: #f8d0f8;"></td>
-                        <td style="padding-left: 10px">66.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #f898f8;"></td>
-                        <td style="padding-left: 10px">64.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #f860f8;"></td>
-                        <td style="padding-left: 10px">61.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #f830f8;"></td>
-                        <td style="padding-left: 10px">59.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #f800f8;"></td>
-                        <td style="padding-left: 10px">56.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #e00000;"></td>
-                        <td style="padding-left: 10px">54.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #ee0000;"></td>
-                        <td style="padding-left: 10px">51.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #ef0000;"></td>
-                        <td style="padding-left: 10px">49.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #e82800;"></td>
-                        <td style="padding-left: 10px">46.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #e84000;"></td>
-                        <td style="padding-left: 10px">44.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #d85800;"></td>
-                        <td style="padding-left: 10px">41.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #d87000;"></td>
-                        <td style="padding-left: 10px">39.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #d88800;"></td>
-                        <td style="padding-left: 10px">36.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #e8a800;"></td>
-                        <td style="padding-left: 10px">34.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #e8c800;"></td>
-                        <td style="padding-left: 10px">31.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #fffe00;"></td>
-                        <td style="padding-left: 10px">29.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #00f500;"></td>
-                        <td style="padding-left: 10px">26.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #02e600;"></td>
-                        <td style="padding-left: 10px">24.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #01df04;"></td>
-                        <td style="padding-left: 10px">21.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #00d708;"></td>
-                        <td style="padding-left: 10px">19.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #00c820;"></td>
-                        <td style="padding-left: 10px">16.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #00ba27;"></td>
-                        <td style="padding-left: 10px">14.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #04a32b;"></td>
-                        <td style="padding-left: 10px">11.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #03a550;"></td>
-                        <td style="padding-left: 10px">9.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #008356;"></td>
-                        <td style="padding-left: 10px">6.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #086a60;"></td>
-                        <td style="padding-left: 10px">4.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #00666a;"></td>
-                        <td style="padding-left: 10px">1.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #004a85;"></td>
-                        <td style="padding-left: 10px">-1.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #004887;"></td>
-                        <td style="padding-left: 10px">-3.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #003c92;"></td>
-                        <td style="padding-left: 10px">-6.0</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #0022a6;"></td>
-                        <td style="padding-left: 10px">-8.5</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50px; background: #0007b8;"></td>
-                        <td style="padding-left: 10px">-10.5</td>
-                    </tr>
-                </table>
-            </div>
-            <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-
-            <!-- Map-Control-Bottom-Left -->
-            <div id="Map-Control-Bottom-Right">
-            </div>
-            <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-
-            <!-- Map-Control-Footer-Center -->
-            <div id="Map-Control-Footer-Center" class="text-center">
-                <div class="row">
-                    <div class="col-12 mb-1">
-                        <span class="badge badge-pill badge-warning bg-warning text-dark" id="txt-radar-time">Current Date</span>
-                        <div class="arrow-down"></div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Sat-TMD">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-sat-tmd" aria-expanded="false" aria-controls="col-sat-tmd">
+                                <i class="fa-solid fa-satellite fs-5"></i><span class="fs-5 ms-2 fw-bold">Satellite
+                                    TMD</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse" id="col-sat-tmd">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-IR">
+                                        <label class="form-check-label" for="Sat-IR">IR</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/sat/IR.jpg" width="25px" height="25px"
+                                            alt="IR">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-VIS">
+                                        <label class="form-check-label" for="Sat-VIS">VIS</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/sat/VIS.jpg" width="25px" height="25px"
+                                            alt="VIS">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-WV">
+                                        <label class="form-check-label" for="Sat-WV">WV</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/sat/WV.jpg" width="25px" height="25px"
+                                            alt="WV">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                        <button type="button" class="btn btn-secondary" disabled>&nbsp;<<&nbsp;</button> 
-                        <input type="button" class="btn btn-secondary" id="btn-play-paused" value="Play" disabled/>
-                        <button type="button" class="btn btn-secondary" disabled>&nbsp;>>&nbsp;</button>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Fight-Plan">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-fight-plan" aria-expanded="false" aria-controls="col-fight-plan">
+                                <i class="fa-solid fa-plane fs-5"></i>
+                                <span class="fs-5 ms-2 fw-bold">เส้นทางบิน</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse" id="col-fight-plan">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-IR">
+                                        <label class="form-check-label" for="Sat-IR">IR</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/IR.jpg" width="25px" height="25px" alt="IR">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-VIS">
+                                        <label class="form-check-label" for="Sat-VIS">VIS</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/VIS.jpg" width="25px" height="25px" alt="VIS">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-WV">
+                                        <label class="form-check-label" for="Sat-WV">WV</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/WV.jpg" width="25px" height="25px" alt="WV">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Strom-Track">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-strom-track" aria-expanded="false"
+                                aria-controls="col-strom-track"><i class="fa-solid fa-hurricane fs-5"></i>
+                                <span class="fs-5 ms-2 fw-bold">เส้นทางเดินพายุ</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse" id="col-strom-track">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-IR">
+                                        <label class="form-check-label" for="Sat-IR">IR</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/IR.jpg" width="25px" height="25px" alt="IR">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-VIS">
+                                        <label class="form-check-label" for="Sat-VIS">VIS</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/VIS.jpg" width="25px" height="25px" alt="VIS">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-WV">
+                                        <label class="form-check-label" for="Sat-WV">WV</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/WV.jpg" width="25px" height="25px" alt="WV">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
     </div>
+    <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <!-- Map-Control-Center-Right -->
+    <div id="Map-Control-Center-Right">
+        <div id="Map-Control-Center-Right-Sidebar">
+            <div id="Map-Control-Center-Right-Sidebar-Logo">
+                <span class="text-center" id="Map-Control-Center-Right-Sidebar-Logo-Map-Control">Map.Control</span>
+            </div>
+            <div class="text-center" id="Map-Control-Center-Right-Sidebar-Menu">
+                <img class="p-3" src="assets/images/logo/VTMD-1.png" width="150px" height="150px" alt="weather">
+                <div class="accordion" id="Map-Control-Center-Right-Sidebar-Menu-Layer">
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Wx-News">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-wx-news" aria-expanded="true" aria-controls="col-wx-news">
+                                <i class="fa-solid fa-newspaper fs-5"></i><span class="fs-5 ms-2 fw-bold">Wx
+                                    News</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="col-wx-news">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Metar-Rtaf">
+                                        <label class="form-check-label" for="Wx-News-Metar-Rtaf">METAR</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/StationRTAF/RTAF.png" width="25px"
+                                            height="25px" alt="Wx-News-Metar-Rtaf">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Metar-Taf">
+                                        <label class="form-check-label" for="Wx-News-Metar-Taf">TAF</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/StationRTAF/RTAF.png" width="25px"
+                                            height="25px" alt="Wx-News-Metar-Taf">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Synop">
+                                        <label class="form-check-label" for="Wx-News-Synop">SYNOP</label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Metar-Checkwx">
+                                        <label class="form-check-label" for="Wx-News-Metar-Checkwx">METAR</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/TMD.png" width="25px" height="25px"
+                                            alt="Wx-News-Metar-Checkwx">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Taf-Checkwx">
+                                        <label class="form-check-label" for="Wx-News-Taf-Checkwx">TAF</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/TMD.png" width="25px" height="25px"
+                                            alt="Wx-News-Taf-Checkwx">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Warnning">
+                                        <label class="form-check-label" for="Wx-News-Warnning">WARNING</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Wx-Station">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-wx-station" aria-expanded="false" aria-controls="col-wx-station">
+                                <i class="fa-solid fa-tower-observation fs-5"></i>
+                                <span class="fs-5 ms-2 fw-bold">Station</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="col-wx-station">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-Station-Rtaf">
+                                        <label class="form-check-label" for="Wx-Station-Rtaf">กองทัพอากาศ</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/StationRTAF/RTAF.png" width="25px"
+                                            height="25px" alt="Wx-Station-Rtaf">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-Station-Checkwx">
+                                        <label class="form-check-label" for="Wx-Station-Checkwx">พลเรือน</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/TMD.png" width="25px" height="25px"
+                                            alt="Wx-Station-Checkwx">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="Map-Style">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#col-map-style" aria-expanded="false" aria-controls="col-map-style">
+                                <i class="fa-solid fa-map fs-5"></i>
+                                <span class="fs-5 ms-2 fw-bold">Map Style</span>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="col-map-style">
+                            <ul class="list-group text-start rounded-0 fs-6">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Streets">
+                                        <label class="form-check-label" for="Map-Style-Streets">Streets</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Streets.png" width="25px"
+                                            height="25px" alt="Map-Style-Streets">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Outdoors">
+                                        <label class="form-check-label" for="Map-Style-Outdoors">Outdoors</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Outdoors.png" width="25px"
+                                            height="25px" alt="Map-Style-Outdoors">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Light" checked>
+                                        <label class="form-check-label" for="Map-Style-Light">Light</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Light.png" width="25px"
+                                            height="25px" alt="Map-Style-Light">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Dark">
+                                        <label class="form-check-label" for="Map-Style-Dark">Dark</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Dark.png" width="25px"
+                                            height="25px" alt="Map-Style-Dark">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Satellite">
+                                        <label class="form-check-label" for="Map-Style-Satellite">Satellite</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Satellite.png" width="25px"
+                                            height="25px" alt="Map-Style-Satellite">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Satellite-Streets">
+                                        <label class="form-check-label" for="Map-Style-Satellite-Streets">Satellite
+                                            Streets</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Satellite-Streets.png"
+                                            width="25px" height="25px" alt="Map-Style-Satellite-Streets">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Navigation-Day">
+                                        <label class="form-check-label" for="Map-Style-Navigation-Day">Navigation
+                                            Day</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Navigation-Day.png"
+                                            width="25px" height="25px" alt="Map-Style-Navigation-Day">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
+                                            id="Map-Style-Navigation-Night">
+                                        <label class="form-check-label" for="Map-Style-Navigation-Night">Navigation
+                                            Night</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/map/Mapbox-Navigation-Night.png"
+                                            width="25px" height="25px" alt="Mapbox-Navigation-Night">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <!-- Map-Control-Footer-Center -->
+    <div id="Map-Control-Footer-Center" class="text-center">
+        <div class="row">
+            <div class="col-12 mb-1">
+                <span class="badge badge-pill badge-warning bg-warning text-dark" id="txt-radar-time">Current
+                    Date</span>
+                <div class="arrow-down"></div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" class="btn btn-secondary" disabled>
+                    <i class="fa-solid fa-backward"></i>
+                </button>
+                <button type="button" class="btn btn-secondary" disabled>
+                    <!--<i class="fa-solid fa-circle-stop"></i>-->
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button type="button" class="btn btn-secondary" disabled>
+                    <i class="fa-solid fa-forward"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
 </body>
 <!-- Custom script for this template -->
 <script src="assets/plugins/jQuery/jquery-3.6.0.min.js"></script>
 <script src="assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="assets/plugins/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/plugins/bootstrap-5.0.2/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/plugins/leaflet/leaflet.js"></script>
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
-    integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="assets/scripts/index-map.js"></script>
-<script src="assets/scripts/index-station.js"></script>
-<script src="assets/scripts/index-radar.js"></script>
-<script src="assets/scripts/index-radar-loop.js"></script>
-<script src="assets/scripts/index-fight-plan.js"></script>
-<script src="assets/scripts/index-tools.js"></script>
+<script src='assets/plugins/leaflet/Leaflet.fullscreen.min.js'></script>
+<script src="assets/scripts/index.js"></script>
+<script src="assets/scripts/index-sidebar-left.js"></script>
+<script src="assets/scripts/index-sidebar-right.js"></script>
 
 </html>

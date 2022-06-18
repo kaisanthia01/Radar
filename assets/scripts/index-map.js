@@ -1,21 +1,6 @@
 /*
  * ตั้งค่าวันที่เวลา
  */
-var date = new Date();
-var year = date.getFullYear();
-var month = date.getMonth() + 1;
-var day = date.getDate();
-var hour = date.getHours() - 7;
-var minute = date.getMinutes();
-/* ตั้งค่ารูปแบบตัวเลขวันที่และเวลา */
-var txtmonth = month < 10 ? month = '0' + month : month;
-var txtday = day < 10 ? day = '0' + day : day;
-var txthour = hour < 10 ? hour = '0' + hour : hour;
-var txtminute = minute < 10 ? minute = '0' + minute : minute;
-var txtdate = year + '-' + txtmonth + '-' + txtday;
-var realdate = year + '' + txtmonth + '' + txtday;
-var realtime = year + '' + txtmonth + '' + txtday + '-' + txthour + '' + txtminute;
-var curentMM;
 if (minute >= 0 && minute < 15) {
   curentMM = '00';
 } else if (minute >= 15 && minute < 30) {
@@ -114,7 +99,6 @@ imageOverlayNongchok.addTo(map);
  */
 var latlongWing1 = [14.9343853, 102.0810221];
 var latlongWing41 = [18.7734933, 98.9653736];
-var latlngs, polyline;
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */
@@ -237,33 +221,3 @@ window.setInterval(function () {
   console.log('อัพเดทล่าสุด ' + txtdate + ' | ' + txthour + ':' + txtminute + ' UTZ');
   $('#txt-radar-time').text('อัพเดทล่าสุด ' + txtdate + ' | ' + txthour + ':' + txtminute + ' UTZ');
 }, 100000);
-
-// add polyline to map
-/*var latlngs = [[14.098889, 99.923629], [18.7734933, 98.9653736]];
-var polyline = L.polyline(latlngs, {
-  "delay": 800,
-  "dashArray": [
-    14,
-    48
-  ],
-  "weight": 5,
-  "color": "#0000FF",
-  "pulseColor": "#FFFFFF",
-  "paused": false,
-  "reverse": false,
-  "hardwareAccelerated": true
-});
-
-var planeRoute2 = [[14.098889, 99.923629], [18.7734933, 98.9653736]];
-
-var seqGroup = L.motion.seq([
-  L.motion.seq([
-    L.motion.polyline(planeRoute2, {
-      color: "indigo"
-    }, null, {
-      removeOnEnd: true,
-      icon: L.divIcon({ html: "<i class='fa fa-plane fa-2x' aria-hidden='true' motion-base='0'></i>", iconSize: L.point(19, 24) })
-    }).motionDuration(5000)
-  ])
-]);
-*/
