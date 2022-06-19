@@ -50,8 +50,9 @@
                             <ul class="list-group text-start rounded-0 fs-6">
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
-                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 1</label>
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing-VTEN"
+                                            value="Radar-Wing-VTEN" disabled>
+                                        <label class="form-check-label" for="Radar-Wing-VTEN">กองบิน 1</label>
                                     </div>
                                     <span class="badge">
                                         <img src="assets/images/logo/StationRTAF/VTEN.png" width="25px" height="25px"
@@ -60,8 +61,9 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
-                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 4</label>
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing-VTMI"
+                                            value="Radar-Wing-VTMI">
+                                        <label class="form-check-label" for="Radar-Wing-VTMI">กองบิน 4</label>
                                     </div>
                                     <span class="badge">
                                         <img src="assets/images/logo/StationRTAF/VTMI-1.png" width="25px" height="25px"
@@ -70,8 +72,9 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
-                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 7</label>
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing-VTDB"
+                                            value="Radar-Wing-VTDB">
+                                        <label class="form-check-label" for="Radar-Wing-VTDB">กองบิน 7</label>
                                     </div>
                                     <span class="badge">
                                         <img src="assets/images/logo/StationRTAF/VTDB.png" width="25px" height="25px"
@@ -80,8 +83,9 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
-                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 21</label>
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing-VTEU"
+                                            value="Radar-Wing-VTEU" disabled>
+                                        <label class="form-check-label" for="Radar-Wing-VTEU">กองบิน 21</label>
                                     </div>
                                     <span class="badge">
                                         <img src="assets/images/logo/StationRTAF/VTEU.png" width="25px" height="25px"
@@ -90,8 +94,9 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
-                                        <label class="form-check-label" for="Radar-Wing1">กองบิน 23</label>
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing-VTED"
+                                            value="Radar-Wing-VTED" disabled>
+                                        <label class="form-check-label" for="Radar-Wing-VTED">กองบิน 23</label>
                                     </div>
                                     <span class="badge">
                                         <img src="assets/images/logo/StationRTAF/VTED.png" width="25px" height="25px"
@@ -100,8 +105,9 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing1">
-                                        <label class="form-check-label" for="Radar-Wing1">โรงเรียนการบิน</label>
+                                        <input class="form-check-input me-2" type="checkbox" id="Radar-Wing-VTMK"
+                                            value="Radar-Wing-VTMK" disabled>
+                                        <label class="form-check-label" for="Radar-Wing-VTMK">โรงเรียนการบิน</label>
                                     </div>
                                     <span class="badge">
                                         <img src="assets/images/logo/StationRTAF/VTMK.png" width="25px" height="25px"
@@ -158,6 +164,7 @@
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="checkbox" id="Sat-IR">
                                         <label class="form-check-label" for="Sat-IR">IR</label>
+                                        <input type="range" class="form-range border-0 shadow-none" min="0" max="1" step="0.1" value="1" id="Sat-IR-OPA" disabled>
                                     </div>
                                     <span class="badge">
                                         <img class="rounded" src="assets/images/sat/IR.jpg" width="25px" height="25px"
@@ -168,6 +175,7 @@
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="checkbox" id="Sat-VIS">
                                         <label class="form-check-label" for="Sat-VIS">VIS</label>
+                                        <input type="range" class="form-range border-0 shadow-none" min="0" max="1" step="0.1" value="1" id="Sat-VIS-OPA" disabled>
                                     </div>
                                     <span class="badge">
                                         <img class="rounded" src="assets/images/sat/VIS.jpg" width="25px" height="25px"
@@ -178,16 +186,27 @@
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="checkbox" id="Sat-WV">
                                         <label class="form-check-label" for="Sat-WV">WV</label>
+                                        <input type="range" class="form-range border-0 shadow-none" min="0" max="1" step="0.1" value="1" id="Sat-WV-OPA" disabled>
                                     </div>
                                     <span class="badge">
                                         <img class="rounded" src="assets/images/sat/WV.jpg" width="25px" height="25px"
                                             alt="WV">
                                     </span>
                                 </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Sat-ENH">
+                                        <label class="form-check-label" for="Sat-ENH">ENH</label>
+                                        <input type="range" class="form-range border-0 shadow-none" min="0" max="1" step="0.1" value="1" id="Sat-ENH-OPA" disabled>
+                                    </div>
+                                    <span class="badge">
+                                        <img src="assets/images/sat/ENH.jpg" width="25px" height="25px" alt="ENH">
+                                    </span>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="accordion-item border-0">
+                    <div class="accordion-item border-0 close-block">
                         <h2 class="accordion-header" id="Fight-Plan">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#col-fight-plan" aria-expanded="false" aria-controls="col-fight-plan">
@@ -227,7 +246,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="accordion-item border-0">
+                    <div class="accordion-item border-0 close-block">
                         <h2 class="accordion-header" id="Strom-Track">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#col-strom-track" aria-expanded="false"
@@ -314,9 +333,24 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Synop">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Warnning">
+                                        <label class="form-check-label" for="Wx-News-Warnning">WARNING</label>
+                                    </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/StationRTAF/RTAF.png" width="25px"
+                                            height="25px" alt="Wx-News-Warnning">
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Synop"
+                                            disabled>
                                         <label class="form-check-label" for="Wx-News-Synop">SYNOP</label>
                                     </div>
+                                    <span class="badge">
+                                        <img class="rounded" src="assets/images/logo/TMD.png" width="25px" height="25px"
+                                            alt="Wx-News-Synop">
+                                    </span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
@@ -337,12 +371,6 @@
                                         <img class="rounded" src="assets/images/logo/TMD.png" width="25px" height="25px"
                                             alt="Wx-News-Taf-Checkwx">
                                     </span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="me-auto">
-                                        <input class="form-check-input me-2" type="checkbox" id="Wx-News-Warnning">
-                                        <label class="form-check-label" for="Wx-News-Warnning">WARNING</label>
-                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -393,7 +421,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Streets">
+                                            id="Map-Style-Streets" value="mapbox/streets-v11">
                                         <label class="form-check-label" for="Map-Style-Streets">Streets</label>
                                     </div>
                                     <span class="badge">
@@ -404,7 +432,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Outdoors">
+                                            id="Map-Style-Outdoors" value="mapbox/outdoors-v11">
                                         <label class="form-check-label" for="Map-Style-Outdoors">Outdoors</label>
                                     </div>
                                     <span class="badge">
@@ -415,7 +443,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Light" checked>
+                                            id="Map-Style-Light" value="mapbox/light-v10" checked>
                                         <label class="form-check-label" for="Map-Style-Light">Light</label>
                                     </div>
                                     <span class="badge">
@@ -426,7 +454,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Dark">
+                                            id="Map-Style-Dark" value="mapbox/dark-v10">
                                         <label class="form-check-label" for="Map-Style-Dark">Dark</label>
                                     </div>
                                     <span class="badge">
@@ -437,7 +465,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Satellite">
+                                            id="Map-Style-Satellite" value="mapbox/satellite-v9">
                                         <label class="form-check-label" for="Map-Style-Satellite">Satellite</label>
                                     </div>
                                     <span class="badge">
@@ -448,7 +476,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Satellite-Streets">
+                                            id="Map-Style-Satellite-Streets" value="mapbox/satellite-streets-v11">
                                         <label class="form-check-label" for="Map-Style-Satellite-Streets">Satellite
                                             Streets</label>
                                     </div>
@@ -460,7 +488,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Navigation-Day">
+                                            id="Map-Style-Navigation-Day" value="mapbox/navigation-day-v1">
                                         <label class="form-check-label" for="Map-Style-Navigation-Day">Navigation
                                             Day</label>
                                     </div>
@@ -472,7 +500,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="me-auto">
                                         <input class="form-check-input me-2" type="radio" name="MapStyleRadio"
-                                            id="Map-Style-Navigation-Night">
+                                            id="Map-Style-Navigation-Night" value="mapbox/navigation-night-v1">
                                         <label class="form-check-label" for="Map-Style-Navigation-Night">Navigation
                                             Night</label>
                                     </div>
@@ -523,8 +551,10 @@
 <script src="assets/plugins/bootstrap-5.0.2/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/plugins/leaflet/leaflet.js"></script>
 <script src='assets/plugins/leaflet/Leaflet.fullscreen.min.js'></script>
+<script src="assets/scripts/index-geoJsonTH.js"></script>
 <script src="assets/scripts/index.js"></script>
 <script src="assets/scripts/index-sidebar-left.js"></script>
 <script src="assets/scripts/index-sidebar-right.js"></script>
+
 
 </html>

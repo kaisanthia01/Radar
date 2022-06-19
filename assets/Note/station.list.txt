@@ -1,0 +1,8 @@
+ const ICAOTMD = [
+            "VTCH", "VTCR", "VTCS", "VTCC", "VTCL", "VTCP", "VTCN",
+            "VTPU", "VTUM", "VTUL", "VTUD", "VTUS", "VTUP", "VTPM",
+            "VTPT", "VTPS", "VTUK", "VTUB", "VTPN", "VTUC", "VTUR",
+            "VTUU", "VTBI", "VTCS", "VTUN", "VTBG", "VTBD", "VTBS",
+            "VTBJ", "VTPH", "VTBU", "VTBC", "VTBP", "VTSR", "VTSB",
+            "VTSN", "VTSP", "VTST", "VTSH", "VTSS", "VTSA", "VTSK"
+        ];

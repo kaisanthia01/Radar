@@ -302,6 +302,9 @@
    cursor: default;
 }
 
+.close-block{
+   pointer-events: none;
+}
 /*table,
 th,
 td {
