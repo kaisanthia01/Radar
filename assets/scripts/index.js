@@ -25,23 +25,26 @@ var curentMM;
  */
 var map = L.map('Map', {
     center: [13.83493614196777, 100.8463897705078],
-    //center: [15.277034, 100.291933],
-    //center: [9.1358421, 99.1366254],
-    zoom: 8,
-    doubleClickZoom: false,
-    fullscreenControl: true
+    zoom: 7,
+    doubleClickZoom: false
+
+
 });
+
+var homeView = new L.Control.HomeView().addTo(map);
+var fullScreen = new L.Control.Fullscreen().addTo(map);
 
 // add the OpenStreetMap tiles
 var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2Fpc2FudGhpYTAxIiwiYSI6ImNsM2g3b3RwajBwODYzanFpMGN4YmV2MjAifQ.UTA02GOqHSlLk9d0PisY-g', {
     maxZoom: 18,
-    id: 'mapbox/light-v10',
+    id: 'mapbox/dark-v10',
     tileSize: 512,
     zoomOffset: -1
 }).addTo(map);
+
 /*
-* -------------------------------------------------------------------------------------------------------------------------
-*/
+ * -------------------------------------------------------------------------------------------------------------------------
+ */
 
 /*
  * ภาพเรดาร์ Overlay บนแผนที่
@@ -146,7 +149,7 @@ var imageOverlaySatelliteENH = L.imageOverlay(satelliteUrlENH, latLngBoundsSatel
  */
 var iconWing1 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing1 = L.marker([14.9343853, 102.0810221], {
     icon: iconWing1
@@ -154,7 +157,7 @@ var markerWing1 = L.marker([14.9343853, 102.0810221], {
 
 var iconWing2 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing2 = L.marker([14.8714901, 100.6479151], {
     icon: iconWing2
@@ -162,7 +165,7 @@ var markerWing2 = L.marker([14.8714901, 100.6479151], {
 
 var iconWing3 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing3 = L.marker([13.7680476, 102.3151012], {
     icon: iconWing3
@@ -170,7 +173,7 @@ var markerWing3 = L.marker([13.7680476, 102.3151012], {
 
 var iconWing4 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing4 = L.marker([15.277034, 100.291933], {
     icon: iconWing4
@@ -178,7 +181,7 @@ var markerWing4 = L.marker([15.277034, 100.291933], {
 
 var iconWing5 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing5 = L.marker([11.7866226, 99.8077392], {
     icon: iconWing5
@@ -194,7 +197,7 @@ var markerWing6 = L.marker([13.910211, 100.610533], {
 
 var iconWing7 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing7 = L.marker([9.1358421, 99.1366254], {
     icon: iconWing7
@@ -202,7 +205,7 @@ var markerWing7 = L.marker([9.1358421, 99.1366254], {
 
 var iconWing21 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing21 = L.marker([15.2480524, 104.8604472], {
     icon: iconWing21
@@ -210,7 +213,7 @@ var markerWing21 = L.marker([15.2480524, 104.8604472], {
 
 var iconWing23 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing23 = L.marker([17.3802148, 102.7947298], {
     icon: iconWing23
@@ -218,7 +221,7 @@ var markerWing23 = L.marker([17.3802148, 102.7947298], {
 
 var iconWing41 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing41 = L.marker([18.7734933, 98.9653736], {
     icon: iconWing41
@@ -226,7 +229,7 @@ var markerWing41 = L.marker([18.7734933, 98.9653736], {
 
 var iconWing46 = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWing46 = L.marker([16.7838369, 100.2790302], {
     icon: iconWing46
@@ -234,7 +237,7 @@ var markerWing46 = L.marker([16.7838369, 100.2790302], {
 
 var iconWingSS = L.icon({
     iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15,15]
+    iconSize: [15, 15]
 });
 var markerWingSS = L.marker([14.098889, 99.923629], {
     icon: iconWingSS
@@ -249,8 +252,14 @@ var markerWingSS = L.marker([14.098889, 99.923629], {
 var url = 'http://radar.climate4.esy.es/assets/scripts/';
 var MetarStr = 'Metar Wait Update...!';
 var TafStr = 'Taf Wait Update...!';
-var MetarRTAF = null, TafRTAF = null, MetarRTAFUpdate = null, TafRTAFUpdate = null;
-var MetarTMD = null, TafTMD = null, MetarTMDUpdate = null, TafTMDUpdate = null;
+var MetarRTAF = null,
+    TafRTAF = null,
+    MetarRTAFUpdate = null,
+    TafRTAFUpdate = null;
+var MetarTMD = null,
+    TafTMD = null,
+    MetarTMDUpdate = null,
+    TafTMDUpdate = null;
 
 var iconTMD = L.icon({
     iconUrl: 'assets/images/metar/IFR.png',
@@ -258,7 +267,9 @@ var iconTMD = L.icon({
 });
 var stationTMD = L.geoJSON(SYNOP_SITES, {
     pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, { icon: iconTMD });
+        return L.marker(latlng, {
+            icon: iconTMD
+        });
     },
     onEachFeature: function (feature, layer) {
         layer.bindTooltip(
@@ -350,6 +361,41 @@ layer.bindPopup(
 );
     }
 }).addTo(map);* /
+/*
+ * -------------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+ * Plot ไฟล์ KML หรือ KMZ
+ */
+// Load kml file
+/*
+fetch('assets/Note/VTMD.kml')
+    .then(res => res.text())
+    .then(kmltext => {
+        // Create new kml overlay
+        const parser = new DOMParser();
+        const kml = parser.parseFromString(kmltext, 'text/xml');
+        const track = new L.KML(kml);
+        map.addLayer(track);
+
+        // Adjust map to show the kml
+        const bounds = track.getBounds();
+        map.fitBounds(bounds);
+    });
+*/
+
+// Instantiate KMZ layer (async)
+/*var kmz = L.kmzLayer().addTo(map);
+kmz.load('assets/Note/wx.kmz');
+kmz.on('load', function (e) {
+    control.addOverlay(e.layer, e.name);
+    // e.layer.addTo(map);
+});
+
+var control = L.control.layers(null, null, {
+    collapsed: false
+}).addTo(map);*/
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */

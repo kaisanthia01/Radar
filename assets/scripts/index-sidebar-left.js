@@ -5,14 +5,13 @@ $(document).ready(function () {
 
 
     /*
-    * Radar RTAF
-    */
+     * Radar RTAF
+     */
     /* Radar-Wing-VTEN */
     $('input[type="checkbox"][id="Radar-Wing-VTEN"]').click(function () {
         if ($('#Radar-Wing-VTEN').is(":checked")) {
             markerWing1.addTo(map);
-        }
-        else if ($('#Radar-Wing-VTEN').is(":not(:checked)")) {
+        } else if ($('#Radar-Wing-VTEN').is(":not(:checked)")) {
             map.removeLayer(markerWing1);
         }
     });
@@ -21,8 +20,7 @@ $(document).ready(function () {
     $('input[type="checkbox"][id="Radar-Wing-VTEU"]').click(function () {
         if ($('#Radar-Wing-VTEU').is(":checked")) {
             markerWing21.addTo(map);
-        }
-        else if ($('#Radar-Wing-VTEU').is(":not(:checked)")) {
+        } else if ($('#Radar-Wing-VTEU').is(":not(:checked)")) {
             map.removeLayer(markerWing21);
         }
     });
@@ -31,8 +29,7 @@ $(document).ready(function () {
     $('input[type="checkbox"][id="Radar-Wing-VTED"]').click(function () {
         if ($('#Radar-Wing-VTED').is(":checked")) {
             imageOverlayWing23.addTo(map);
-        }
-        else if ($('#Radar-Wing-VTED').is(":not(:checked)")) {
+        } else if ($('#Radar-Wing-VTED').is(":not(:checked)")) {
             map.removeLayer(imageOverlayWing23);
         }
     });
@@ -50,8 +47,7 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        }
-        else if ($('#Radar-Wing-VTMI').is(":not(:checked)")) {
+        } else if ($('#Radar-Wing-VTMI').is(":not(:checked)")) {
             map.removeLayer(imageOverlayWing4);
             Swal.fire({
                 toast: true,
@@ -69,8 +65,7 @@ $(document).ready(function () {
     $('input[type="checkbox"][id="Radar-Wing-VTMK"]').click(function () {
         if ($('#Radar-Wing-VTMK').is(":checked")) {
             markerWingSS.addTo(map);
-        }
-        else if ($('#Radar-Wing-VTMK').is(":not(:checked)")) {
+        } else if ($('#Radar-Wing-VTMK').is(":not(:checked)")) {
             map.removeLayer(markerWingSS);
         }
     });
@@ -88,8 +83,7 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        }
-        else if ($('#Radar-Wing-VTDB').is(":not(:checked)")) {
+        } else if ($('#Radar-Wing-VTDB').is(":not(:checked)")) {
             map.removeLayer(imageOverlayWing7);
             Swal.fire({
                 toast: true,
@@ -103,12 +97,12 @@ $(document).ready(function () {
         }
     });
     /*
-    * ------------------------------------------------------------------------------- *
-    */
+     * ------------------------------------------------------------------------------- *
+     */
 
     /*
-    * Radar TMD
-    */
+     * Radar TMD
+     */
     /* Radar-Nongkhame */
     $('input[type="checkbox"][id="Radar-Nongkhame"]').click(function () {
         if ($('#Radar-Nongkhame').is(":checked")) {
@@ -122,8 +116,7 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        }
-        else if ($('#Radar-Nongkhame').is(":not(:checked)")) {
+        } else if ($('#Radar-Nongkhame').is(":not(:checked)")) {
             map.removeLayer(imageOverlayNongkam);
             Swal.fire({
                 toast: true,
@@ -150,8 +143,7 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        }
-        else if ($('#Radar-Nongchok').is(":not(:checked)")) {
+        } else if ($('#Radar-Nongchok').is(":not(:checked)")) {
             map.removeLayer(imageOverlayNongchok);
             Swal.fire({
                 toast: true,
@@ -165,12 +157,12 @@ $(document).ready(function () {
         }
     });
     /*
-    * ------------------------------------------------------------------------------- *
-    */
+     * ------------------------------------------------------------------------------- *
+     */
 
     /*
-    * Satellite TMD
-    */
+     * Satellite TMD
+     */
     /* Satellite-IR */
     $('input[type="checkbox"][id="Sat-IR"]').click(function () {
         if ($('#Sat-IR').is(":checked")) {
@@ -185,8 +177,7 @@ $(document).ready(function () {
                 timer: 1500
             });
             $("#Sat-IR-OPA").removeAttr('disabled');
-        }
-        else if ($('#Sat-IR').is(":not(:checked)")) {
+        } else if ($('#Sat-IR').is(":not(:checked)")) {
             map.removeLayer(imageOverlaySatelliteIR);
             Swal.fire({
                 toast: true,
@@ -220,8 +211,7 @@ $(document).ready(function () {
                 timer: 1500
             });
             $("#Sat-VIS-OPA").removeAttr('disabled');
-        }
-        else if ($('#Sat-VIS').is(":not(:checked)")) {
+        } else if ($('#Sat-VIS').is(":not(:checked)")) {
             map.removeLayer(imageOverlaySatelliteVIS);
             Swal.fire({
                 toast: true,
@@ -255,8 +245,7 @@ $(document).ready(function () {
                 timer: 1500
             });
             $("#Sat-WV-OPA").removeAttr('disabled');
-        }
-        else if ($('#Sat-WV').is(":not(:checked)")) {
+        } else if ($('#Sat-WV').is(":not(:checked)")) {
             map.removeLayer(imageOverlaySatelliteWV);
             Swal.fire({
                 toast: true,
@@ -290,8 +279,7 @@ $(document).ready(function () {
                 timer: 1500
             });
             $("#Sat-ENH-OPA").removeAttr('disabled');
-        }
-        else if ($('#Sat-ENH').is(":not(:checked)")) {
+        } else if ($('#Sat-ENH').is(":not(:checked)")) {
             map.removeLayer(imageOverlaySatelliteENH);
             Swal.fire({
                 toast: true,
@@ -312,7 +300,44 @@ $(document).ready(function () {
         imageOverlaySatelliteENH.setOpacity(opaVal).addTo(map);
     });
     /*
-    * ------------------------------------------------------------------------------- *
-    */
+     * ------------------------------------------------------------------------------- *
+     */
 
+    /*
+     * Upload File KML
+     */
+    $("#myform").on("submit", function (e) { // จะทำงานก็ต่อเมื่อกด submit ฟอร์ม
+        e.preventDefault(); // ปิดการใช้งาน submit ปกติ เพื่อใช้งานผ่าน ajax
+        var fd = new FormData(); // เตรียมข้อมูล form สำหรับส่งด้วย  FormData Object
+
+        var files = $('#file')[0].files; //เป็นการดึงข้อมูลรูปภาพเพื่อเตรียมเช็คไฟล์ก่อนทำงานส่วน Ajax
+
+        // เช็คว่ามีไฟล์รูปภาพอยู่หรือไม่
+        if (files.length > 0) {
+
+            fd.append('file', files[0]); //ใช้ในการแทรกค่าไฟล์รูปภาพใน element 
+
+            $.ajax({
+                url: 'upload.php', //ให้ระบุชื่อไฟล์ PHP ที่เราจะส่งค่าไป
+                type: 'post',
+                data: fd, //ข้อมูลจาก input ที่ส่งเข้าไปที่ PHP
+                contentType: false,
+                processData: false,
+                success: function (response) { //หากทำงานสำเร็จ จะรับค่ามาจาก JSON หลังจากนั้นก็ให้ทำงานตามที่เรากำหนดได้
+
+                    if (response != 0) {
+                        $("#img").attr("src", response);
+                        $('.preview img').show();
+                    } else {
+                        alert('File not uploaded');
+                    }
+                }
+            });
+        } else {
+            alert("Please select a file.");
+        }
+    });
+    /*
+     * ------------------------------------------------------------------------------- *
+     */
 });

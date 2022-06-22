@@ -1,5 +1,5 @@
 .leaflet-control-fullscreen a {
-    background: #fff url(../../images/fullscreen-2.png) no-repeat 0 0;
+    background: #fff url(../../images/etc/fullscreen-1.png) no-repeat 0 0;
     background-size: 25px 25px;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .leaflet-fullscreen-on .leaflet-control-fullscreen a {
-    background: #fff url(../../images/fullscreen-3.png) no-repeat 0 0;
+    background: #fff url(../../images/etc/fullscreen.png) no-repeat 0 0;
     background-size: 25px 25px;
     /*background-position: 0 -26px;*/
 }

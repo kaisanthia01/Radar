@@ -4,8 +4,8 @@ $(document).ready(function () {
     });
 
     /*
-     * Wx News 
-     */
+    * Wx News 
+    */
     /* Wx News RTAF */
     $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
         if ($('#Wx-News-Metar-Rtaf').is(":checked")) {
@@ -19,7 +19,8 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        } else {
+        }
+        else if ($('#Wx-News-Metar-Rtaf').is(":not(:checked)")) {
             /* clearInterval(MetarUpdate);*/
             $("#collapseMetarRTAF").slideToggle();
             Swal.fire({
@@ -32,11 +33,8 @@ $(document).ready(function () {
                 timer: 1500
             });
         }
-    });
 
-    $('input[type="checkbox"][id="Wx-News-Metar-Taf"]').click(function () {
         if ($('#Wx-News-Metar-Taf').is(":checked")) {
-            $("#collapseTafRTAF").slideToggle();
             Swal.fire({
                 toast: true,
                 position: 'top-end',
@@ -46,9 +44,9 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        } else {
+        }
+        else if ($('#Wx-News-Metar-Taf').is(":not(:checked)")) {
             /* clearInterval(MetarUpdate);*/
-            $("#collapseTafRTAF").slideToggle();
             Swal.fire({
                 toast: true,
                 position: 'top-end',
@@ -67,17 +65,13 @@ $(document).ready(function () {
             if ($('#Wx-News-Metar-Checkwx').is(":checked")) {
                 stationTMD = L.geoJSON(SYNOP_SITES, {
                     pointToLayer: function (feature, latlng) {
-                        return L.marker(latlng, {
-                            icon: iconTMD
-                        });
+                        return L.marker(latlng, { icon: iconTMD });
                     },
                     onEachFeature: function (feature, layer) {
                         $.ajax({
                             type: 'GET',
                             url: 'https://api.checkwx.com/metar/' + feature.properties.icao + '',
-                            headers: {
-                                'X-API-Key': 'b3502b27075ff79e7978abae73'
-                            },
+                            headers: { 'X-API-Key': 'b3502b27075ff79e7978abae73' },
                             dataType: 'json',
                             success: function (result) {
                                 if (result.data.length == 0) {
@@ -89,9 +83,7 @@ $(document).ready(function () {
                                 $.ajax({
                                     type: 'GET',
                                     url: 'https://api.checkwx.com/taf/' + feature.properties.icao + '',
-                                    headers: {
-                                        'X-API-Key': 'b3502b27075ff79e7978abae73'
-                                    },
+                                    headers: { 'X-API-Key': 'b3502b27075ff79e7978abae73' },
                                     dataType: 'json',
                                     success: function (result) {
                                         if (result.data.length == 0) {
@@ -115,17 +107,13 @@ $(document).ready(function () {
             } else {
                 stationTMD = L.geoJSON(SYNOP_SITES, {
                     pointToLayer: function (feature, latlng) {
-                        return L.marker(latlng, {
-                            icon: iconTMD
-                        });
+                        return L.marker(latlng, { icon: iconTMD });
                     },
                     onEachFeature: function (feature, layer) {
                         $.ajax({
                             type: 'GET',
                             url: 'https://api.checkwx.com/metar/' + feature.properties.icao + '',
-                            headers: {
-                                'X-API-Key': 'b3502b27075ff79e7978abae73'
-                            },
+                            headers: { 'X-API-Key': 'b3502b27075ff79e7978abae73' },
                             dataType: 'json',
                             success: function (result) {
                                 if (result.data.length == 0) {
@@ -157,7 +145,8 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        } else if ($('#Wx-News-Metar-Checkwx').is(":not(:checked)")) {
+        }
+        else if ($('#Wx-News-Metar-Checkwx').is(":not(:checked)")) {
             /* clearInterval(MetarUpdate);*/
             map.removeLayer(stationTMD);
             Swal.fire({
@@ -177,17 +166,13 @@ $(document).ready(function () {
             if ($('#Wx-News-Metar-Checkwx').is(":checked")) {
                 stationTMD = L.geoJSON(SYNOP_SITES, {
                     pointToLayer: function (feature, latlng) {
-                        return L.marker(latlng, {
-                            icon: iconTMD
-                        });
+                        return L.marker(latlng, { icon: iconTMD });
                     },
                     onEachFeature: function (feature, layer) {
                         $.ajax({
                             type: 'GET',
                             url: 'https://api.checkwx.com/taf/' + feature.properties.icao + '',
-                            headers: {
-                                'X-API-Key': 'b3502b27075ff79e7978abae73'
-                            },
+                            headers: { 'X-API-Key': 'b3502b27075ff79e7978abae73' },
                             dataType: 'json',
                             success: function (result) {
                                 if (result.data.length == 0) {
@@ -199,9 +184,7 @@ $(document).ready(function () {
                                 $.ajax({
                                     type: 'GET',
                                     url: 'https://api.checkwx.com/metar/' + feature.properties.icao + '',
-                                    headers: {
-                                        'X-API-Key': 'b3502b27075ff79e7978abae73'
-                                    },
+                                    headers: { 'X-API-Key': 'b3502b27075ff79e7978abae73' },
                                     dataType: 'json',
                                     success: function (result) {
                                         if (result.data.length == 0) {
@@ -225,17 +208,13 @@ $(document).ready(function () {
             } else {
                 stationTMD = L.geoJSON(SYNOP_SITES, {
                     pointToLayer: function (feature, latlng) {
-                        return L.marker(latlng, {
-                            icon: iconTMD
-                        });
+                        return L.marker(latlng, { icon: iconTMD });
                     },
                     onEachFeature: function (feature, layer) {
                         $.ajax({
                             type: 'GET',
                             url: 'https://api.checkwx.com/taf/' + feature.properties.icao + '',
-                            headers: {
-                                'X-API-Key': 'b3502b27075ff79e7978abae73'
-                            },
+                            headers: { 'X-API-Key': 'b3502b27075ff79e7978abae73' },
                             dataType: 'json',
                             success: function (result) {
                                 if (result.data.length == 0) {
@@ -266,7 +245,8 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        } else if ($('#Wx-News-Taf-Checkwx').is(":not(:checked)")) {
+        }
+        else if ($('#Wx-News-Taf-Checkwx').is(":not(:checked)")) {
             /* clearInterval(MetarUpdate);*/
             map.removeLayer(stationTMD);
             Swal.fire({
@@ -281,12 +261,12 @@ $(document).ready(function () {
         }
     });
     /*
-     * ------------------------------------------------------------------------------- *
-     */
+    * ------------------------------------------------------------------------------- *
+    */
 
     /*
-     * Station 
-     */
+    * Station 
+    */
     /* Station RTAF */
     $('input[type="checkbox"][id="Wx-Station-Rtaf"]').click(function () {
         if ($('#Wx-Station-Rtaf').is(":checked")) {
@@ -311,7 +291,8 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        } else if ($('#Wx-Station-Rtaf').is(":not(:checked)")) {
+        }
+        else if ($('#Wx-Station-Rtaf').is(":not(:checked)")) {
             map.removeLayer(markerWing1);
             map.removeLayer(markerWing2);
             map.removeLayer(markerWing3);
@@ -349,7 +330,8 @@ $(document).ready(function () {
                 padding: '7px',
                 timer: 1500
             });
-        } else if ($('#Wx-Station-Checkwx').is(":not(:checked)")) {
+        }
+        else if ($('#Wx-Station-Checkwx').is(":not(:checked)")) {
             map.removeLayer(stationTMD);
             Swal.fire({
                 toast: true,
@@ -363,12 +345,12 @@ $(document).ready(function () {
         }
     });
     /*
-     * ------------------------------------------------------------------------------- *
-     */
+    * ------------------------------------------------------------------------------- *
+    */
 
     /*
-     * Mapbox styles 
-     */
+    * Mapbox styles 
+    */
     /* Change Mapbox styles */
     $('input[type="radio"][name="MapStyleRadio"]').on('change', function () {
         var MapStyleRadio = $('input[type="radio"][name="MapStyleRadio"]:checked').val();
@@ -391,8 +373,8 @@ $(document).ready(function () {
         });
     });
     /*
-     * ------------------------------------------------------------------------------- *
-     */
+    * ------------------------------------------------------------------------------- *
+    */
 });
 
 

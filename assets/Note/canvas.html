@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <title>Leaflet.Boatmarker Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map">
+        <canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js"></script>
+    <script src="icons.js"></script>
+
+    <script>
+        // create a map in the "map" div, set the view to a given place and zoom
+        var map = L.map("map").setView([13.910211, 100.610533], 6);
+
+        // add an OpenStreetMap tile layer
+        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
+        }).addTo(map);
+
+        var iconWing1 = new L.metarIcon({ windDirection: 180, windSpeed: 10 });
+        var markerWing1 = L.marker([14.9343853, 102.0810221], {
+            icon: iconWing1
+        }).bindTooltip('Wing1').addTo(map);
+        var iconWing2 = new L.metarIcon({ windDirection: 110, windSpeed: 10 });
+        var markerWing2 = L.marker([14.8714901, 100.6479151], {
+            icon: iconWing2
+        }).bindTooltip('Wing2').addTo(map);
+        var iconWing3 = new L.metarIcon({ windDirection: 130, windSpeed: 10 });
+        var markerWing3 = L.marker([13.7680476, 102.3151012], {
+            icon: iconWing3
+        }).bindTooltip('Wing3').addTo(map);
+        var iconWing4 = new L.metarIcon({ windDirection: 10, windSpeed: 10 });
+        var markerWing4 = L.marker([15.277034, 100.291933], {
+            icon: iconWing4
+        }).bindTooltip('Wing4').addTo(map);
+        var iconWing5 = new L.metarIcon({ windDirection: 40, windSpeed: 10 });
+        var markerWing5 = L.marker([11.7866226, 99.8077392], {
+            icon: iconWing5
+        }).bindTooltip('Wing5').addTo(map);
+        var iconWing6 = new L.metarIcon({ windDirection: 280, windSpeed: 10 });
+        var markerWing6 = L.marker([13.910211, 100.610533], {
+            icon: iconWing6
+        }).bindTooltip('Wing6').addTo(map);
+        var iconWing7 = new L.metarIcon({ windDirection: 240, windSpeed: 10 });
+        var markerWing7 = L.marker([9.1358421, 99.1366254], {
+            icon: iconWing7
+        }).bindTooltip('Wing7').addTo(map);
+        var iconWing21 = new L.metarIcon({ windDirection: 230, windSpeed: 10 });
+        var markerWing21 = L.marker([15.2480524, 104.8604472], {
+            icon: iconWing21
+        }).bindTooltip('Wing21').addTo(map);
+        var iconWing23 = new L.metarIcon({ windDirection: 360, windSpeed: 10 });
+        var markerWing23 = L.marker([17.3802148, 102.7947298], {
+            icon: iconWing23
+        }).bindTooltip('Wing23').addTo(map);
+        var iconWing41 = new L.metarIcon({ windDirection: 340, windSpeed: 10 });
+        var markerWing41 = L.marker([18.7734933, 98.9653736], {
+            icon: iconWing41
+        }).bindTooltip('Wing41').addTo(map);
+        var iconWing46 = new L.metarIcon({ windDirection: 220, windSpeed: 10 });
+        var markerWing46 = L.marker([16.7838369, 100.2790302], {
+            icon: iconWing46
+        }).bindTooltip('Wing46').addTo(map);
+        var iconWingSS = new L.metarIcon({ windDirection: 140, windSpeed: 10 });
+        var markerWingSS = L.marker([14.098889, 99.923629], {
+            icon: iconWingSS
+        }).bindTooltip('WingSS').addTo(map);
+
+
+        //L.marker(map.getCenter(), { icon: metarWing6 }).addTo(map);
+    </script>
+
+</body>
+
+</html>

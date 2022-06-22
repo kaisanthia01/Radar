@@ -143,15 +143,30 @@
    font-weight: 600;
 }
 
+#Map-Control-Center-Left-Sidebar-Menu-Layer #Map-Control-Center-Left-Sidebar-Menu-Layer-Submenu .accordion-item .accordion-header button {
+   background: brown;
+   color: #ffc107;
+   border: 1px solid #ffc107;
+   border-radius: 0px;
+}
+
 /*
 * Map-Control-Button-SVG
 */
 .accordion-button:not(.collapsed)::after {
    background-image: url('/assets/plugins/fontawesome-6.1.1/svgs/solid/angle-down.svg');
+   background-size: 1rem;
+   text-align: center;
+   padding-left: 10px;
+   padding-right: 0px;
 }
 
 .accordion-button::after {
    background-image: url('/assets/plugins/fontawesome-6.1.1/svgs/solid/angle-up.svg');
+   background-size: 1rem;
+   text-align: center;
+   padding-left: 10px;
+   padding-right: 0px;
 }
 
 /*
@@ -203,7 +218,7 @@
    width: 250px;
    height: 100vh;
    position: absolute;
-   right: -250px;
+   right: 0px;
    /*z-index: 9999;*/
    transition: .5s right;
    padding: 0px;
@@ -293,6 +308,28 @@
    font-weight: 600;
 }
 
+#Map-Control-Center-Right-Sidebar-Menu-Layer #Map-Control-Center-Right-Sidebar-Menu-Layer-Submenu .accordion-item .accordion-header button {
+   background: brown;
+   color: #ffc107;
+   border: 1px solid #ffc107;
+   border-radius: 0px;
+}
+
+#Map-Control-Center-Right-Sidebar-Menu-Layer #Map-Control-Center-Right-Sidebar-Menu-Layer-Submenu .accordion-item .accordion-collapse ul div div {
+   background: #f4e9aa;
+}
+
+#Map-Control-Center-Right-Sidebar-Menu-Layer #Map-Control-Center-Right-Sidebar-Menu-Layer-Submenu .accordion-item .accordion-collapse ul div div div .form-check-input:checked {
+   background-color: brown;
+   border-color: brown;
+}
+
+#Map-Control-Center-Right-Sidebar-Menu-Layer #Map-Control-Center-Right-Sidebar-Menu-Layer-Submenu .accordion-item .accordion-collapse ul div div div label {
+   color: #1d345d;
+   font-weight: 600;
+   text-shadow: 2.5px 2px #ffffff;
+}
+
 #Map-Control-Footer-Center {
    position: fixed;
    bottom: 1%;
@@ -302,9 +339,10 @@
    cursor: default;
 }
 
-.close-block{
+.close-block {
    pointer-events: none;
 }
+
 /*table,
 th,
 td {
