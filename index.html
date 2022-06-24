@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="accordion-item border-0">
                                     <h2 class="accordion-header" id="Sat-TMD">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        <button class="accordion-button p-3" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#col-sat-tmd" aria-expanded="false"
                                             aria-controls="col-sat-tmd">
                                             <i class="fa-solid fa-grip-lines ps-3" style="font-size: 20px;"></i>
@@ -392,15 +392,15 @@
                         <div class="accordion-collapse collapse show" id="col-wx-news">
                             <div class="accordion" id="Map-Control-Center-Right-Sidebar-Menu-Layer-Submenu">
                                 <div class="accordion-item border-0">
-                                    <h2 class="accordion-header" id="Radar-RTAF">
+                                    <h2 class="accordion-header" id="Metar-RTAF">
                                         <button class="accordion-button p-3" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#col-radar-rtaf" aria-expanded="true"
-                                            aria-controls="col-radar-rtaf">
+                                            data-bs-target="#col-metar-rtaf" aria-expanded="true"
+                                            aria-controls="col-metar-rtaf">
                                             <i class="fa-solid fa-grip-lines ps-3" style="font-size: 20px;"></i>
                                             <span class="ms-2 fw-bold" style="font-size: 11px;">กองทัพอากาศ</span>
                                         </button>
                                     </h2>
-                                    <div class="accordion-collapse collapse show" id="col-radar-rtaf">
+                                    <div class="accordion-collapse collapse show" id="col-metar-rtaf">
                                         <ul class="list-group text-start rounded-0">
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-start">
@@ -417,21 +417,26 @@
                                             </li>
                                             <div id="collapseMetarRTAF" style='display: none;'>
                                                 <div class="card card-body rounded-0 p-0">
-                                                    <div class="form-check border border-warning" style="padding-left: 70px;">
+                                                    <div class="form-check border border-warning"
+                                                        style="padding-left: 70px;">
                                                         <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="TextMetarRTAF" checked>
-                                                        <label class="form-check-label fw-bolder" for="TextMetarRTAF">Text</label>
+                                                            name="flexRadioDefault" id="Wx-News-Metar-Rtaf-Text" checked>
+                                                        <label class="form-check-label fw-bolder"
+                                                            for="Wx-News-Metar-Rtaf-Text">Text</label>
                                                     </div>
-                                                    <div class="form-check border border-warning" style="padding-left: 70px;">
+                                                    <div class="form-check border border-warning"
+                                                        style="padding-left: 70px;">
                                                         <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="SymbolMetarRTAF">
+                                                            name="flexRadioDefault" id="Wx-News-Metar-Rtaf-Symbol">
                                                         <label class="form-check-label"
-                                                            for="SymbolMetarRTAF">Symbol</label>
+                                                            for="Wx-News-Metar-Rtaf-Symbol">Symbol</label>
                                                     </div>
-                                                    <div class="form-check border border-warning" style="padding-left: 70px;">
+                                                    <div class="form-check border border-warning"
+                                                        style="padding-left: 70px;">
                                                         <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="IconMetarRTAF">
-                                                        <label class="form-check-label" for="IconMetarRTAF">Icons</label>
+                                                            name="flexRadioDefault" id="Wx-News-Metar-Rtaf-Icon">
+                                                        <label class="form-check-label"
+                                                            for="Wx-News-Metar-Rtaf-Icon">Icons</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -464,15 +469,15 @@
                                     </div>
                                 </div>
                                 <div class="accordion-item border-0">
-                                    <h2 class="accordion-header" id="Radar-TMD">
+                                    <h2 class="accordion-header" id="Metar-TMD">
                                         <button class="accordion-button p-3" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#col-radar-tmd" aria-expanded="false"
-                                            aria-controls="col-radar-tmd">
+                                            data-bs-target="#col-metar-tmd" aria-expanded="false"
+                                            aria-controls="col-metar-tmd">
                                             <i class="fa-solid fa-grip-lines ps-3" style="font-size: 20px;"></i>
                                             <span class="ms-2 fw-bold" style="font-size: 11px;">กรมอุตุนิยมวิทยาฯ</span>
                                         </button>
                                     </h2>
-                                    <div class="accordion-collapse collapse show" id="col-radar-tmd">
+                                    <div class="accordion-collapse collapse show" id="col-metar-tmd">
                                         <ul class="list-group text-start rounded-0">
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-start">
@@ -708,5 +713,6 @@
 <script src="assets/scripts/index.js"></script>
 <script src="assets/scripts/index-sidebar-left.js"></script>
 <script src="assets/scripts/index-sidebar-right.js"></script>
+<script src="assets/scripts/index-sidebar-right-getMetarTaf.js"></script>
 
 </html>

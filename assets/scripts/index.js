@@ -59,14 +59,14 @@ var imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, {
     interactive: false
 });
 
-//var radarUrlWing7RemoveBG = $.post("http://radar.climate4.esy.es/assets/images/radar/wing7/latest/wing7removeBG.php");
+//var radarUrlVTDBRemoveBG = $.post("http://radar.climate4.esy.es/assets/images/radar/vtdb/latest/vtdbremoveBG.php");
 setTimeout(3000);
-var radarUrlWing7 = 'http://radar.climate4.esy.es/assets/images/radar/wing7/latest/wing7_ppi_latest.png?' + realtime;
-var latLngBoundsWing7 = L.latLngBounds([
+var radarUrlVTDB = 'http://radar.climate4.esy.es/assets/images/radar/vtdb/latest/vtdb_ppi_latest.png?' + realtime;
+var latLngBoundsVTDB = L.latLngBounds([
     [11.315, 96.92],
     [6.9, 101.36]
 ]);
-var imageOverlayWing7 = L.imageOverlay(radarUrlWing7, latLngBoundsWing7, {
+var imageOverlayVTDB = L.imageOverlay(radarUrlVTDB, latLngBoundsVTDB, {
     opacity: 1,
     interactive: false
 });
@@ -147,113 +147,11 @@ var imageOverlaySatelliteENH = L.imageOverlay(satelliteUrlENH, latLngBoundsSatel
 /*
  * สัญญาลักษณ์ของกองบินต่างๆ
  */
-var iconWing1 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing1 = L.marker([14.9343853, 102.0810221], {
-    icon: iconWing1
-}).bindTooltip('Wing1');
-
-var iconWing2 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing2 = L.marker([14.8714901, 100.6479151], {
-    icon: iconWing2
-}).bindTooltip('Wing2');
-
-var iconWing3 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing3 = L.marker([13.7680476, 102.3151012], {
-    icon: iconWing3
-}).bindTooltip('Wing3');
-
-var iconWing4 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing4 = L.marker([15.277034, 100.291933], {
-    icon: iconWing4
-}).bindTooltip('Wing4');
-
-var iconWing5 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing5 = L.marker([11.7866226, 99.8077392], {
-    icon: iconWing5
-}).bindTooltip('Wing5');
-
-var iconWing6 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing6 = L.marker([13.910211, 100.610533], {
-    icon: iconWing6
-}).bindTooltip('Wing6');
-
-var iconWing7 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing7 = L.marker([9.1358421, 99.1366254], {
-    icon: iconWing7
-}).bindTooltip('Wing7');
-
-var iconWing21 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing21 = L.marker([15.2480524, 104.8604472], {
-    icon: iconWing21
-}).bindTooltip('Wing21');
-
-var iconWing23 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing23 = L.marker([17.3802148, 102.7947298], {
-    icon: iconWing23
-}).bindTooltip('Wing23');
-
-var iconWing41 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing41 = L.marker([18.7734933, 98.9653736], {
-    icon: iconWing41
-}).bindTooltip('Wing41');
-
-var iconWing46 = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWing46 = L.marker([16.7838369, 100.2790302], {
-    icon: iconWing46
-}).bindTooltip('Wing46');
-
-var iconWingSS = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerWingSS = L.marker([14.098889, 99.923629], {
-    icon: iconWingSS
-}).bindTooltip('WingSS');
-/*
- * -------------------------------------------------------------------------------------------------------------------------
- */
-
-/*
- * สัญญาลักษณ์ของพลเรือน
- */
 var url = 'http://radar.climate4.esy.es/assets/scripts/';
-var MetarStr = 'Metar Wait Update...!';
-var TafStr = 'Taf Wait Update...!';
-var MetarRTAF = null,
-    TafRTAF = null,
+var MetarStr = 'test';
+var TafStr = '';
+var MetarRTAF = '',
+    TafRTAF = '',
     MetarRTAFUpdate = null,
     TafRTAFUpdate = null;
 var MetarTMD = null,
@@ -261,6 +159,108 @@ var MetarTMD = null,
     MetarTMDUpdate = null,
     TafTMDUpdate = null;
 
+var iconVTNC = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTNC = L.marker([18.7734933, 98.9653736], {
+    icon: iconVTNC
+}).bindTooltip('VTNC');
+
+var iconVTNP = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTNP = L.marker([16.7838369, 100.2790302], {
+    icon: iconVTNP
+}).bindTooltip('VTNP');
+
+var iconVTEU = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTEU = L.marker([15.2480524, 104.8604472], {
+    icon: iconVTEU
+}).bindTooltip('VTEU');
+
+var iconVTED = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTED = L.marker([17.3802148, 102.7947298], {
+    icon: iconVTED
+}).bindTooltip('VTED');
+
+var iconVTEN = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTEN = L.marker([14.9343853, 102.0810221], {
+    icon: iconVTEN
+}).bindTooltip('VTEN');
+
+var iconVTML = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTML = L.marker([14.8714901, 100.6479151], {
+    icon: iconVTML
+}).bindTooltip('VTML');
+
+var iconVTMW = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTMW = L.marker([13.7680476, 102.3151012], {
+    icon: iconVTMW
+}).bindTooltip('VTMW');
+
+var iconVTMI = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTMI = L.marker([15.277034, 100.291933], {
+    icon: iconVTMI
+}).bindTooltip('VTMI');
+
+var iconVTMP = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTMP = L.marker([11.7866226, 99.8077392], {
+    icon: iconVTMP
+}).bindTooltip('VTMP');
+
+var iconVTMD = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTMD = L.marker([13.910211, 100.610533], {
+    icon: iconVTMD
+}).bindTooltip('VTMD');
+
+var iconVTDB = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTDB = L.marker([9.1358421, 99.1366254], {
+    icon: iconVTDB
+}).bindTooltip('VTDB');
+
+var iconVTMK = L.icon({
+    iconUrl: 'assets/images/metar/VFR.png',
+    iconSize: [15, 15]
+});
+var markerVTMK = L.marker([14.098889, 99.923629], {
+    icon: iconVTMK
+}).bindTooltip('VTMK');
+/*
+ * -------------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+ * สัญญาลักษณ์ของพลเรือน
+ */
 var iconTMD = L.icon({
     iconUrl: 'assets/images/metar/IFR.png',
     iconSize: [15, 15]

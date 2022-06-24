@@ -218,7 +218,7 @@
    width: 250px;
    height: 100vh;
    position: absolute;
-   right: 0px;
+   right: -250px;
    /*z-index: 9999;*/
    transition: .5s right;
    padding: 0px;
