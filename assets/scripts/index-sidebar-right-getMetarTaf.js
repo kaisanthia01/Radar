@@ -857,75 +857,9 @@ function MetarDewpoint(txtDewpoint) {
 }
 
 function MetarCloud(txtCloud) {
-    let ww = '';
-    for (let i = 0; i < 32; i++) {
-        if (txtWeather.search("-") > 0) {
-            ww += '-';
-        } else if (txtWeather.search("+") > 0) {
-            ww += '+';
-        } else if (txtWeather.search("VC") > 0) {
-            ww += 'VC';
-        } else if (txtWeather.search("MI") > 0) {
-            ww += 'MI';
-        } else if (txtWeather.search("PR") > 0) {
-            ww += 'PR';
-        } else if (txtWeather.search("BC") > 0) {
-            ww += 'BC';
-        } else if (txtWeather.search("DR") > 0) {
-            ww += 'DR';
-        } else if (txtWeather.search("BL") > 0) {
-            ww += 'BL';
-        } else if (txtWeather.search("SH") > 0) {
-            ww += 'SH';
-        } else if (txtWeather.search("TS") > 0) {
-            ww += 'TS';
-        } else if (txtWeather.search("FZ") > 0) {
-            ww += 'FZ';
-        } else if (txtWeather.search("DZ") > 0) {
-            ww += 'DZ';
-        } else if (txtWeather.search("RA") > 0) {
-            ww += 'RA';
-        } else if (txtWeather.search("SN") > 0) {
-            ww += 'SN';
-        } else if (txtWeather.search("IC") > 0) {
-            ww += 'IC';
-        } else if (txtWeather.search("PL") > 0) {
-            ww += 'PL';
-        } else if (txtWeather.search("GR") > 0) {
-            ww += 'GR';
-        } else if (txtWeather.search("GS") > 0) {
-            ww += 'GS';
-        } else if (txtWeather.search("UP") > 0) {
-            ww += 'UP';
-        } else if (txtWeather.search("BR") > 0) {
-            ww += 'BR';
-        } else if (txtWeather.search("FG") > 0) {
-            ww += 'FG';
-        } else if (txtWeather.search("FU") > 0) {
-            ww += 'FU';
-        } else if (txtWeather.search("VA") > 0) {
-            ww += 'VA';
-        } else if (txtWeather.search("DU") > 0) {
-            ww += 'DU';
-        } else if (txtWeather.search("SA") > 0) {
-            ww += 'SA';
-        } else if (txtWeather.search("HZ") > 0) {
-            ww += 'HZ';
-        } else if (txtWeather.search("PY") > 0) {
-            ww += 'PY';
-        } else if (txtWeather.search("PO") > 0) {
-            ww += 'PO';
-        } else if (txtWeather.search("SQ") > 0) {
-            ww += 'SQ';
-        } else if (txtWeather.search("FC") > 0) {
-            ww += 'FC';
-        } else if (txtWeather.search("SS") > 0) {
-            ww += 'SS';
-        } else if (txtWeather.search("DS") > 0) {
-            ww += 'DS';
-        } else {
-
-        }
+    
+    if(txtWeather.search("ST") > 0){
+        let position = txtPressure.search("A");
     }
     return txtCloud;
 }
