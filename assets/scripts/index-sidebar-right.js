@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    let txtMetar = new GetMetarRTAF();
     $('#Map-Control-Center-Right-Sidebar-Logo-Map-Control').on('click', function () {
         $('#Map-Control-Center-Right-Sidebar').toggleClass('open');
     });
@@ -29,8 +28,7 @@ $(document).ready(function () {
                 success: function (data) {
                     var jsonData = data.trim();
                     let jsonMetarStr = JSON.parse(jsonData);
-                    txtMetar.getMetarTextRTAF(jsonMetarStr);
-                    alert('Success');
+                    getMetarSymbolRTAF(jsonMetarStr);
                 }
             });
 
@@ -46,7 +44,7 @@ $(document).ready(function () {
         } else {
             /* clearInterval(MetarUpdate);*/
             $("#collapseMetarRTAF").slideToggle();
-            new GetMetarRTAF().ResetMetarTextRTAF();
+            ResetMetarTextRTAF();
 
             Swal.fire({
                 toast: true,
@@ -511,18 +509,22 @@ $(document).ready(function () {
     /* Station RTAF */
     $('input[type="checkbox"][id="Wx-Station-Rtaf"]').click(function () {
         if ($('#Wx-Station-Rtaf').is(":checked")) {
-            markerWing1.addTo(map);
-            markerWing2.addTo(map);
-            markerWing3.addTo(map);
-            markerWing4.addTo(map);
-            markerWing5.addTo(map);
-            markerWing6.addTo(map);
-            markerWing7.addTo(map);
-            markerWing21.addTo(map);
-            markerWing23.addTo(map);
-            markerWing41.addTo(map);
-            markerWing46.addTo(map);
-            markerWingSS.addTo(map);
+            markerVTNC.addTo(map);
+            markerVTNP.addTo(map);
+            markerVTED.addTo(map);
+            markerVTEU.addTo(map);
+            markerVTEN.addTo(map);
+            markerVTMD.addTo(map);
+            markerVTMI.addTo(map);
+            markerVTML.addTo(map);
+            markerVTMW.addTo(map);
+            markerVTMP.addTo(map);
+            markerVTMK.addTo(map);
+            markerVTMH.addTo(map);
+            markerVTDB.addTo(map);
+            markerVTDS.addTo(map);
+            markerVTDT.addTo(map);
+
             Swal.fire({
                 toast: true,
                 position: 'top-end',
@@ -533,18 +535,22 @@ $(document).ready(function () {
                 timer: 1500
             });
         } else if ($('#Wx-Station-Rtaf').is(":not(:checked)")) {
-            map.removeLayer(markerWing1);
-            map.removeLayer(markerWing2);
-            map.removeLayer(markerWing3);
-            map.removeLayer(markerWing4);
-            map.removeLayer(markerWing5);
-            map.removeLayer(markerWing6);
-            map.removeLayer(markerWing7);
-            map.removeLayer(markerWing21);
-            map.removeLayer(markerWing23);
-            map.removeLayer(markerWing41);
-            map.removeLayer(markerWing46);
-            map.removeLayer(markerWingSS);
+            map.removeLayer(markerVTNC);
+            map.removeLayer(markerVTNP);
+            map.removeLayer(markerVTED);
+            map.removeLayer(markerVTEU);
+            map.removeLayer(markerVTEN);
+            map.removeLayer(markerVTMD);
+            map.removeLayer(markerVTMI);
+            map.removeLayer(markerVTML);
+            map.removeLayer(markerVTMW);
+            map.removeLayer(markerVTMP);
+            map.removeLayer(markerVTMK);
+            map.removeLayer(markerVTMH);
+            map.removeLayer(markerVTDB);
+            map.removeLayer(markerVTDS);
+            map.removeLayer(markerVTDT);
+
             Swal.fire({
                 toast: true,
                 position: 'top-end',

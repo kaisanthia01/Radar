@@ -49,12 +49,12 @@ var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
 /*
  * ภาพเรดาร์ Overlay บนแผนที่
  */
-var radarUrlWing4 = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_ppi_latest.png?' + realtime;
-var latLngBoundsWing4 = L.latLngBounds([
+var radarUrlVTMI = 'http://radar.climate4.esy.es/assets/images/radar/wing4/latest/wing4_ppi_latest.png?' + realtime;
+var latLngBoundsVTMI = L.latLngBounds([
     [17.425, 98.057],
     [13.11, 102.538]
 ]);
-var imageOverlayWing4 = L.imageOverlay(radarUrlWing4, latLngBoundsWing4, {
+var imageOverlayVTMI = L.imageOverlay(radarUrlVTMI, latLngBoundsVTMI, {
     opacity: 1,
     interactive: false
 });
@@ -148,112 +148,126 @@ var imageOverlaySatelliteENH = L.imageOverlay(satelliteUrlENH, latLngBoundsSatel
  * สัญญาลักษณ์ของกองบินต่างๆ
  */
 var url = 'http://radar.climate4.esy.es/assets/scripts/';
-var MetarStr = 'test';
-var TafStr = '';
-var MetarRTAF = '',
-    TafRTAF = '',
-    MetarRTAFUpdate = null,
-    TafRTAFUpdate = null;
-var MetarTMD = null,
-    TafTMD = null,
-    MetarTMDUpdate = null,
-    TafTMDUpdate = null;
 
 var iconVTNC = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTNC-1.png',
     iconSize: [15, 15]
 });
 var markerVTNC = L.marker([18.7734933, 98.9653736], {
     icon: iconVTNC
-}).bindTooltip('VTNC');
+}).bindTooltip('กองบิน 41 (จว.เชียงใหม่)');
 
 var iconVTNP = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTNP.png',
     iconSize: [15, 15]
 });
 var markerVTNP = L.marker([16.7838369, 100.2790302], {
     icon: iconVTNP
-}).bindTooltip('VTNP');
+}).bindTooltip('กองบิน 46 (จว.พิษณุโลก)');
 
 var iconVTEU = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTEU.png',
     iconSize: [15, 15]
 });
 var markerVTEU = L.marker([15.2480524, 104.8604472], {
     icon: iconVTEU
-}).bindTooltip('VTEU');
+}).bindTooltip('กองบิน 21 (จว.อุบลราชธานี)');
 
 var iconVTED = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTED.png',
     iconSize: [15, 15]
 });
 var markerVTED = L.marker([17.3802148, 102.7947298], {
     icon: iconVTED
-}).bindTooltip('VTED');
+}).bindTooltip('กองบิน 23 (จว.อุดรธานี)');
 
 var iconVTEN = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTEN.png',
     iconSize: [15, 15]
 });
 var markerVTEN = L.marker([14.9343853, 102.0810221], {
     icon: iconVTEN
-}).bindTooltip('VTEN');
-
-var iconVTML = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerVTML = L.marker([14.8714901, 100.6479151], {
-    icon: iconVTML
-}).bindTooltip('VTML');
-
-var iconVTMW = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerVTMW = L.marker([13.7680476, 102.3151012], {
-    icon: iconVTMW
-}).bindTooltip('VTMW');
+}).bindTooltip('กองบิน 1 (จว.นครราชสีมา)');
 
 var iconVTMI = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTMI-1.png',
     iconSize: [15, 15]
 });
 var markerVTMI = L.marker([15.277034, 100.291933], {
     icon: iconVTMI
-}).bindTooltip('VTMI');
+}).bindTooltip('กองบิน 4 (จว.นครสวรรค์)');
+
+var iconVTML = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/VTML.png',
+    iconSize: [15, 15]
+});
+var markerVTML = L.marker([14.8714901, 100.6479151], {
+    icon: iconVTML
+}).bindTooltip('กองบิน 2 (จว.ลพบุรี)');
+
+var iconVTMW = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/VTMW.png',
+    iconSize: [15, 15]
+});
+var markerVTMW = L.marker([13.7680476, 102.3151012], {
+    icon: iconVTMW
+}).bindTooltip('กองบิน 3 (จว.สระแก้ว)');
 
 var iconVTMP = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTMP.png',
     iconSize: [15, 15]
 });
 var markerVTMP = L.marker([11.7866226, 99.8077392], {
     icon: iconVTMP
-}).bindTooltip('VTMP');
+}).bindTooltip('กองบิน 5 (จว.ประจวบคีรีขันธ์)');
 
 var iconVTMD = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTMD-1.png',
     iconSize: [15, 15]
 });
 var markerVTMD = L.marker([13.910211, 100.610533], {
     icon: iconVTMD
-}).bindTooltip('VTMD');
-
-var iconVTDB = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
-    iconSize: [15, 15]
-});
-var markerVTDB = L.marker([9.1358421, 99.1366254], {
-    icon: iconVTDB
-}).bindTooltip('VTDB');
+}).bindTooltip('กองบิน 6 (จว.กรุงเทพมหานคร)');
 
 var iconVTMK = L.icon({
-    iconUrl: 'assets/images/metar/VFR.png',
+    iconUrl: 'assets/images/logo/StationRTAF/VTMK.png',
     iconSize: [15, 15]
 });
 var markerVTMK = L.marker([14.098889, 99.923629], {
     icon: iconVTMK
-}).bindTooltip('VTMK');
+}).bindTooltip('โรงเรียนการบิน กำแพงแสน (จว.นครปฐม)');
+
+var iconVTMH = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/RTAF.png',
+    iconSize: [15, 15]
+});
+var markerVTMH = L.marker([12.630251, 99.953304], {
+    icon: iconVTMH
+}).bindTooltip('สนามบินหัวหิน (จว.ประจวบคีรีขันธ์)');
+
+var iconVTDB = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/VTDB.png',
+    iconSize: [15, 15]
+});
+var markerVTDB = L.marker([9.1358421, 99.1366254], {
+    icon: iconVTDB
+}).bindTooltip('กองบิน 7 (จว.สุราษฏร์ธานี)');
+
+var iconVTDS = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/VTDS.png',
+    iconSize: [15, 15]
+});
+var markerVTDS = L.marker([6.934363, 100.393994], {
+    icon: iconVTDS
+}).bindTooltip('กองบิน 56 (จว.สงขลา)');
+
+var iconVTDT = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/VTDT.png',
+    iconSize: [15, 15]
+});
+var markerVTDT = L.marker([6.784885, 101.150122], {
+    icon: iconVTDT
+}).bindTooltip('กองกำลังทางอากาศเฉพาะกิจที่ 9 (จว.ปัตตานี)');
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */

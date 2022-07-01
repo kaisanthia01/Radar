@@ -50,7 +50,7 @@
                                 <span class="ms-2 fw-bold" style="font-size: 11px;">ติดตามและแจ้งเตือนสภาพอากาศ</span>
                             </button>
                         </h2>
-                        <div class="accordion-collapse collapse show" id="col-warningweather">
+                        <div class="accordion-collapse collapse" id="col-warningweather">
                             <div class="accordion" id="Map-Control-Center-Left-Sidebar-Menu-Layer-Submenu">
                                 <div class="accordion-item border-0">
                                     <h2 class="accordion-header" id="Radar-RTAF">
@@ -258,12 +258,12 @@
                     <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
 
                     <!-- เส้นทางบิน -->
-                    <div class="accordion-item border-0 close-block d-none">
+                    <div class="accordion-item border-0 close-block">
                         <h2 class="accordion-header" id="Fight-Plan">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#col-fight-plan" aria-expanded="false" aria-controls="col-fight-plan">
-                                <i class="fa-solid fa-plane fs-5"></i>
-                                <span class="fs-5 ms-2 fw-bold">เส้นทางบิน</span>
+                                <i class="fa-solid fa-plane" style="font-size: 20px;"></i>
+                                <span class="ms-2 fw-bold" style="font-size: 11px;">การบริการเส้นทางบิน</span>
                             </button>
                         </h2>
                         <div class="accordion-collapse collapse" id="col-fight-plan">
@@ -352,15 +352,23 @@
                                 <span class="ms-2 fw-bold" style="font-size: 11px;">อัพโหลดไฟล์ KML</span>
                             </button>
                         </h2>
-                        <div class="accordion-collapse collapse" id="col-kml">
+                        <div class="accordion-collapse collapse show" id="col-kml">
                             <ul class="list-group text-start rounded-0">
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="mb-3">
-                                        <label for="formFileSm" class="form-label">อัพโหลดไฟล์เฉพาะ KML
-                                            เท่านั้น!</label>
-                                        <input class="form-control form-control-sm" id="formFileSm" type="file">
-                                    </div>
+                                    <form id="FormUploadKML" name="FormUploadKML" enctype="multipart/form-data">
+                                        <div class="mb-3 text-center">
+                                            <label for="formFileSm" class="form-label">เฉพาะ KML เท่านั้น!</label>
+                                            <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                            <button type="button" class="btn btn-danger btn-sm mt-2"
+                                                id="Map-Control-Center-Left-Sidebar-Menu-Layer-Upload-KML">อัพโหลดไฟล์</button>
+                                        </div>
+                                    </form>
                                 </li>
+                                <div id="box-list-kml">
+                                    <div class="block">
+                                        <span class="add">Add Option</span>
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -420,7 +428,8 @@
                                                     <div class="form-check border border-warning"
                                                         style="padding-left: 70px;">
                                                         <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="Wx-News-Metar-Rtaf-Text" checked>
+                                                            name="flexRadioDefault" id="Wx-News-Metar-Rtaf-Text"
+                                                            checked>
                                                         <label class="form-check-label fw-bolder"
                                                             for="Wx-News-Metar-Rtaf-Text">Text</label>
                                                     </div>
@@ -452,19 +461,6 @@
                                                         width="25px" height="25px" alt="Wx-News-Metar-Taf">
                                                 </span>
                                             </li>
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-start">
-                                                <div class="me-auto ps-3">
-                                                    <input class="form-check-input me-2" type="checkbox"
-                                                        id="Wx-News-Warnning">
-                                                    <label class="form-check-label"
-                                                        for="Wx-News-Warnning">WARNING</label>
-                                                </div>
-                                                <span class="badge">
-                                                    <img class="rounded" src="assets/images/logo/StationRTAF/RTAF.png"
-                                                        width="25px" height="25px" alt="Wx-News-Warnning">
-                                                </span>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -479,18 +475,6 @@
                                     </h2>
                                     <div class="accordion-collapse collapse show" id="col-metar-tmd">
                                         <ul class="list-group text-start rounded-0">
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-start">
-                                                <div class="me-auto ps-3">
-                                                    <input class="form-check-input me-2" type="checkbox"
-                                                        id="Wx-News-Synop" disabled>
-                                                    <label class="form-check-label" for="Wx-News-Synop">SYNOP</label>
-                                                </div>
-                                                <span class="badge">
-                                                    <img class="rounded" src="assets/images/logo/TMD.png" width="25px"
-                                                        height="25px" alt="Wx-News-Synop">
-                                                </span>
-                                            </li>
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div class="me-auto ps-3">
@@ -702,17 +686,20 @@
 
 <!-- Custom script for this template -->
 <script src="assets/plugins/jQuery/jquery-3.6.0.min.js"></script>
+<script src="assets/plugins/jQuery/jquery.blockUI.js"></script>
 <script src="assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="assets/plugins/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/plugins/bootstrap-5.0.2/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/plugins/leaflet/leaflet.js"></script>
 <script src='assets/plugins/leaflet/Leaflet.fullscreen.min.js'></script>
 <script src="assets/plugins/leaflet/leaflet.home.js"></script>
-<script src="assets/scripts/index-geoJsonTH.js"></script>
+<script src="assets/plugins/leaflet/leaflet-icons.js"></script>
 <script src="assets/plugins/leaflet/leaflet-kml.js"></script>
+<script src="assets/scripts/index-geoJsonTH.js"></script>
 <script src="assets/scripts/index.js"></script>
 <script src="assets/scripts/index-sidebar-left.js"></script>
 <script src="assets/scripts/index-sidebar-right.js"></script>
 <script src="assets/scripts/index-sidebar-right-getMetarTaf.js"></script>
+<script src="assets/scripts/index-upload-kml.js"></script>
 
 </html>

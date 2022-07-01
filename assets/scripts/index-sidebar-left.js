@@ -10,34 +10,34 @@ $(document).ready(function () {
     /* Radar-Wing-VTEN */
     $('input[type="checkbox"][id="Radar-Wing-VTEN"]').click(function () {
         if ($('#Radar-Wing-VTEN').is(":checked")) {
-            markerWing1.addTo(map);
+            markerVTEN.addTo(map);
         } else if ($('#Radar-Wing-VTEN').is(":not(:checked)")) {
-            map.removeLayer(markerWing1);
+            map.removeLayer(markerVTEN);
         }
     });
 
     /* Radar-Wing-VTEU */
     $('input[type="checkbox"][id="Radar-Wing-VTEU"]').click(function () {
         if ($('#Radar-Wing-VTEU').is(":checked")) {
-            markerWing21.addTo(map);
+            markerVTEU.addTo(map);
         } else if ($('#Radar-Wing-VTEU').is(":not(:checked)")) {
-            map.removeLayer(markerWing21);
+            map.removeLayer(markerVTEU);
         }
     });
 
     /* Radar-Wing-VTED */
     $('input[type="checkbox"][id="Radar-Wing-VTED"]').click(function () {
         if ($('#Radar-Wing-VTED').is(":checked")) {
-            imageOverlayWing23.addTo(map);
+            imageOverlayVTED.addTo(map);
         } else if ($('#Radar-Wing-VTED').is(":not(:checked)")) {
-            map.removeLayer(imageOverlayWing23);
+            map.removeLayer(imageOverlayVTED);
         }
     });
 
     /* Radar-Wing-VTMI */
     $('input[type="checkbox"][id="Radar-Wing-VTMI"]').click(function () {
         if ($('#Radar-Wing-VTMI').is(":checked")) {
-            imageOverlayWing4.addTo(map);
+            imageOverlayVTMI.addTo(map);
             Swal.fire({
                 toast: true,
                 position: 'top-end',
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 timer: 1500
             });
         } else if ($('#Radar-Wing-VTMI').is(":not(:checked)")) {
-            map.removeLayer(imageOverlayWing4);
+            map.removeLayer(imageOverlayVTMI);
             Swal.fire({
                 toast: true,
                 position: 'top-end',
@@ -64,16 +64,16 @@ $(document).ready(function () {
     /* Radar-Wing-VTMK */
     $('input[type="checkbox"][id="Radar-Wing-VTMK"]').click(function () {
         if ($('#Radar-Wing-VTMK').is(":checked")) {
-            markerWingSS.addTo(map);
+            markerVTMK.addTo(map);
         } else if ($('#Radar-Wing-VTMK').is(":not(:checked)")) {
-            map.removeLayer(markerWingSS);
+            map.removeLayer(markerVTMK);
         }
     });
 
     /* Radar-Wing-VTDB */
     $('input[type="checkbox"][id="Radar-Wing-VTDB"]').click(function () {
         if ($('#Radar-Wing-VTDB').is(":checked")) {
-            imageOverlayWing7.addTo(map);
+            imageOverlayVTDB.addTo(map);
             Swal.fire({
                 toast: true,
                 position: 'top-end',
@@ -84,7 +84,7 @@ $(document).ready(function () {
                 timer: 1500
             });
         } else if ($('#Radar-Wing-VTDB').is(":not(:checked)")) {
-            map.removeLayer(imageOverlayWing7);
+            map.removeLayer(imageOverlayVTDB);
             Swal.fire({
                 toast: true,
                 position: 'top-end',
