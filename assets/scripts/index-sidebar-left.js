@@ -3,7 +3,6 @@ $(document).ready(function () {
         $('#Map-Control-Center-Left-Sidebar').toggleClass('open');
     });
 
-
     /*
      * Radar RTAF
      */
@@ -73,6 +72,17 @@ $(document).ready(function () {
     /* Radar-Wing-VTDB */
     $('input[type="checkbox"][id="Radar-Wing-VTDB"]').click(function () {
         if ($('#Radar-Wing-VTDB').is(":checked")) {
+            //RemoveBG กองบิน 7
+            $.ajax({
+                Type: "GET",
+                contentType: "application/text; charset=utf-8",
+                url: 'http://radar.climate4.esy.es/assets/images/radar/wing7/latest/wing7removeBG.php',
+                dataType: "text",
+                async: false,
+                success: function (data) {},
+                error: function (err) {}
+            });
+
             imageOverlayVTDB.addTo(map);
             Swal.fire({
                 toast: true,
@@ -298,44 +308,6 @@ $(document).ready(function () {
         var opaVal = $('#Sat-ENH-OPA').val();
 
         imageOverlaySatelliteENH.setOpacity(opaVal).addTo(map);
-    });
-    /*
-     * ------------------------------------------------------------------------------- *
-     */
-
-    /*
-     * Upload File KML
-     */
-    $("#myform").on("submit", function (e) { // จะทำงานก็ต่อเมื่อกด submit ฟอร์ม
-        e.preventDefault(); // ปิดการใช้งาน submit ปกติ เพื่อใช้งานผ่าน ajax
-        var fd = new FormData(); // เตรียมข้อมูล form สำหรับส่งด้วย  FormData Object
-
-        var files = $('#file')[0].files; //เป็นการดึงข้อมูลรูปภาพเพื่อเตรียมเช็คไฟล์ก่อนทำงานส่วน Ajax
-
-        // เช็คว่ามีไฟล์รูปภาพอยู่หรือไม่
-        if (files.length > 0) {
-
-            fd.append('file', files[0]); //ใช้ในการแทรกค่าไฟล์รูปภาพใน element 
-
-            $.ajax({
-                url: 'upload.php', //ให้ระบุชื่อไฟล์ PHP ที่เราจะส่งค่าไป
-                type: 'post',
-                data: fd, //ข้อมูลจาก input ที่ส่งเข้าไปที่ PHP
-                contentType: false,
-                processData: false,
-                success: function (response) { //หากทำงานสำเร็จ จะรับค่ามาจาก JSON หลังจากนั้นก็ให้ทำงานตามที่เรากำหนดได้
-
-                    if (response != 0) {
-                        $("#img").attr("src", response);
-                        $('.preview img').show();
-                    } else {
-                        alert('File not uploaded');
-                    }
-                }
-            });
-        } else {
-            alert("Please select a file.");
-        }
     });
     /*
      * ------------------------------------------------------------------------------- *

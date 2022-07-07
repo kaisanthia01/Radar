@@ -1,587 +1,781 @@
-function getMetarTextRTAF(MetarTextRTAF) {
-    let VTMD = 0,
-        VTNI = 0,
-        VTNC = 0,
-        VTNP = 0,
-        VTED = 0,
-        VTEU = 0,
-        VTEN = 0,
-        VTEZ = 0,
-        VTET = 0,
-        VTMG = 0,
-        VTMI = 0,
-        VTML = 0,
-        VTMM = 0,
-        VTMK = 0,
-        VTMW = 0,
-        VTMU = 0,
-        VTMP = 0,
-        VTDB = 0,
-        VTDS = 0,
-        VTMH = 0,
-        VTDT = 0;
-    let HeaderMetarTextVTMD, BodyMetarTextVTMD, ContentMetarTextVTMD, ColorMetarTextVTMD,
-        HeaderMetarTextVTNC, BodyMetarTextVTNC, ContentMetarTextVTNC, ColorMetarTextVTNC,
-        HeaderMetarTextVTNP, BodyMetarTextVTNP, ContentMetarTextVTNP, ColorMetarTextVTNP,
-        HeaderMetarTextVTED, BodyMetarTextVTED, ContentMetarTextVTED, ColorMetarTextVTED,
-        HeaderMetarTextVTEU, BodyMetarTextVTEU, ContentMetarTextVTEU, ColorMetarTextVTEU,
-        HeaderMetarTextVTEN, BodyMetarTextVTEN, ContentMetarTextVTEN, ColorMetarTextVTEN,
-        HeaderMetarTextVTMI, BodyMetarTextVTMI, ContentMetarTextVTMI, ColorMetarTextVTMI,
-        HeaderMetarTextVTML, BodyMetarTextVTML, ContentMetarTextVTML, ColorMetarTextVTML,
-        HeaderMetarTextVTMK, BodyMetarTextVTMK, ContentMetarTextVTMK, ColorMetarTextVTMK,
-        HeaderMetarTextVTMW, BodyMetarTextVTMW, ContentMetarTextVTMW, ColorMetarTextVTMW,
-        HeaderMetarTextVTMU, BodyMetarTextVTMU, ContentMetarTextVTMU, ColorMetarTextVTMU,
-        HeaderMetarTextVTMP, BodyMetarTextVTMP, ContentMetarTextVTMP, ColorMetarTextVTMP,
-        HeaderMetarTextVTDB, BodyMetarTextVTDB, ContentMetarTextVTDB, ColorMetarTextVTDB,
-        HeaderMetarTextVTDS, BodyMetarTextVTDS, ContentMetarTextVTDS, ColorMetarTextVTDS,
-        HeaderMetarTextVTMH, BodyMetarTextVTMH, ContentMetarTextVTMH, ColorMetarTextVTMH,
-        HeaderMetarTextVTDT, BodyMetarTextVTDT, ContentMetarTextVTDT, ColorMetarTextVTDT;
+function ajaxMetarRTAF() {
+    var jsonMetar, jsonMetarData;
+    //Get Metar Json
+    $.ajax({
+        Type: "GET",
+        contentType: "application/text; charset=utf-8",
+        url: 'assets/scripts/metar.php',
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            //resolve(data); // Resolve promise and go to then()
+            jsonMetarData = data.trim();
+            jsonMetar = JSON.parse(jsonMetarData);
+        },
+        error: function (err) {
+            // reject(err) // Reject the promise and go to catch()
+            jsonMetar = 'Error';
+            console.error(err);
+        }
+    });
 
+    return jsonMetar;
+}
+
+function ajaxTafRTAF() {
+    var jsonTaf, jsonTafData;
+    //Get Taf Json
+    $.ajax({
+        Type: "GET",
+        contentType: "application/text; charset=utf-8",
+        url: 'assets/scripts/taf.php',
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            //resolve(data); // Resolve promise and go to then()
+            jsonTafData = data.trim();
+            jsonTaf = JSON.parse(jsonTafData);
+        },
+        error: function (err) {
+            // reject(err) // Reject the promise and go to catch()
+            jsonTaf = 'Error';
+            console.error(err);
+        }
+    });
+
+    return jsonTaf;
+}
+
+function getMetarTextRTAF(MetarTextRTAF) {
     $.each(MetarTextRTAF.CURRENT_WEATHER, function (index, value) {
         if (value.STATION_CODE != '-') {
-            //console.log(value.STATION_NAME + ' ' + value.NEWS_TIME + '\n' + value.TAF_TEXT);
-            if (value.STATION_CODE == "VTMD") {
-                HeaderMetarTextVTMD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMD > 0) {
-                    BodyMetarTextVTMD += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMD = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMD++;
-                }
-                ContentMetarTextVTMD = HeaderMetarTextVTMD + BodyMetarTextVTMD;
-                ColorMetarTextVTMD = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
-            } else if (value.STATION_CODE == "VTNC") {
-                HeaderMetarTextVTNC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTNC > 0) {
-                    BodyMetarTextVTNC += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTNC = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTNC++;
-                }
-                ContentMetarTextVTNC = HeaderMetarTextVTNC + BodyMetarTextVTNC;
-                ColorMetarTextVTNC = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+            if (value.STATION_CODE == "VTNC") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTNC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTNC = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTNC = HeaderMetarTextVTNC + BodyMetarTextVTNC;
 
+                    //SetTooltip VTNC
+                    iconVTNC = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTNC.setIcon(iconVTNC).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNC + '</div></div>').addTo(map);
+                } else {
+                    iconVTNC = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTNP") {
-                HeaderMetarTextVTNP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTNP > 0) {
-                    BodyMetarTextVTNP += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTNP = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTNP++;
-                }
-                ContentMetarTextVTNP = HeaderMetarTextVTNP + BodyMetarTextVTNP;
-                ColorMetarTextVTNP = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTNP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTNP = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTNP = HeaderMetarTextVTNP + BodyMetarTextVTNP;
 
+                    //SetTooltip VTNP
+                    iconVTNP = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTNP.setIcon(iconVTNP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNP + '</div></div>').addTo(map);
+                } else {
+                    iconVTNP = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTNP.setIcon(iconVTNP).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTED") {
-                HeaderMetarTextVTED = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTED > 0) {
-                    BodyMetarTextVTED += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTED = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTED++;
-                }
-                ContentMetarTextVTED = HeaderMetarTextVTED + BodyMetarTextVTED;
-                ColorMetarTextVTED = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTED = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTED = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTED = HeaderMetarTextVTED + BodyMetarTextVTED;
 
+                    //SetTooltip VTED
+                    iconVTED = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTED.setIcon(iconVTED).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTED + '</div></div>').addTo(map);
+                } else {
+                    iconVTED = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTED.setIcon(iconVTED).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTEU") {
-                HeaderMetarTextVTEU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTEU > 0) {
-                    BodyMetarTextVTEU += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTEU = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTEU++;
-                }
-                ContentMetarTextVTEU = HeaderMetarTextVTEU + BodyMetarTextVTEU;
-                ColorMetarTextVTEU = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTEU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTEU = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTEU = HeaderMetarTextVTEU + BodyMetarTextVTEU;
 
+                    //SetTooltip VTEU
+                    iconVTEU = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTEU.setIcon(iconVTEU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEU + '</div></div>').addTo(map);
+                } else {
+                    iconVTEU = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTEU.setIcon(iconVTEU).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTEN") {
-                HeaderMetarTextVTEN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTEN > 0) {
-                    BodyMetarTextVTEN += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTEN = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTEN++;
-                }
-                ContentMetarTextVTEN = HeaderMetarTextVTEN + BodyMetarTextVTEN;
-                ColorMetarTextVTEN = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTEN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTEN = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTEN = HeaderMetarTextVTEN + BodyMetarTextVTEN;
 
+                    //SetTooltip VTEN
+                    iconVTEN = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTEN.setIcon(iconVTEN).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEN + '</div></div>').addTo(map);
+                } else {
+                    iconVTEN = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTEN.setIcon(iconVTEN).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMD") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMD = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMD = HeaderMetarTextVTMD + BodyMetarTextVTMD;
+
+                    //SetTooltip VTMD
+                    iconVTMD = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMD.setIcon(iconVTMD).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMD + '</div></div>').addTo(map);
+                } else {
+                    iconVTMD = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMD.setIcon(iconVTMD).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTMI") {
-                HeaderMetarTextVTMI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMI > 0) {
-                    BodyMetarTextVTMI += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMI = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMI++;
-                }
-                ContentMetarTextVTMI = HeaderMetarTextVTMI + BodyMetarTextVTMI;
-                ColorMetarTextVTMI = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMI = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMI = HeaderMetarTextVTMI + BodyMetarTextVTMI;
 
+                    //SetTooltip VTMI
+                    iconVTMI = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMI.setIcon(iconVTMI).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMI + '</div></div>').addTo(map);
+                } else {
+                    iconVTMI = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMI.setIcon(iconVTMI).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTML") {
-                HeaderMetarTextVTML = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTML > 0) {
-                    BodyMetarTextVTML += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTML = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTML++;
-                }
-                ContentMetarTextVTML = HeaderMetarTextVTML + BodyMetarTextVTML;
-                ColorMetarTextVTML = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTML = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTML = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTML = HeaderMetarTextVTML + BodyMetarTextVTML;
 
-            } else if (value.STATION_CODE == "VTMK") {
-                HeaderMetarTextVTMK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMK > 0) {
-                    BodyMetarTextVTMK += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
+                    //SetTooltip VTML
+                    iconVTML = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTML.setIcon(iconVTML).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTML + '</div></div>').addTo(map);
                 } else {
-                    BodyMetarTextVTMK = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMK++;
+                    iconVTML = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTML.setIcon(iconVTML).unbindTooltip().addTo(map);
                 }
-                ContentMetarTextVTMK = HeaderMetarTextVTMK + BodyMetarTextVTMK;
-                ColorMetarTextVTMK = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
-
             } else if (value.STATION_CODE == "VTMW") {
-                HeaderMetarTextVTMW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMW > 0) {
-                    BodyMetarTextVTMW += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMW = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMW++;
-                }
-                ContentMetarTextVTMW = HeaderMetarTextVTMW + BodyMetarTextVTMW;
-                ColorMetarTextVTMW = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMW = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMW = HeaderMetarTextVTMW + BodyMetarTextVTMW;
 
+                    //SetTooltip VTMW
+                    iconVTMW = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMW.setIcon(iconVTMW).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMW + '</div></div>').addTo(map);
+                } else {
+                    iconVTMW = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMW.setIcon(iconVTMW).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTMU") {
-                HeaderMetarTextVTMU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMU > 0) {
-                    BodyMetarTextVTMU += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMU = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMU++;
-                }
-                ContentMetarTextVTMU = HeaderMetarTextVTMU + BodyMetarTextVTMU;
-                ColorMetarTextVTMU = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMU = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMU = HeaderMetarTextVTMU + BodyMetarTextVTMU;
 
+                    //SetTooltip VTMU
+                    iconVTMU = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMU.setIcon(iconVTMU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMU + '</div></div>').addTo(map);
+                } else {
+                    iconVTMU = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMU.setIcon(iconVTMU).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTMP") {
-                HeaderMetarTextVTMP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMP > 0) {
-                    BodyMetarTextVTMP += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMP = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMP++;
-                }
-                ContentMetarTextVTMP = HeaderMetarTextVTMP + BodyMetarTextVTMP;
-                ColorMetarTextVTMP = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMP = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMP = HeaderMetarTextVTMP + BodyMetarTextVTMP;
 
-            } else if (value.STATION_CODE == "VTDB") {
-                HeaderMetarTextVTDB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTDB > 0) {
-                    BodyMetarTextVTDB += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
+                    //SetTooltip VTMP
+                    iconVTMP = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMP.setIcon(iconVTMP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMP + '</div></div>').addTo(map);
                 } else {
-                    BodyMetarTextVTDB = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTDB++;
+                    iconVTMP = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMP.setIcon(iconVTMP).unbindTooltip().addTo(map);
                 }
-                ContentMetarTextVTDB = HeaderMetarTextVTDB + BodyMetarTextVTDB;
-                ColorMetarTextVTDB = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+            } else if (value.STATION_CODE == "VTMK") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMK = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMK = HeaderMetarTextVTMK + BodyMetarTextVTMK;
 
-            } else if (value.STATION_CODE == "VTDS") {
-                HeaderMetarTextVTDS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTDS > 0) {
-                    BodyMetarTextVTDS += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
+                    //SetTooltip VTMK
+                    iconVTMK = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMK.setIcon(iconVTMK).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMK + '</div></div>').addTo(map);
                 } else {
-                    BodyMetarTextVTDS = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTDS++;
+                    iconVTMK = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMK.setIcon(iconVTMK).unbindTooltip().addTo(map);
                 }
-                ContentMetarTextVTDS = HeaderMetarTextVTDS + BodyMetarTextVTDS;
-                ColorMetarTextVTDS = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
-
             } else if (value.STATION_CODE == "VTMH") {
-                HeaderMetarTextVTMH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMH > 0) {
-                    BodyMetarTextVTMH += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVMDH = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMH++;
-                }
-                ContentMetarTextVTMH = HeaderMetarTextVTMH + BodyMetarTextVTMH;
-                ColorMetarTextVTMH = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMH = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTMH = HeaderMetarTextVTMH + BodyMetarTextVTMH;
 
+                    //SetTooltip VTMH
+                    iconVTMH = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTMH.setIcon(iconVTMH).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMH + '</div></div>').addTo(map);
+                } else {
+                    iconVTMH = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMH.setIcon(iconVTMH).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTDB") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTDB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTDB = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTDB = HeaderMetarTextVTDB + BodyMetarTextVTDB;
+
+                    //SetTooltip VTDB
+                    iconVTDB = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTDB.setIcon(iconVTDB).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDB + '</div></div>').addTo(map);
+                } else {
+                    iconVTDB = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTDB.setIcon(iconVTDB).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTDS") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTDS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTDS = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTDS = HeaderMetarTextVTDS + BodyMetarTextVTDS;
+
+                    //SetTooltip VTDS
+                    iconVTDS = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTDS.setIcon(iconVTDS).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDS + '</div></div>').addTo(map);
+                } else {
+                    iconVTDS = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTDS.setIcon(iconVTDS).unbindTooltip().addTo(map);
+                }
             } else if (value.STATION_CODE == "VTDT") {
-                HeaderMetarTextVTDT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTDT > 0) {
-                    BodyMetarTextVTDT += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTDT = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTDT++;
-                }
-                ContentMetarTextVTDT = HeaderMetarTextVTDT + BodyMetarTextVTDT;
-                ColorMetarTextVTDT = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTDT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTDT = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    var ContentMetarTextVTDT = HeaderMetarTextVTDT + BodyMetarTextVTDT;
 
+                    //SetTooltip VTDT
+                    iconVTDT = L.icon({
+                        iconUrl: 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png',
+                        iconSize: [15, 15]
+                    });
+                    markerVTDT.setIcon(iconVTDT).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDT + '</div></div>').addTo(map);
+                } else {
+                    iconVTDT = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTDT.setIcon(iconVTDT).unbindTooltip().addTo(map);
+                }
             } else {
 
             }
         }
     });
-
-    //SetTooltip VTMD
-    iconVTMD = L.icon({
-        iconUrl: ColorMetarTextVTMD,
-        iconSize: [15, 15]
-    });
-    markerVTMD = L.marker([13.910211, 100.610533], {
-        icon: iconVTMD
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMD + '</div></div>').addTo(map);
-
-    //SetTooltip VTNC
-    iconVTNC = L.icon({
-        iconUrl: ColorMetarTextVTNC,
-        iconSize: [15, 15]
-    });
-    markerVTNC = L.marker([18.7734933, 98.9653736], {
-        icon: iconVTNC
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNC + '</div></div>').addTo(map);
-
-    //SetTooltip VTNP
-    iconVTNP = L.icon({
-        iconUrl: ColorMetarTextVTNP,
-        iconSize: [15, 15]
-    });
-    markerVTNP = L.marker([16.7838369, 100.2790302], {
-        icon: iconVTNP
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNP + '</div></div>').addTo(map);
-
-    //SetTooltip VTED
-    iconVTED = L.icon({
-        iconUrl: ColorMetarTextVTED,
-        iconSize: [15, 15]
-    });
-    markerVTED = L.marker([17.3802148, 102.7947298], {
-        icon: iconVTED
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTED + '</div></div>').addTo(map);
-
-    //SetTooltip VTEU
-    iconVTEU = L.icon({
-        iconUrl: ColorMetarTextVTEU,
-        iconSize: [15, 15]
-    });
-    markerVTEU = L.marker([15.2480524, 104.8604472], {
-        icon: iconVTEU
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEU + '</div></div>').addTo(map);
-
-    //SetTooltip VTEN
-    iconVTEN = L.icon({
-        iconUrl: ColorMetarTextVTEN,
-        iconSize: [15, 15]
-    });
-    markerVTEN = L.marker([14.9343853, 102.0810221], {
-        icon: iconVTEN
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEN + '</div></div>').addTo(map);
-
-    //SetTooltip VTMI
-    iconVTMI = L.icon({
-        iconUrl: ColorMetarTextVTMI,
-        iconSize: [15, 15]
-    });
-    markerVTMI = L.marker([15.277034, 100.291933], {
-        icon: iconVTMI
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMI + '</div></div>').addTo(map);
-
-    //SetTooltip VTML
-    iconVTML = L.icon({
-        iconUrl: ColorMetarTextVTML,
-        iconSize: [15, 15]
-    });
-    markerVTML = L.marker([14.8714901, 100.6479151], {
-        icon: iconVTML
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTML + '</div></div>').addTo(map);
-
-    //SetTooltip VTMK
-    iconVTMK = L.icon({
-        iconUrl: ColorMetarTextVTMK,
-        iconSize: [15, 15]
-    });
-    markerVTMK = L.marker([14.098889, 99.923629], {
-        icon: iconVTMK
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMK + '</div></div>').addTo(map);
-
-    //SetTooltip VTMW
-    iconVTMW = L.icon({
-        iconUrl: ColorMetarTextVTMW,
-        iconSize: [15, 15]
-    });
-    markerVTMW = L.marker([13.910211, 100.610533], {
-        icon: iconVTMW
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMW + '</div></div>').addTo(map);
-
-    //SetTooltip VTMU
-    //iconVTMU = L.icon({
-    //    iconUrl: ColorMetarTextVTMU,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTMU = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTMU
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMU + '</div></div>').addTo(map);
-
-    //SetTooltip VTMP
-    iconVTMP = L.icon({
-        iconUrl: ColorMetarTextVTMP,
-        iconSize: [15, 15]
-    });
-    markerVTMP = L.marker([11.7866226, 99.8077392], {
-        icon: iconVTMP
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMP + '</div></div>').addTo(map);
-
-    //SetTooltip VTDB
-    iconVTDB = L.icon({
-        iconUrl: ColorMetarTextVTDB,
-        iconSize: [15, 15]
-    });
-    markerVTDB = L.marker([9.1358421, 99.1366254], {
-        icon: iconVTDB
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDB + '</div></div>').addTo(map);
-
-    //SetTooltip VTDS
-    //iconVTDS = L.icon({
-    //    iconUrl: ColorMetarTextVTDS,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTDS = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTDS
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDS + '</div></div>').addTo(map);
-    //
-    ////SetTooltip VTMH
-    //iconVTMH = L.icon({
-    //    iconUrl: ColorMetarTextVTMH,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTMH = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTMH
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMH + '</div></div>').addTo(map);
-    //
-    ////SetTooltip VTDT
-    //iconVTDT = L.icon({
-    //    iconUrl: ColorMetarTextVTDT,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTDT = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTDT
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDT + '</div></div>').addTo(map);
 };
 
 function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
-    let VTMD = 0,
-        VTNI = 0,
-        VTNC = 0,
-        VTNP = 0,
-        VTED = 0,
-        VTEU = 0,
-        VTEN = 0,
-        VTEZ = 0,
-        VTET = 0,
-        VTMG = 0,
-        VTMI = 0,
-        VTML = 0,
-        VTMM = 0,
-        VTMK = 0,
-        VTMW = 0,
-        VTMU = 0,
-        VTMP = 0,
-        VTDB = 0,
-        VTDS = 0,
-        VTMH = 0,
-        VTDT = 0;
-    let HeaderMetarTextVTMD, BodyMetarTextVTMD, ContentMetarTextVTMD, ColorMetarTextVTMD,
-        HeaderMetarTextVTNC, BodyMetarTextVTNC, ContentMetarTextVTNC, ColorMetarTextVTNC,
-        HeaderMetarTextVTNP, BodyMetarTextVTNP, ContentMetarTextVTNP, ColorMetarTextVTNP,
-        HeaderMetarTextVTED, BodyMetarTextVTED, ContentMetarTextVTED, ColorMetarTextVTED,
-        HeaderMetarTextVTEU, BodyMetarTextVTEU, ContentMetarTextVTEU, ColorMetarTextVTEU,
-        HeaderMetarTextVTEN, BodyMetarTextVTEN, ContentMetarTextVTEN, ColorMetarTextVTEN,
-        HeaderMetarTextVTMI, BodyMetarTextVTMI, ContentMetarTextVTMI, ColorMetarTextVTMI,
-        HeaderMetarTextVTML, BodyMetarTextVTML, ContentMetarTextVTML, ColorMetarTextVTML,
-        HeaderMetarTextVTMK, BodyMetarTextVTMK, ContentMetarTextVTMK, ColorMetarTextVTMK,
-        HeaderMetarTextVTMW, BodyMetarTextVTMW, ContentMetarTextVTMW, ColorMetarTextVTMW,
-        HeaderMetarTextVTMU, BodyMetarTextVTMU, ContentMetarTextVTMU, ColorMetarTextVTMU,
-        HeaderMetarTextVTMP, BodyMetarTextVTMP, ContentMetarTextVTMP, ColorMetarTextVTMP,
-        HeaderMetarTextVTDB, BodyMetarTextVTDB, ContentMetarTextVTDB, ColorMetarTextVTDB,
-        HeaderMetarTextVTDS, BodyMetarTextVTDS, ContentMetarTextVTDS, ColorMetarTextVTDS,
-        HeaderMetarTextVTMH, BodyMetarTextVTMH, ContentMetarTextVTMH, ColorMetarTextVTMH,
-        HeaderMetarTextVTDT, BodyMetarTextVTDT, ContentMetarTextVTDT, ColorMetarTextVTDT;
+    var ContentMetarTextVTNC = 'NIL',
+        ContentMetarTextVTNP = 'NIL',
+        ContentMetarTextVTED = 'NIL',
+        ContentMetarTextVTEU = 'NIL',
+        ContentMetarTextVTEN = 'NIL',
+        ContentMetarTextVTMD = 'NIL',
+        ContentMetarTextVTMI = 'NIL',
+        ContentMetarTextVTML = 'NIL',
+        ContentMetarTextVTMW = 'NIL',
+        ContentMetarTextVTMU = 'NIL',
+        ContentMetarTextVTMP = 'NIL',
+        ContentMetarTextVTMK = 'NIL',
+        ContentMetarTextVTMH = 'NIL',
+        ContentMetarTextVTDB = 'NIL',
+        ContentMetarTextVTDS = 'NIL',
+        ContentMetarTextVTDT = 'NIL';
 
+    var ContentTafTextVTNC = 'NIL',
+        ContentTafTextVTNP = 'NIL',
+        ContentTafTextVTED = 'NIL',
+        ContentTafTextVTEU = 'NIL',
+        ContentTafTextVTEN = 'NIL',
+        ContentTafTextVTMD = 'NIL',
+        ContentTafTextVTMI = 'NIL',
+        ContentTafTextVTML = 'NIL',
+        ContentTafTextVTMW = 'NIL',
+        ContentTafTextVTMU = 'NIL',
+        ContentTafTextVTMP = 'NIL',
+        ContentTafTextVTMK = 'NIL',
+        ContentTafTextVTMH = 'NIL',
+        ContentTafTextVTDB = 'NIL',
+        ContentTafTextVTDS = 'NIL',
+        ContentTafTextVTDT = 'NIL';
+
+    var IonsMetarTextVTNC = 'NIL',
+        IonsMetarTextVTNP = 'NIL',
+        IonsMetarTextVTED = 'NIL',
+        IonsMetarTextVTEU = 'NIL',
+        IonsMetarTextVTEN = 'NIL',
+        IonsMetarTextVTMD = 'NIL',
+        IonsMetarTextVTMI = 'NIL',
+        IonsMetarTextVTML = 'NIL',
+        IonsMetarTextVTMW = 'NIL',
+        IonsMetarTextVTMU = 'NIL',
+        IonsMetarTextVTMP = 'NIL',
+        IonsMetarTextVTMK = 'NIL',
+        IonsMetarTextVTMH = 'NIL',
+        IonsMetarTextVTDB = 'NIL',
+        IonsMetarTextVTDS = 'NIL',
+        IonsMetarTextVTDT = 'NIL';
+
+    var CountTextVTNC = 0,
+        CountTextVTNP = 0,
+        CountTextVTED = 0,
+        CountTextVTEU = 0,
+        CountTextVTEN = 0,
+        CountTextVTMD = 0,
+        CountTextVTMI = 0,
+        CountTextVTML = 0,
+        CountTextVTMW = 0,
+        CountTextVTMU = 0,
+        CountTextVTMP = 0,
+        CountTextVTMK = 0,
+        CountTextVTMH = 0,
+        CountTextVTDB = 0,
+        CountTextVTDS = 0,
+        CountTextVTDT = 0;
+
+    //ตั้งค่าข่าว Metar
     $.each(MetarTextRTAF.CURRENT_WEATHER, function (index, value) {
         if (value.STATION_CODE != '-') {
-            //console.log(value.STATION_NAME + ' ' + value.NEWS_TIME + '\n' + value.TAF_TEXT);
-            if (value.STATION_CODE == "VTMD") {
-                HeaderMetarTextVTMD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMD > 0) {
-                    BodyMetarTextVTMD += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
+            if (value.STATION_CODE == "VTNC") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTNC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTNC = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTNC = HeaderMetarTextVTNC + BodyMetarTextVTNC;
+                    IonsMetarTextVTNC = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
                 } else {
-                    BodyMetarTextVTMD = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMD++;
+                    IonsMetarTextVTNC = 'NIL';
                 }
-                ContentMetarTextVTMD = HeaderMetarTextVTMD + BodyMetarTextVTMD;
-                ColorMetarTextVTMD = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
-            } else if (value.STATION_CODE == "VTNC") {
-                HeaderMetarTextVTNC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTNC > 0) {
-                    BodyMetarTextVTNC += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
+                CountTextVTNC++;
+            } else if (value.STATION_CODE == "VTNP") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTNP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTNP = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTNP = HeaderMetarTextVTNP + BodyMetarTextVTNP;
+                    IonsMetarTextVTNP = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
                 } else {
-                    BodyMetarTextVTNC = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTNC++;
+                    IonsMetarTextVTNP = 'NIL';
                 }
-                ContentMetarTextVTNC = HeaderMetarTextVTNC + BodyMetarTextVTNC;
-                ColorMetarTextVTNC = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                CountTextVTNP++;
+            } else if (value.STATION_CODE == "VTED") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTED = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTED = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTED = HeaderMetarTextVTED + BodyMetarTextVTED;
+                    IonsMetarTextVTED = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTED = 'NIL';
+                }
+                CountTextVTED++;
+            } else if (value.STATION_CODE == "VTEU") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTEU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTEU = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTEU = HeaderMetarTextVTEU + BodyMetarTextVTEU;
+                    IonsMetarTextVTEU = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTEU = 'NIL';
+                }
+                CountTextVTEU++;
+            } else if (value.STATION_CODE == "VTEN") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTEN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTEN = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTEN = HeaderMetarTextVTEN + BodyMetarTextVTEN;
+                    IonsMetarTextVTEN = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTEN = 'NIL';
+                }
+                CountTextVTEN++;
+            } else if (value.STATION_CODE == "VTMD") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMD = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMD = HeaderMetarTextVTMD + BodyMetarTextVTMD;
+                    IonsMetarTextVTMD = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMD = 'NIL';
+                }
+                CountTextVTMD++;
+            } else if (value.STATION_CODE == "VTMI") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMI = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMI = HeaderMetarTextVTMI + BodyMetarTextVTMI;
+                    IonsMetarTextVTMI = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMI = 'NIL';
+                }
+                CountTextVTMI++;
+            } else if (value.STATION_CODE == "VTML") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTML = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTML = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTML = HeaderMetarTextVTML + BodyMetarTextVTML;
+                    IonsMetarTextVTML = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTML = 'NIL';
+                }
+                CountTextVTML++;
+            } else if (value.STATION_CODE == "VTMW") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMW = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMW = HeaderMetarTextVTMW + BodyMetarTextVTMW;
+                    IonsMetarTextVTMW = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMW = 'NIL';
+                }
+                CountTextVTMW++;
+            } else if (value.STATION_CODE == "VTMU") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMU = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMU = HeaderMetarTextVTMU + BodyMetarTextVTMU;
+                    IonsMetarTextVTMU = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMU = 'NIL';
+                }
+                CountTextVTMU++;
+            } else if (value.STATION_CODE == "VTMP") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMP = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMP = HeaderMetarTextVTMP + BodyMetarTextVTMP;
+                    IonsMetarTextVTMP = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMP = 'NIL';
+                }
+                CountTextVTMP++;
+            } else if (value.STATION_CODE == "VTMK") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMK = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMK = HeaderMetarTextVTMK + BodyMetarTextVTMK;
+                    IonsMetarTextVTMK = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMK = 'NIL';
+                }
+                CountTextVTMK++;
+            } else if (value.STATION_CODE == "VTMH") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTMH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTMH = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTMH = HeaderMetarTextVTMH + BodyMetarTextVTMH;
+                    IonsMetarTextVTMH = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTMH = 'NIL';
+                }
+                CountTextVTMH++;
+            } else if (value.STATION_CODE == "VTDB") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTDB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTDB = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTDB = HeaderMetarTextVTDB + BodyMetarTextVTDB;
+                    IonsMetarTextVTDB = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTDB = 'NIL';
+                }
+                CountTextVTDB++;
+            } else if (value.STATION_CODE == "VTDS") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTDS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTDS = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTDS = HeaderMetarTextVTDS + BodyMetarTextVTDS;
+                    IonsMetarTextVTDS = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTDS = 'NIL';
+                }
+                CountTextVTDS++;
+            } else if (value.STATION_CODE == "VTDT") {
+                if (value.METAR != "NIL") {
+                    var HeaderMetarTextVTDT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                    var position = value.METAR.search("RMK");
+                    var txtMetar1 = value.METAR.substring(0, position);
+                    var txtMetar2 = value.METAR.substring(position);
+                    var BodyMetarTextVTDT = '<p class="card-text mb-0"><small>' + value.NEWS_TYPE + ' ' + txtMetar1 + '<br>' + txtMetar2 + '</small></p>';
+                    ContentMetarTextVTDT = HeaderMetarTextVTDT + BodyMetarTextVTDT;
+                    IonsMetarTextVTDT = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                } else {
+                    IonsMetarTextVTDT = 'NIL';
+                }
+                CountTextVTDT++;
+            } else {
+
+            }
+        }
+    });
+
+    //ตั้งค่าข่าว Taf
+    $.each(TafTextRTAF.CURRENT_TAF, function (index, value) {
+        if (value.STATION_CODE != '-') {
+            if (value.STATION_CODE == "VTNC") {
+                var HeaderTafTextVTNC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTNC = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTNC = HeaderTafTextVTNC + BodyTafTextVTNC;
+                CountTextVTNC++;
 
             } else if (value.STATION_CODE == "VTNP") {
-                HeaderMetarTextVTNP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTNP > 0) {
-                    BodyMetarTextVTNP += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTNP = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTNP++;
-                }
-                ContentMetarTextVTNP = HeaderMetarTextVTNP + BodyMetarTextVTNP;
-                ColorMetarTextVTNP = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTNP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTNP = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTNP = HeaderTafTextVTNP + BodyTafTextVTNP;
+                CountTextVTNP++;
 
             } else if (value.STATION_CODE == "VTED") {
-                HeaderMetarTextVTED = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTED > 0) {
-                    BodyMetarTextVTED += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTED = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTED++;
-                }
-                ContentMetarTextVTED = HeaderMetarTextVTED + BodyMetarTextVTED;
-                ColorMetarTextVTED = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTED = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTED = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTED = HeaderTafTextVTED + BodyTafTextVTED;
+                CountTextVTED++;
 
             } else if (value.STATION_CODE == "VTEU") {
-                HeaderMetarTextVTEU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTEU > 0) {
-                    BodyMetarTextVTEU += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTEU = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTEU++;
-                }
-                ContentMetarTextVTEU = HeaderMetarTextVTEU + BodyMetarTextVTEU;
-                ColorMetarTextVTEU = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTEU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTEU = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTEU = HeaderTafTextVTEU + BodyTafTextVTEU;
+                CountTextVTEU++;
 
             } else if (value.STATION_CODE == "VTEN") {
-                HeaderMetarTextVTEN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTEN > 0) {
-                    BodyMetarTextVTEN += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTEN = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTEN++;
-                }
-                ContentMetarTextVTEN = HeaderMetarTextVTEN + BodyMetarTextVTEN;
-                ColorMetarTextVTEN = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTEN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTEN = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTEN = HeaderTafTextVTEN + BodyTafTextVTEN;
+                CountTextVTEN++;
+
+            } else if (value.STATION_CODE == "VTMD") {
+                var HeaderTafTextVTMD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMD = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMD = HeaderTafTextVTMD + BodyTafTextVTMD;
+                CountTextVTMD++;
 
             } else if (value.STATION_CODE == "VTMI") {
-                HeaderMetarTextVTMI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMI > 0) {
-                    BodyMetarTextVTMI += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMI = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMI++;
-                }
-                ContentMetarTextVTMI = HeaderMetarTextVTMI + BodyMetarTextVTMI;
-                ColorMetarTextVTMI = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTMI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMI = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMI = HeaderTafTextVTMI + BodyTafTextVTMI;
+                CountTextVTMI++;
 
             } else if (value.STATION_CODE == "VTML") {
-                HeaderMetarTextVTML = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTML > 0) {
-                    BodyMetarTextVTML += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTML = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTML++;
-                }
-                ContentMetarTextVTML = HeaderMetarTextVTML + BodyMetarTextVTML;
-                ColorMetarTextVTML = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
-
-            } else if (value.STATION_CODE == "VTMK") {
-                HeaderMetarTextVTMK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMK > 0) {
-                    BodyMetarTextVTMK += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMK = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMK++;
-                }
-                ContentMetarTextVTMK = HeaderMetarTextVTMK + BodyMetarTextVTMK;
-                ColorMetarTextVTMK = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTML = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTML = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTML = HeaderTafTextVTML + BodyTafTextVTML;
+                CountTextVTML++;
 
             } else if (value.STATION_CODE == "VTMW") {
-                HeaderMetarTextVTMW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMW > 0) {
-                    BodyMetarTextVTMW += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMW = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMW++;
-                }
-                ContentMetarTextVTMW = HeaderMetarTextVTMW + BodyMetarTextVTMW;
-                ColorMetarTextVTMW = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTMW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMW = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMW = HeaderTafTextVTMW + BodyTafTextVTMW;
+                CountTextVTMW++;
 
             } else if (value.STATION_CODE == "VTMU") {
-                HeaderMetarTextVTMU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMU > 0) {
-                    BodyMetarTextVTMU += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMU = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMU++;
-                }
-                ContentMetarTextVTMU = HeaderMetarTextVTMU + BodyMetarTextVTMU;
-                ColorMetarTextVTMU = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTMU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMU = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMU = HeaderTafTextVTMU + BodyTafTextVTMU;
+                CountTextVTMU++;
 
             } else if (value.STATION_CODE == "VTMP") {
-                HeaderMetarTextVTMP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMP > 0) {
-                    BodyMetarTextVTMP += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTMP = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMP++;
-                }
-                ContentMetarTextVTMP = HeaderMetarTextVTMP + BodyMetarTextVTMP;
-                ColorMetarTextVTMP = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTMP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMP = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMP = HeaderTafTextVTMP + BodyTafTextVTMP;
+                CountTextVTMP++;
 
-            } else if (value.STATION_CODE == "VTDB") {
-                HeaderMetarTextVTDB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTDB > 0) {
-                    BodyMetarTextVTDB += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTDB = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTDB++;
-                }
-                ContentMetarTextVTDB = HeaderMetarTextVTDB + BodyMetarTextVTDB;
-                ColorMetarTextVTDB = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
-
-            } else if (value.STATION_CODE == "VTDS") {
-                HeaderMetarTextVTDS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTDS > 0) {
-                    BodyMetarTextVTDS += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTDS = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTDS++;
-                }
-                ContentMetarTextVTDS = HeaderMetarTextVTDS + BodyMetarTextVTDS;
-                ColorMetarTextVTDS = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+            } else if (value.STATION_CODE == "VTMK") {
+                var HeaderTafTextVTMK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMK = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMK = HeaderTafTextVTMK + BodyTafTextVTMK;
+                CountTextVTMK++;
 
             } else if (value.STATION_CODE == "VTMH") {
-                HeaderMetarTextVTMH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTMH > 0) {
-                    BodyMetarTextVTMH += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVMDH = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTMH++;
-                }
-                ContentMetarTextVTMH = HeaderMetarTextVTMH + BodyMetarTextVTMH;
-                ColorMetarTextVTMH = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTMH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTMH = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTMH = HeaderTafTextVTMH + BodyTafTextVTMH;
+                CountTextVTMH++;
+
+            } else if (value.STATION_CODE == "VTDB") {
+                var HeaderTafTextVTDB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTDB = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTDB = HeaderTafTextVTDB + BodyTafTextVTDB;
+                CountTextVTDB++;
+
+            } else if (value.STATION_CODE == "VTDS") {
+                var HeaderTafTextVTDS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTDS = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTDS = HeaderTafTextVTDS + BodyTafTextVTDS;
+                CountTextVTDS++;
 
             } else if (value.STATION_CODE == "VTDT") {
-                HeaderMetarTextVTDT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
-                if (VTDT > 0) {
-                    BodyMetarTextVTDT += '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                } else {
-                    BodyMetarTextVTDT = '<p class="card-text mb-0"><small>- ' + value.NEWS_TYPE + ' ' + value.METAR + '</small></p>';
-                    VTDT++;
-                }
-                ContentMetarTextVTDT = HeaderMetarTextVTDT + BodyMetarTextVTDT;
-                ColorMetarTextVTDT = 'assets/images/metar/' + value.STATION_COLOR_NAME + '.png';
+                var HeaderTafTextVTDT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + value.STATION_NAME + ' | ' + value.NEWS_TIME + '</span></h6>';
+                var BodyTafTextVTDT = '<p class="card-text mb-0"><small>' + value.TAF_TEXT + '</small></p>';
+                ContentTafTextVTDT = HeaderTafTextVTDT + BodyTafTextVTDT;
+                CountTextVTDT++;
 
             } else {
 
@@ -589,178 +783,581 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
         }
     });
 
-    //SetTooltip VTMD
-    iconVTMD = L.icon({
-        iconUrl: ColorMetarTextVTMD,
-        iconSize: [15, 15]
-    });
-    markerVTMD = L.marker([13.910211, 100.610533], {
-        icon: iconVTMD
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMD + '</div></div>').addTo(map);
+    if (CountTextVTNC > 0) {
+        //SetTooltip VTNC
+        iconVTNC = L.icon({
+            iconUrl: IonsMetarTextVTNC == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTNC,
+            iconSize: [15, 15]
+        });
+        markerVTNC.setIcon(iconVTNC).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNC + '<hr>' + ContentTafTextVTNC + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTNC
+        iconVTNC = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTNC
-    iconVTNC = L.icon({
-        iconUrl: ColorMetarTextVTNC,
-        iconSize: [15, 15]
-    });
-    markerVTNC = L.marker([18.7734933, 98.9653736], {
-        icon: iconVTNC
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNC + '</div></div>').addTo(map);
+    if (CountTextVTNP > 0) {
+        //SetTooltip VTNP
+        iconVTNP = L.icon({
+            iconUrl: IonsMetarTextVTNP == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTNP,
+            iconSize: [15, 15]
+        });
+        markerVTNP.setIcon(iconVTNP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNP + '<hr>' + ContentTafTextVTNP + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTNP
+        iconVTNP = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTNP.setIcon(iconVTNP).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTNP
-    iconVTNP = L.icon({
-        iconUrl: ColorMetarTextVTNP,
-        iconSize: [15, 15]
-    });
-    markerVTNP = L.marker([16.7838369, 100.2790302], {
-        icon: iconVTNP
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNP + '</div></div>').addTo(map);
+    if (CountTextVTED > 0) {
+        //SetTooltip VTED
+        iconVTED = L.icon({
+            iconUrl: IonsMetarTextVTED == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTED,
+            iconSize: [15, 15]
+        });
+        markerVTED.setIcon(iconVTED).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTED + '<hr>' + ContentTafTextVTED + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTED
+        iconVTED = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTED.setIcon(iconVTED).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTED
-    iconVTED = L.icon({
-        iconUrl: ColorMetarTextVTED,
-        iconSize: [15, 15]
-    });
-    markerVTED = L.marker([17.3802148, 102.7947298], {
-        icon: iconVTED
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTED + '</div></div>').addTo(map);
+    if (CountTextVTEU > 0) {
+        //SetTooltip VTEU
+        iconVTEU = L.icon({
+            iconUrl: IonsMetarTextVTEU == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTEU,
+            iconSize: [15, 15]
+        });
+        markerVTEU.setIcon(iconVTEU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEU + '<hr>' + ContentTafTextVTEU + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTEU
+        iconVTEU = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTEU.setIcon(iconVTEU).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTEU
-    iconVTEU = L.icon({
-        iconUrl: ColorMetarTextVTEU,
-        iconSize: [15, 15]
-    });
-    markerVTEU = L.marker([15.2480524, 104.8604472], {
-        icon: iconVTEU
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEU + '</div></div>').addTo(map);
+    if (CountTextVTEN > 0) {
+        //SetTooltip VTEN
+        iconVTEN = L.icon({
+            iconUrl: IonsMetarTextVTEN == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTEN,
+            iconSize: [15, 15]
+        });
+        markerVTEN.setIcon(iconVTEN).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEN + '<hr>' + ContentTafTextVTEN + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTEN
+        iconVTEN = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTEN.setIcon(iconVTEN).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTEN
-    iconVTEN = L.icon({
-        iconUrl: ColorMetarTextVTEN,
-        iconSize: [15, 15]
-    });
-    markerVTEN = L.marker([14.9343853, 102.0810221], {
-        icon: iconVTEN
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEN + '</div></div>').addTo(map);
+    if (CountTextVTMD > 0) {
+        //SetTooltip VTMD
+        iconVTMD = L.icon({
+            iconUrl: IonsMetarTextVTMD == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMD,
+            iconSize: [15, 15]
+        });
+        markerVTMD.setIcon(iconVTMD).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMD + '<hr>' + ContentTafTextVTMD + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMD
+        iconVTMD = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMD.setIcon(iconVTMD).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTMI
-    iconVTMI = L.icon({
-        iconUrl: ColorMetarTextVTMI,
-        iconSize: [15, 15]
-    });
-    markerVTMI = L.marker([15.277034, 100.291933], {
-        icon: iconVTMI
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMI + '</div></div>').addTo(map);
+    if (CountTextVTMI > 0) {
+        //SetTooltip VTMI
+        iconVTMI = L.icon({
+            iconUrl: IonsMetarTextVTMI == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMI,
+            iconSize: [15, 15]
+        });
+        markerVTMI.setIcon(iconVTMI).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMI + '<hr>' + ContentTafTextVTMI + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMI
+        iconVTMI = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMI.setIcon(iconVTMI).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTML
-    iconVTML = L.icon({
-        iconUrl: ColorMetarTextVTML,
-        iconSize: [15, 15]
-    });
-    markerVTML = L.marker([14.8714901, 100.6479151], {
-        icon: iconVTML
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTML + '</div></div>').addTo(map);
+    if (CountTextVTML > 0) {
+        //SetTooltip VTML
+        iconVTML = L.icon({
+            iconUrl: IonsMetarTextVTML == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTML,
+            iconSize: [15, 15]
+        });
+        markerVTML.setIcon(iconVTML).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTML + '<hr>' + ContentTafTextVTML + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTML
+        iconVTML = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTML.setIcon(iconVTML).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTMK
-    iconVTMK = L.icon({
-        iconUrl: ColorMetarTextVTMK,
-        iconSize: [15, 15]
-    });
-    markerVTMK = L.marker([14.098889, 99.923629], {
-        icon: iconVTMK
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMK + '</div></div>').addTo(map);
+    if (CountTextVTMW > 0) {
+        //SetTooltip VTMW
+        iconVTMW = L.icon({
+            iconUrl: IonsMetarTextVTMW == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMW,
+            iconSize: [15, 15]
+        });
+        markerVTMW.setIcon(iconVTMW).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMW + '<hr>' + ContentTafTextVTMW + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMW
+        iconVTMW = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMW.setIcon(iconVTMW).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTMW
-    iconVTMW = L.icon({
-        iconUrl: ColorMetarTextVTMW,
-        iconSize: [15, 15]
-    });
-    markerVTMW = L.marker([13.910211, 100.610533], {
-        icon: iconVTMW
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMW + '</div></div>').addTo(map);
+    if (CountTextVTMU > 0) {
+        //SetTooltip VTMU
+        iconVTMU = L.icon({
+            iconUrl: IonsMetarTextVTMU == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMU,
+            iconSize: [15, 15]
+        });
+        markerVTMU.setIcon(iconVTMU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMU + '<hr>' + ContentTafTextVTMU + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMU
+        iconVTMU = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMU.setIcon(iconVTMU).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTMU
-    //iconVTMU = L.icon({
-    //    iconUrl: ColorMetarTextVTMU,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTMU = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTMU
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMU + '</div></div>').addTo(map);
+    if (CountTextVTMP > 0) {
+        //SetTooltip VTMP
+        iconVTMP = L.icon({
+            iconUrl: IonsMetarTextVTMP == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMP,
+            iconSize: [15, 15]
+        });
+        markerVTMP.setIcon(iconVTMP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMP + '<hr>' + ContentTafTextVTMP + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMP
+        iconVTMP = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMP.setIcon(iconVTMP).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTMP
-    iconVTMP = L.icon({
-        iconUrl: ColorMetarTextVTMP,
-        iconSize: [15, 15]
-    });
-    markerVTMP = L.marker([11.7866226, 99.8077392], {
-        icon: iconVTMP
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMP + '</div></div>').addTo(map);
+    if (CountTextVTMK > 0) {
+        //SetTooltip VTMK
+        iconVTMK = L.icon({
+            iconUrl: IonsMetarTextVTMK == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMK,
+            iconSize: [15, 15]
+        });
+        markerVTMK.setIcon(iconVTMK).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMK + '<hr>' + ContentTafTextVTMK + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMK
+        iconVTMK = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMK.setIcon(iconVTMK).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTDB
-    iconVTDB = L.icon({
-        iconUrl: ColorMetarTextVTDB,
-        iconSize: [15, 15]
-    });
-    markerVTDB = L.marker([9.1358421, 99.1366254], {
-        icon: iconVTDB
-    }).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDB + '</div></div>').addTo(map);
+    if (CountTextVTMH > 0) {
+        //SetTooltip VTMH
+        iconVTMH = L.icon({
+            iconUrl: IonsMetarTextVTMH == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMH,
+            iconSize: [15, 15]
+        });
+        markerVTMH.setIcon(iconVTMH).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMH + '<hr>' + ContentTafTextVTMH + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTMH
+        iconVTMH = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTMH.setIcon(iconVTMH).unbindTooltip().addTo(map);
+    }
 
-    //SetTooltip VTDS
-    //iconVTDS = L.icon({
-    //    iconUrl: ColorMetarTextVTDS,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTDS = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTDS
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDS + '</div></div>').addTo(map);
-    //
-    ////SetTooltip VTMH
-    //iconVTMH = L.icon({
-    //    iconUrl: ColorMetarTextVTMH,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTMH = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTMH
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMH + '</div></div>').addTo(map);
-    //
-    ////SetTooltip VTDT
-    //iconVTDT = L.icon({
-    //    iconUrl: ColorMetarTextVTDT,
-    //    iconSize: [15, 15]
-    //});
-    //markerVTDT = L.marker([13.910211, 100.610533], {
-    //    icon: iconVTDT
-    //}).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDT + '</div></div>').addTo(map);
+    if (CountTextVTDB > 0) {
+        //SetTooltip VTDB
+        iconVTDB = L.icon({
+            iconUrl: IonsMetarTextVTDB == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTDB,
+            iconSize: [15, 15]
+        });
+        markerVTDB.setIcon(iconVTDB).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDB + '<hr>' + ContentTafTextVTDB + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTDB
+        iconVTDB = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTDB.setIcon(iconVTDB).unbindTooltip().addTo(map);
+    }
+
+    if (CountTextVTDS > 0) {
+        //SetTooltip VTDS
+        iconVTDS = L.icon({
+            iconUrl: IonsMetarTextVTDS == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTDS,
+            iconSize: [15, 15]
+        });
+        markerVTDS.setIcon(iconVTDS).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDS + '<hr>' + ContentTafTextVTDS + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTDS
+        iconVTDS = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTDS.setIcon(iconVTDS).unbindTooltip().addTo(map);
+    }
+
+    if (CountTextVTDT > 0) {
+        //SetTooltip VTDT
+        iconVTDT = L.icon({
+            iconUrl: IonsMetarTextVTDT == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTDT,
+            iconSize: [15, 15]
+        });
+        markerVTDT.setIcon(iconVTDT).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDT + '<hr>' + ContentTafTextVTDT + '</div></div>').addTo(map);
+    } else {
+        //SetTooltip VTDT
+        iconVTDT = L.icon({
+            iconUrl: 'assets/images/metar/NIL.png',
+            iconSize: [15, 15]
+        });
+        markerVTDT.setIcon(iconVTDT).unbindTooltip().addTo(map);
+    }
 };
 
 function getMetarSymbolRTAF(MetarSymbolRTAF) {
     $.each(MetarSymbolRTAF.CURRENT_WEATHER, function (index, value) {
         if (value.STATION_CODE != '-') {
-            //console.log(value.STATION_NAME + ' ' + value.NEWS_TIME + '\n' + value.TAF_TEXT);
-            if (value.STATION_CODE == "VTMD") {
-                if (value.METAR == "NIL") {}
-                var nWD = value.WIND_DIRECTION;
-                var nWP = value.WIND_SPEED;
-                var nT = value.TEMP;
-                var nD = MetarDewpoint(value.METAR);
-                var nV = MetarVis(value.VISIBILITY);
-                var nC = MetarCloud(value.METAR);
-                var nP = MetarPressure(value.METAR);
-                var nWW = MetarPressure(value.METAR);
-
-                //SetTooltip VTMD
-                iconVTMD = new L.metarIcon({
-                    windDirection: nWD,
-                    windSpeed: nWP,
-                    temp: nT,
-                    dewpoint: nD,
-                    visibility: nV,
-                    cloud: nC,
-                    pressure: nP,
-                    weather: nWW
-                });
-                markerVTMD.setIcon(iconVTMD).unbindTooltip().addTo(map);
+            if (value.STATION_CODE == "VTNC") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTNC
+                    iconVTNC = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
+                } else {
+                    iconVTNC = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTNP") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTNP
+                    iconVTNP = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTNP.setIcon(iconVTNP).unbindTooltip().addTo(map);
+                } else {
+                    iconVTNP = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTNP.setIcon(iconVTNP).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTED") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTED
+                    iconVTED = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTED.setIcon(iconVTED).unbindTooltip().addTo(map);
+                } else {
+                    iconVTED = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTED.setIcon(iconVTED).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTEU") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTEU
+                    iconVTEU = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTEU.setIcon(iconVTEU).unbindTooltip().addTo(map);
+                } else {
+                    iconVTEU = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTEU.setIcon(iconVTEU).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTEN") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTEN
+                    iconVTEN = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTEN.setIcon(iconVTEN).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMD") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMD
+                    iconVTMD = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMD.setIcon(iconVTMD).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMD = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMD.setIcon(iconVTMD).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMI") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMI
+                    iconVTMI = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMI.setIcon(iconVTMI).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMI = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMI.setIcon(iconVTMI).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTML") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTML
+                    iconVTML = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTML.setIcon(iconVTML).unbindTooltip().addTo(map);
+                } else {
+                    iconVTML = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTML.setIcon(iconVTML).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMW") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMW
+                    iconVTMW = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMW.setIcon(iconVTMW).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMW = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMW.setIcon(iconVTMW).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMU") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMU
+                    iconVTMU = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMU.setIcon(iconVTMU).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMU = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMU.setIcon(iconVTMU).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMP") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMP
+                    iconVTMP = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMP.setIcon(iconVTMP).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMP = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMP.setIcon(iconVTMP).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMK") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMK
+                    iconVTMK = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMK.setIcon(iconVTMK).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMK = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMK.setIcon(iconVTMK).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTMH") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTMH
+                    iconVTMH = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTMH.setIcon(iconVTMH).unbindTooltip().addTo(map);
+                } else {
+                    iconVTMH = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTMH.setIcon(iconVTMH).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTDB") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTDB
+                    iconVTDB = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTDB.setIcon(iconVTDB).unbindTooltip().addTo(map);
+                } else {
+                    iconVTDB = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTDB.setIcon(iconVTDB).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTDS") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTDS
+                    iconVTDS = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTDS.setIcon(iconVTDS).unbindTooltip().addTo(map);
+                } else {
+                    iconVTDS = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTDS.setIcon(iconVTDS).unbindTooltip().addTo(map);
+                }
+            } else if (value.STATION_CODE == "VTDT") {
+                if (value.METAR != "NIL") {
+                    //SetTooltip VTDT
+                    iconVTDT = new L.metarIcon({
+                        windDirection: value.WIND_DIRECTION,
+                        windSpeed: value.WIND_SPEED,
+                        temp: value.TEMP,
+                        dewpoint: MetarDewpoint(value.METAR),
+                        visibility: MetarVis(value.VISIBILITY),
+                        cloud: MetarCloud(value.METAR),
+                        pressure: MetarPressure(value.METAR),
+                        weather: MetarWeather(value.METAR)
+                    });
+                    markerVTDT.setIcon(iconVTDT).unbindTooltip().addTo(map);
+                } else {
+                    iconVTDT = new L.metarIcon({
+                        weather: 'NIL'
+                    });
+                    markerVTDT.setIcon(iconVTDT).unbindTooltip().addTo(map);
+                }
             } else {
 
             }
@@ -768,23 +1365,28 @@ function getMetarSymbolRTAF(MetarSymbolRTAF) {
     });
 };
 
-function ResetMetarTextRTAF() {
-    map.removeLayer(markerVTMD);
-    map.removeLayer(markerVTNC);
-    map.removeLayer(markerVTNP);
-    map.removeLayer(markerVTED);
-    map.removeLayer(markerVTEU);
-    map.removeLayer(markerVTEN);
-    map.removeLayer(markerVTMI);
-    map.removeLayer(markerVTML);
-    map.removeLayer(markerVTMU);
-    map.removeLayer(markerVTMW);
-    map.removeLayer(markerVTMP);
-    map.removeLayer(markerVTMH);
-    map.removeLayer(markerVTDB);
-    map.removeLayer(markerVTDS);
-    map.removeLayer(markerVTDT);
-};
+function callMetarUpdate() {}
+
+function currentTime() {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
+
+    month = (month < 10) ? "0" + month : month;
+    day = (day < 10) ? "0" + day : day;
+    hh = (hh < 10) ? "0" + hh : hh;
+    mm = (mm < 10) ? "0" + mm : mm;
+    ss = (ss < 10) ? "0" + ss : ss;
+
+    //var time = hh + ":" + mm + ":" + ss;
+    var time = year + '-' + month + '-' + day + ' | ' + hh + ':' + mm + ':' + ss;
+    return time;
+}
+
 
 function MetarVis(txtVis) {
     if (parseInt(txtVis) == 9999) {
@@ -857,89 +1459,192 @@ function MetarDewpoint(txtDewpoint) {
 }
 
 function MetarCloud(txtCloud) {
-    
-    if(txtWeather.search("ST") > 0){
-        let position = txtPressure.search("A");
+    const typeCloud = [
+        "1ST", "2ST", "3ST", "4ST", "5ST", "6ST", "7ST", "8ST",
+        "1TCU", "2TCU", "3TCU", "4TCU", "5TCU", "6TCU", "7TCU", "8TCU",
+        "1CB", "2CB", "3CB", "4CB", "5CB", "6CB", "7CB", "8CB",
+        "1CU", "2CU", "3CU", "4CU", "5CU", "6CU", "7CU", "8CU",
+        "1SC", "2SC", "3SC", "4SC", "5SC", "6SC", "7SC", "8SC",
+        "1AC", "2AC", "3AC", "4AC", "5AC", "6AC", "7AC", "8AC",
+        "1AS", "2AS", "3AS", "4AS", "5AS", "6AS", "7AS", "8AS",
+        "1NS", "2NS", "3NS", "4NS", "5NS", "6NS", "7NS", "8NS",
+        "1CC", "2CC", "3CC", "4CC", "5CC", "6CC", "7CC", "8CC",
+        "1CI", "2CI", "3CI", "4CI", "5CI", "6CI", "7CI", "8CI",
+        "1CS", "2CS", "3CS", "4CS", "5CS", "6CS", "7CS", "8CS"
+    ];
+    let position = txtCloud.search("RMK");
+    txtCloud = txtCloud.substring(position);
+    let cc = 0;
+    for (let i = 0; i < typeCloud.length; i++) {
+        if (txtCloud.search(typeCloud[i]) > 0) {
+            position = txtCloud.search(typeCloud[i]);
+            cc = cc + parseInt(txtCloud.substring(position, position + 1));
+            txtCloud = txtCloud.substring((position + 6));
+        }
     }
-    return txtCloud;
+    return cc;
 }
 
 function MetarPressure(txtPressure) {
-    let position = txtPressure.search("A");
-    txtPressure = txtPressure.substring((position - 1), (position + 5));
+    let position = txtPressure.search("RMK");
+    txtPressure = txtPressure.substring((position - 6), (position - 1));
     return txtPressure;
 }
 
 function MetarWeather(txtWeather) {
-    let ww = '';
-    for (let i = 0; i < 32; i++) {
-        if (txtWeather.search("-") > 0) {
-            ww += '-';
-        } else if (txtWeather.search("+") > 0) {
-            ww += '+';
-        } else if (txtWeather.search("VC") > 0) {
-            ww += 'VC';
-        } else if (txtWeather.search("MI") > 0) {
-            ww += 'MI';
-        } else if (txtWeather.search("PR") > 0) {
-            ww += 'PR';
-        } else if (txtWeather.search("BC") > 0) {
-            ww += 'BC';
-        } else if (txtWeather.search("DR") > 0) {
-            ww += 'DR';
-        } else if (txtWeather.search("BL") > 0) {
-            ww += 'BL';
-        } else if (txtWeather.search("SH") > 0) {
-            ww += 'SH';
-        } else if (txtWeather.search("TS") > 0) {
-            ww += 'TS';
-        } else if (txtWeather.search("FZ") > 0) {
-            ww += 'FZ';
-        } else if (txtWeather.search("DZ") > 0) {
-            ww += 'DZ';
-        } else if (txtWeather.search("RA") > 0) {
-            ww += 'RA';
-        } else if (txtWeather.search("SN") > 0) {
-            ww += 'SN';
-        } else if (txtWeather.search("IC") > 0) {
-            ww += 'IC';
-        } else if (txtWeather.search("PL") > 0) {
-            ww += 'PL';
-        } else if (txtWeather.search("GR") > 0) {
-            ww += 'GR';
-        } else if (txtWeather.search("GS") > 0) {
-            ww += 'GS';
-        } else if (txtWeather.search("UP") > 0) {
-            ww += 'UP';
-        } else if (txtWeather.search("BR") > 0) {
-            ww += 'BR';
-        } else if (txtWeather.search("FG") > 0) {
-            ww += 'FG';
-        } else if (txtWeather.search("FU") > 0) {
-            ww += 'FU';
-        } else if (txtWeather.search("VA") > 0) {
-            ww += 'VA';
-        } else if (txtWeather.search("DU") > 0) {
-            ww += 'DU';
-        } else if (txtWeather.search("SA") > 0) {
-            ww += 'SA';
-        } else if (txtWeather.search("HZ") > 0) {
-            ww += 'HZ';
-        } else if (txtWeather.search("PY") > 0) {
-            ww += 'PY';
-        } else if (txtWeather.search("PO") > 0) {
-            ww += 'PO';
-        } else if (txtWeather.search("SQ") > 0) {
-            ww += 'SQ';
-        } else if (txtWeather.search("FC") > 0) {
-            ww += 'FC';
-        } else if (txtWeather.search("SS") > 0) {
-            ww += 'SS';
-        } else if (txtWeather.search("DS") > 0) {
-            ww += 'DS';
-        } else {
+    const typeWeather = [
+        "VC", "MI", "PR", "BC", "DR", "BL",
+        "SH", "TS", "FZ", "DZ", "RA", "SN", "SG",
+        "IC", "PL", "GR", "GS", "UP", "BR", "FG",
+        "FU", "VA", "DU", "SA", "HZ", "PY", "PO",
+        "SQ", "FC", "SS", "DS"
+    ];
 
+    let position = txtWeather.search("RMK");
+    txtWeather = txtWeather.substring(13, position);
+    txtWeather = txtWeather.replace(/FEW|SCT|BKN|OVC/gi, "");
+    let ww = '';
+    for (let i = 0; i < typeWeather.length; i++) {
+        if (txtWeather.search(typeWeather[i]) > 0) {
+            position = txtWeather.search(typeWeather[i]);
+            ww += typeWeather[i];
+            txtWeather = txtWeather.replace(/typeWeather[i]/gi, "");
         }
     }
+
     return ww;
+}
+
+function AddsetMetarTextRTAF() {
+    iconVTNC = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTNC-1.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTNP = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTNP.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTEU = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTEU.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTED = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTED.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTEN = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTEN.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMI = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTMI-1.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTML = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTML.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMW = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTMW.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMU = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/RTAF.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMP = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTMP.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMD = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTMD-1.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMK = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTMK.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTMH = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/RTAF.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTDB = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTDB.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTDS = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTDS.png',
+        iconSize: [15, 15]
+    });
+
+    iconVTDT = L.icon({
+        iconUrl: 'assets/images/logo/StationRTAF/VTDT.png',
+        iconSize: [15, 15]
+    });
+
+    markerVTNC.setIcon(iconVTNC).addTo(map);
+    markerVTNP.setIcon(iconVTNP).addTo(map);
+    markerVTED.setIcon(iconVTED).addTo(map);
+    markerVTEU.setIcon(iconVTEU).addTo(map);
+    markerVTEN.setIcon(iconVTEN).addTo(map);
+    markerVTMD.setIcon(iconVTMD).addTo(map);
+    markerVTMI.setIcon(iconVTMI).addTo(map);
+    markerVTML.setIcon(iconVTML).addTo(map);
+    markerVTMW.setIcon(iconVTMW).addTo(map);
+    markerVTMU.setIcon(iconVTMU).addTo(map);
+    markerVTMP.setIcon(iconVTMP).addTo(map);
+    markerVTMK.setIcon(iconVTMK).addTo(map);
+    markerVTMH.setIcon(iconVTMH).addTo(map);
+    markerVTDB.setIcon(iconVTDB).addTo(map);
+    markerVTDS.setIcon(iconVTDS).addTo(map);
+    markerVTDT.setIcon(iconVTDT).addTo(map);
+};
+
+function ResetMetarTextRTAF() {
+    map.removeLayer(markerVTNC);
+    map.removeLayer(markerVTNP);
+    map.removeLayer(markerVTED);
+    map.removeLayer(markerVTEU);
+    map.removeLayer(markerVTEN);
+    map.removeLayer(markerVTMD);
+    map.removeLayer(markerVTMI);
+    map.removeLayer(markerVTML);
+    map.removeLayer(markerVTMW);
+    map.removeLayer(markerVTMU);
+    map.removeLayer(markerVTMP);
+    map.removeLayer(markerVTMK);
+    map.removeLayer(markerVTMH);
+    map.removeLayer(markerVTDB);
+    map.removeLayer(markerVTDS);
+    map.removeLayer(markerVTDT);
+};
+
+function MetarProgressBarCancel() {
+    $.unblockUI();
+    $("#collapseMetarRTAF").slideToggle();
+    ResetMetarTextRTAF();
+    $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').prop('checked', false);
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'error',
+        title: 'Loading Metar Cancel',
+        showConfirmButton: false,
+        padding: '7px',
+        timer: 1500
+    });
 }

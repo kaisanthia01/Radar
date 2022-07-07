@@ -59,9 +59,7 @@ var imageOverlayVTMI = L.imageOverlay(radarUrlVTMI, latLngBoundsVTMI, {
     interactive: false
 });
 
-//var radarUrlVTDBRemoveBG = $.post("http://radar.climate4.esy.es/assets/images/radar/vtdb/latest/vtdbremoveBG.php");
-setTimeout(3000);
-var radarUrlVTDB = 'http://radar.climate4.esy.es/assets/images/radar/vtdb/latest/vtdb_ppi_latest.png?' + realtime;
+var radarUrlVTDB = 'http://radar.climate4.esy.es/assets/images/radar/wing7/latest/wing7_ppi_latest.png?' + realtime;
 var latLngBoundsVTDB = L.latLngBounds([
     [11.315, 96.92],
     [6.9, 101.36]
@@ -148,7 +146,7 @@ var imageOverlaySatelliteENH = L.imageOverlay(satelliteUrlENH, latLngBoundsSatel
  * สัญญาลักษณ์ของกองบินต่างๆ
  */
 var url = 'http://radar.climate4.esy.es/assets/scripts/';
-
+var MetarUpdate, txtMetar, txtTaf;
 var iconVTNC = L.icon({
     iconUrl: 'assets/images/logo/StationRTAF/VTNC-1.png',
     iconSize: [15, 15]
@@ -213,10 +211,19 @@ var markerVTMW = L.marker([13.7680476, 102.3151012], {
     icon: iconVTMW
 }).bindTooltip('กองบิน 3 (จว.สระแก้ว)');
 
+var iconVTMU = L.icon({
+    iconUrl: 'assets/images/logo/StationRTAF/RTAF.png',
+    iconSize: [15, 15]
+});
+var markerVTMU = L.marker([12.683883, 100.999793], {
+    icon: iconVTMU
+}).bindTooltip('สนามบินอู่ตะเภา (จว.ระยอง)');
+
 var iconVTMP = L.icon({
     iconUrl: 'assets/images/logo/StationRTAF/VTMP.png',
     iconSize: [15, 15]
 });
+
 var markerVTMP = L.marker([11.7866226, 99.8077392], {
     icon: iconVTMP
 }).bindTooltip('กองบิน 5 (จว.ประจวบคีรีขันธ์)');
@@ -382,6 +389,7 @@ layer.bindPopup(
 /*
  * Plot ไฟล์ KML หรือ KMZ
  */
+var AjaxStop;
 // Load kml file
 /*
 fetch('assets/Note/VTMD.kml')
