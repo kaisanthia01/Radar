@@ -311,3 +311,279 @@ $('input[type="range"][id="Sat-ENH-OPA"]').change(function () {
 /*
  * ------------------------------------------------------------------------------- *
  */
+
+/*
+ * Area-Fight
+ */
+/* VTBU */
+$('input[type="checkbox"][id="Area-Fight-VTBU"]').click(function () {
+    if ($('#Area-Fight-VTBU').is(":checked")) {
+        KML_VTBU.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTBU',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTBU').is(":not(:checked)")) {
+        map.removeLayer(KML_VTBU);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTBU',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTNC */
+$('input[type="checkbox"][id="Area-Fight-VTNC"]').click(function () {
+    if ($('#Area-Fight-VTNC').is(":checked")) {
+        KML_VTNC.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTNC',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTNC').is(":not(:checked)")) {
+        map.removeLayer(KML_VTNC);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTNC',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTNC */
+$('input[type="checkbox"][id="Area-Fight-VTED"]').click(function () {
+    if ($('#Area-Fight-VTED').is(":checked")) {
+        KML_VTED.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTED',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTED').is(":not(:checked)")) {
+        map.removeLayer(KML_VTED);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTED',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTEN */
+$('input[type="checkbox"][id="Area-Fight-VTEN"]').click(function () {
+    if ($('#Area-Fight-VTEN').is(":checked")) {
+        KML_VTEN.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTEN',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTEN').is(":not(:checked)")) {
+        map.removeLayer(KML_VTEN);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTEN',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTEU */
+$('input[type="checkbox"][id="Area-Fight-VTEU"]').click(function () {
+    if ($('#Area-Fight-VTEU').is(":checked")) {
+        KML_VTEU.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTEU',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTEU').is(":not(:checked)")) {
+        map.removeLayer(KML_VTEU);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTEU',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTMI */
+$('input[type="checkbox"][id="Area-Fight-VTMI"]').click(function () {
+    if ($('#Area-Fight-VTMI').is(":checked")) {
+        KML_VTMI.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTMI',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTMI').is(":not(:checked)")) {
+        map.removeLayer(KML_VTMI);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTMI',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTMK */
+$('input[type="checkbox"][id="Area-Fight-VTMK"]').click(function () {
+    if ($('#Area-Fight-VTMK').is(":checked")) {
+        KML_VTMK.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTMK',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTMK').is(":not(:checked)")) {
+        map.removeLayer(KML_VTMK);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTMK',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTMP */
+$('input[type="checkbox"][id="Area-Fight-VTMP"]').click(function () {
+    if ($('#Area-Fight-VTMP').is(":checked")) {
+        KML_VTMP.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTMP',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTMP').is(":not(:checked)")) {
+        map.removeLayer(KML_VTMP);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTMP',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTDB */
+$('input[type="checkbox"][id="Area-Fight-VTDB"]').click(function () {
+    if ($('#Area-Fight-VTDB').is(":checked")) {
+        KML_VTDB.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTDB',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTDB').is(":not(:checked)")) {
+        map.removeLayer(KML_VTDB);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTDB',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+
+/* VTDS */
+$('input[type="checkbox"][id="Area-Fight-VTDS"]').click(function () {
+    if ($('#Area-Fight-VTDS').is(":checked")) {
+        KML_VTDS.addTo(map);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Add Layer Area-Fight VTDS',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    } else if ($('#Area-Fight-VTDS').is(":not(:checked)")) {
+        map.removeLayer(KML_VTDS);
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Remove Layer Area-Fight VTDS',
+            showConfirmButton: false,
+            padding: '7px',
+            timer: 1500
+        });
+    }
+});
+/*
+ * ------------------------------------------------------------------------------- *
+ */

@@ -387,10 +387,79 @@ layer.bindPopup(
  */
 
 /*
- * Plot ไฟล์ KML หรือ KMZ
+ *  Load Plot ไฟล์ KML หรือ KMZ
  */
 var AjaxStop;
-// Load kml file
+var KML_VTBU, KML_VTDB, KML_VTDS, KML_VTED, KML_VTEN, KML_VTEU, KML_VTMI, KML_VTMK, KML_VTMP, KML_VTNC;
+fetch('assets/kml/area/VTBU.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTBU = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTDB.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTDB = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTDS.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTDS = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTED.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTED = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTEN.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTEN = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTEU.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTEU = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTMI.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTMI = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTMK.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTMK = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTMP.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTMP = new L.KML(kml);
+});
+
+fetch('assets/kml/area/VTNC.kml').then(res => res.text()).then(kmltext => {
+    // Create new kml overlay
+    const parser = new DOMParser();
+    const kml = parser.parseFromString(kmltext, 'text/xml');
+    KML_VTNC = new L.KML(kml);
+});
 /*
 fetch('assets/Note/VTMD.kml')
     .then(res => res.text())
