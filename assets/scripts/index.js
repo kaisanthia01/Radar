@@ -146,7 +146,7 @@ var imageOverlaySatelliteENH = L.imageOverlay(satelliteUrlENH, latLngBoundsSatel
  * สัญญาลักษณ์ของกองบินต่างๆ
  */
 var url = 'http://radar.climate4.esy.es/assets/scripts/';
-var MetarUpdate, txtMetar, txtTaf;
+var MetarUpdate, MetarUpdateCheckWX, txtMetar, txtTaf, txtMetarCheckWX, txtTafCheckWX;
 var iconVTNC = L.icon({
     iconUrl: 'assets/images/logo/StationRTAF/VTNC-1.png',
     iconSize: [15, 15]

@@ -471,27 +471,42 @@
                                                 <div class="me-auto ps-3">
                                                     <input class="form-check-input me-2" type="checkbox"
                                                         id="Wx-News-Metar-Checkwx">
-                                                    <label class="form-check-label"
-                                                        for="Wx-News-Metar-Checkwx">METAR</label>
+                                                    <label class="form-check-label" for="Wx-News-Metar-Checkwx">METAR &&
+                                                        TAF</label>
                                                 </div>
                                                 <span class="badge">
                                                     <img class="rounded" src="assets/images/logo/TMD.png" width="25px"
                                                         height="25px" alt="Wx-News-Metar-Checkwx">
                                                 </span>
                                             </li>
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-start">
-                                                <div class="me-auto ps-3">
-                                                    <input class="form-check-input me-2" type="checkbox"
-                                                        id="Wx-News-Taf-Checkwx">
-                                                    <label class="form-check-label"
-                                                        for="Wx-News-Taf-Checkwx">TAF</label>
+                                            <div id="collapseMetarCheckwx" style='display: none;'>
+                                                <div class="card card-body rounded-0 p-0">
+                                                    <div class="form-check border border-warning"
+                                                        style="padding-left: 70px;">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="Wx-News-Metar-Checkwx-Radio"
+                                                            id="Wx-News-Metar-Checkwx-Text">
+                                                        <label class="form-check-label fw-bolder"
+                                                            for="Wx-News-Metar-Checkwx-Text">Text</label>
+                                                    </div>
+                                                    <div class="form-check border border-warning"
+                                                        style="padding-left: 70px;">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="Wx-News-Metar-Checkwx-Radio"
+                                                            id="Wx-News-Metar-Checkwx-Symbol">
+                                                        <label class="form-check-label"
+                                                            for="Wx-News-Metar-Checkwx-Symbol">Symbol</label>
+                                                    </div>
+                                                    <div class="form-check border border-warning"
+                                                        style="padding-left: 70px;">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="Wx-News-Metar-Checkwx-Radio"
+                                                            id="Wx-News-Metar-Checkwx-Icon" disabled>
+                                                        <label class="form-check-label"
+                                                            for="Wx-News-Metar-Checkwx-Icon">Icons</label>
+                                                    </div>
                                                 </div>
-                                                <span class="badge">
-                                                    <img class="rounded" src="assets/images/logo/TMD.png" width="25px"
-                                                        height="25px" alt="Wx-News-Taf-Checkwx">
-                                                </span>
-                                            </li>
+                                            </div>
                                         </ul>
                                     </div>
                                 </div>
@@ -676,6 +691,7 @@
 </body>
 
 <!-- Custom script for this template -->
+<script src="assets/scripts/index-status-code.js"></script>
 <script src="assets/plugins/jQuery/jquery-3.6.0.min.js"></script>
 <script src="assets/plugins/jQuery/jquery.blockUI.js"></script>
 <script src="assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>

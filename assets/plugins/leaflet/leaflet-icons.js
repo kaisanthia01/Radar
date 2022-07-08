@@ -12,7 +12,8 @@ L.MetarIcon = L.Icon.extend({
         visibility: 0,
         cloud: 0,
         pressure: '',
-        weather: ''
+        weather: '',
+        rtaf: true
 
     },
 
@@ -54,7 +55,7 @@ L.MetarIcon = L.Icon.extend({
             /* 
              * สร้างจำนวนเมฆปกคลุม
              */
-            if (this.options.cloud == 8) {
+            if (this.options.cloud >= 8 && this.options.rtaf == true) {
                 ctx.beginPath();
                 ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
                 ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);

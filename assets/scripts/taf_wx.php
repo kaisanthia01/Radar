@@ -21,6 +21,6 @@ foreach ($IcaoCode as $IcaoValue) {
 
 header('Content-Type: application/json');
 echo $txt = json_encode($resp);
-$fp = fopen('lastest_taf_wx.json', 'w');
+$fp = fopen('public_html/radar/assets/scripts/latest_taf_wx.json', 'w');
 fwrite($fp, $txt);
 fclose($fp);

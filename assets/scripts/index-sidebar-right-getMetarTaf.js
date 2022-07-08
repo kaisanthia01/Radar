@@ -4,7 +4,7 @@ function ajaxMetarRTAF() {
     $.ajax({
         Type: "GET",
         contentType: "application/text; charset=utf-8",
-        url: 'assets/scripts/metar.php',
+        url: 'assets/scripts/latest_metar.json',
         dataType: "text",
         async: false,
         success: function (data) {
@@ -15,7 +15,7 @@ function ajaxMetarRTAF() {
         error: function (err) {
             // reject(err) // Reject the promise and go to catch()
             jsonMetar = 'Error';
-            console.error(err);
+            console.log(err);
         }
     });
 
@@ -28,7 +28,7 @@ function ajaxTafRTAF() {
     $.ajax({
         Type: "GET",
         contentType: "application/text; charset=utf-8",
-        url: 'assets/scripts/taf.php',
+        url: 'assets/scripts/latest_taf.json',
         dataType: "text",
         async: false,
         success: function (data) {
@@ -39,7 +39,55 @@ function ajaxTafRTAF() {
         error: function (err) {
             // reject(err) // Reject the promise and go to catch()
             jsonTaf = 'Error';
-            console.error(err);
+            console.log(err);
+        }
+    });
+
+    return jsonTaf;
+}
+
+function ajaxMetarCheckWX() {
+    var jsonMetar, jsonMetarData;
+    //Get Metar Json
+    $.ajax({
+        Type: "GET",
+        contentType: "application/text; charset=utf-8",
+        url: 'assets/scripts/latest_metar_wx.json',
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            //resolve(data); // Resolve promise and go to then()
+            jsonMetarData = data.trim();
+            jsonMetar = JSON.parse(jsonMetarData);
+        },
+        error: function (err) {
+            // reject(err) // Reject the promise and go to catch()
+            jsonMetar = 'Error';
+            console.log(err);
+        }
+    });
+
+    return jsonMetar;
+}
+
+function ajaxTafCheckWX() {
+    var jsonTaf, jsonTafData;
+    //Get Taf Json
+    $.ajax({
+        Type: "GET",
+        contentType: "application/text; charset=utf-8",
+        url: 'assets/scripts/latest_taf_wx.json',
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            //resolve(data); // Resolve promise and go to then()
+            jsonTafData = data.trim();
+            jsonTaf = JSON.parse(jsonTafData);
+        },
+        error: function (err) {
+            // reject(err) // Reject the promise and go to catch()
+            jsonTaf = 'Error';
+            console.log(err);
         }
     });
 
@@ -789,6 +837,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTNC == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTNC,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTNC = ContentMetarTextVTNC == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTNC;
+        ContentTafTextVTNC = ContentTafTextVTNC == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTNC;
         markerVTNC.setIcon(iconVTNC).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNC + '<hr>' + ContentTafTextVTNC + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTNC
@@ -805,6 +855,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTNP == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTNP,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTNP = ContentMetarTextVTNP == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTNP;
+        ContentTafTextVTNP = ContentTafTextVTNP == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTNP;
         markerVTNP.setIcon(iconVTNP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTNP + '<hr>' + ContentTafTextVTNP + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTNP
@@ -821,6 +873,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTED == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTED,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTED = ContentMetarTextVTED == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTED;
+        ContentTafTextVTED = ContentTafTextVTED == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTED;
         markerVTED.setIcon(iconVTED).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTED + '<hr>' + ContentTafTextVTED + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTED
@@ -837,6 +891,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTEU == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTEU,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTEU = ContentMetarTextVTEU == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTEU;
+        ContentTafTextVTEU = ContentTafTextVTEU == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTEU;
         markerVTEU.setIcon(iconVTEU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEU + '<hr>' + ContentTafTextVTEU + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTEU
@@ -853,6 +909,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTEN == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTEN,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTEN = ContentMetarTextVTEN == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTEN;
+        ContentTafTextVTEN = ContentTafTextVTEN == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTEN;
         markerVTEN.setIcon(iconVTEN).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTEN + '<hr>' + ContentTafTextVTEN + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTEN
@@ -869,6 +927,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMD == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMD,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMD = ContentMetarTextVTMD == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMD;
+        ContentTafTextVTMD = ContentTafTextVTMD == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMD;
         markerVTMD.setIcon(iconVTMD).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMD + '<hr>' + ContentTafTextVTMD + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMD
@@ -885,6 +945,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMI == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMI,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMI = ContentMetarTextVTMI == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMI;
+        ContentTafTextVTMI = ContentTafTextVTMI == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMI;
         markerVTMI.setIcon(iconVTMI).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMI + '<hr>' + ContentTafTextVTMI + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMI
@@ -901,6 +963,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTML == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTML,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTML = ContentMetarTextVTML == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTML;
+        ContentTafTextVTML = ContentTafTextVTML == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTML;
         markerVTML.setIcon(iconVTML).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTML + '<hr>' + ContentTafTextVTML + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTML
@@ -917,6 +981,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMW == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMW,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMW = ContentMetarTextVTMW == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMW;
+        ContentTafTextVTMW = ContentTafTextVTMW == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMW;
         markerVTMW.setIcon(iconVTMW).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMW + '<hr>' + ContentTafTextVTMW + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMW
@@ -933,6 +999,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMU == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMU,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMU = ContentMetarTextVTMU == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMU;
+        ContentTafTextVTMU = ContentTafTextVTMU == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMU;
         markerVTMU.setIcon(iconVTMU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMU + '<hr>' + ContentTafTextVTMU + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMU
@@ -949,6 +1017,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMP == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMP,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMP = ContentMetarTextVTMP == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMP;
+        ContentTafTextVTMP = ContentTafTextVTMP == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMP;
         markerVTMP.setIcon(iconVTMP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMP + '<hr>' + ContentTafTextVTMP + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMP
@@ -965,6 +1035,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMK == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMK,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMK = ContentMetarTextVTMK == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMK;
+        ContentTafTextVTMK = ContentTafTextVTMK == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMK;
         markerVTMK.setIcon(iconVTMK).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMK + '<hr>' + ContentTafTextVTMK + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMK
@@ -981,6 +1053,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTMH == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTMH,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTMH = ContentMetarTextVTMH == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTMH;
+        ContentTafTextVTMH = ContentTafTextVTMH == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTMH;
         markerVTMH.setIcon(iconVTMH).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTMH + '<hr>' + ContentTafTextVTMH + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTMH
@@ -997,6 +1071,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTDB == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTDB,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTDB = ContentMetarTextVTDB == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTDB;
+        ContentTafTextVTDB = ContentTafTextVTDB == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTDB;
         markerVTDB.setIcon(iconVTDB).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDB + '<hr>' + ContentTafTextVTDB + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTDB
@@ -1013,6 +1089,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTDS == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTDS,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTDS = ContentMetarTextVTDS == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTDS;
+        ContentTafTextVTDS = ContentTafTextVTDS == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTDS;
         markerVTDS.setIcon(iconVTDS).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDS + '<hr>' + ContentTafTextVTDS + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTDS
@@ -1029,6 +1107,8 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
             iconUrl: IonsMetarTextVTDT == 'NIL' ? 'assets/images/metar/NIL.png' : IonsMetarTextVTDT,
             iconSize: [15, 15]
         });
+        ContentMetarTextVTDT = ContentMetarTextVTDT == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>' : ContentMetarTextVTDT;
+        ContentTafTextVTDT = ContentTafTextVTDT == 'NIL' ? '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>' : ContentTafTextVTDT;
         markerVTDT.setIcon(iconVTDT).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTDT + '<hr>' + ContentTafTextVTDT + '</div></div>').addTo(map);
     } else {
         //SetTooltip VTDT
@@ -1365,7 +1445,32 @@ function getMetarSymbolRTAF(MetarSymbolRTAF) {
     });
 };
 
-function callMetarUpdate() {}
+function getMetarSymbolCheckWX(MetarSymbolCheckWX) {
+    $.each(MetarSymbolRTAF.CURRENT_WEATHER, function (index, value) {
+        if (value.icao == "VTNC") {
+            if (value.raw_text != "NIL") {
+                //SetTooltip VTNC
+                iconVTNC = new L.metarIcon({
+                    windDirection: value.wind.degrees,
+                    windSpeed: value.wind.speed_kts,
+                    temp: value.temperature.celsius,
+                    dewpoint: value.dewpoint.celsius,
+                    visibility: value.visibility.miles,
+                    cloud: value.clouds.code,
+                    pressure: value.barometer.hpa,
+                    weather: value.dewpoint.celsius,
+                    rtaf: false
+                });
+                markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
+            } else {
+                iconVTNC = new L.metarIcon({
+                    weather: 'NIL'
+                });
+                markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
+            }
+        }
+    });
+};
 
 function currentTime() {
     var date = new Date();
@@ -1386,7 +1491,6 @@ function currentTime() {
     var time = year + '-' + month + '-' + day + ' | ' + hh + ':' + mm + ':' + ss;
     return time;
 }
-
 
 function MetarVis(txtVis) {
     if (parseInt(txtVis) == 9999) {

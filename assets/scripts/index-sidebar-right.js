@@ -38,24 +38,16 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
             MetarUpdate = setInterval(function () {
                 //callMetarUpdate();
                 console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000);
+            }, 1000);//60 * 1000
         } else if ($('#Wx-News-Metar-Rtaf-Symbol').is(":checked")) {
             ResetMetarTextRTAF();
             getMetarSymbolRTAF(txtMetar);
-            map.removeLayer(tiles);
-            tiles = new L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2Fpc2FudGhpYTAxIiwiYSI6ImNsM2g3b3RwajBwODYzanFpMGN4YmV2MjAifQ.UTA02GOqHSlLk9d0PisY-g', {
-                maxZoom: 18,
-                id: 'mapbox/light-v10',
-                tileSize: 512,
-                zoomOffset: -1
-            }).addTo(map);
-            $('input[type="radio"][id="Map-Style-Light"]').prop('checked', true);
 
             //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
             MetarUpdate = setInterval(function () {
                 //callMetarUpdate();
                 console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000);
+            }, 1000);//60 * 1000
         } else if ($('#Wx-News-Metar-Rtaf-Icon').is(":checked")) {
             ResetMetarTextRTAF();
         } else {
@@ -66,7 +58,7 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
             toast: true,
             position: 'top-end',
             icon: 'success',
-            title: 'Add Layer Metar RTAF',
+            title: 'Add Metar&&Taf RTAF',
             showConfirmButton: false,
             padding: '7px',
             timer: 1500
@@ -81,7 +73,7 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
             toast: true,
             position: 'top-end',
             icon: 'error',
-            title: 'Remove Layer Metar RTAF',
+            title: 'Remove Metar&&Taf RTAF',
             showConfirmButton: false,
             padding: '7px',
             timer: 1500
@@ -96,14 +88,6 @@ $('input[type="radio"][name="Wx-News-Metar-Rtaf-Radio"]').change(function () {
     } else if ($('#Wx-News-Metar-Rtaf-Symbol').is(":checked")) {
         ResetMetarTextRTAF();
         getMetarSymbolRTAF(txtMetar);
-        map.removeLayer(tiles);
-        tiles = new L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2Fpc2FudGhpYTAxIiwiYSI6ImNsM2g3b3RwajBwODYzanFpMGN4YmV2MjAifQ.UTA02GOqHSlLk9d0PisY-g', {
-            maxZoom: 18,
-            id: 'mapbox/light-v10',
-            tileSize: 512,
-            zoomOffset: -1
-        }).addTo(map);
-        $('input[type="radio"][id="Map-Style-Light"]').prop('checked', true);
     } else if ($('#Wx-News-Metar-Rtaf-Icon').is(":checked")) {
         ResetMetarTextRTAF();
     } else {
@@ -114,107 +98,72 @@ $('input[type="radio"][name="Wx-News-Metar-Rtaf-Radio"]').change(function () {
 /* Wx News TMD */
 $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
     if ($('#Wx-News-Metar-Checkwx').is(":checked")) {
-        if ($('#Wx-News-Metar-Checkwx').is(":checked")) {
-            stationTMD = L.geoJSON(SYNOP_SITES, {
-                pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, {
-                        icon: iconTMD
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'https://api.checkwx.com/metar/' + feature.properties.icao + '',
-                        headers: {
-                            'X-API-Key': 'b3502b27075ff79e7978abae73'
-                        },
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.data.length == 0) {
-                                MetarTMD = 'Wait Update...!';
-                            } else {
-                                MetarTMD = result.data[0];
-                            }
+        $("#collapseMetarCheckwx").slideToggle();
+        $.blockUI({
+            message: '<div class="p-1"> ' +
+                '<div class="progress mb-2">' +
+                '<div class="progress-bar bg-warning p-1 progress-bar-animated progress-bar-striped text-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="MetarProgressBar">Downloading...!</div>' +
+                '</div>' +
+                '<span class="badge bg-danger" onclick="MetarProgressBarCancel();">Cancel</span>' +
+                '</div> ',
+            css: {
+                width: '275px',
+                border: 'none',
+                borderRadius: '25px',
+                cursor: 'default',
+                background: 'none'
+            }
+        });
+        txtMetarCheckWX = ajaxMetarCheckWX();
+        txtTafCheckWX = ajaxTafCheckWX();
+        $.unblockUI();
 
-                            $.ajax({
-                                type: 'GET',
-                                url: 'https://api.checkwx.com/taf/' + feature.properties.icao + '',
-                                headers: {
-                                    'X-API-Key': 'b3502b27075ff79e7978abae73'
-                                },
-                                dataType: 'json',
-                                success: function (result) {
-                                    if (result.data.length == 0) {
-                                        TafTMD = 'Wait Update...!';
-                                    } else {
-                                        TafTMD = result.data[0];
-                                    }
-                                    layer.bindTooltip(
-                                        '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-                                        '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-                                        '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-                                        '<b>METAR : ' + MetarTMD + '</b><br />' +
-                                        '<b>TAF : ' + TafTMD + '</b>'
-                                    );
-                                }
-                            });
-                        }
-                    });
-                }
-            });
+        //รูปแบบข้อมูลข่าวอากาศ
+        if ($('#Wx-News-Metar-Checkwx-Text').is(":checked")) {
+            ResetMetarTextRTAF();
+            getMetarTafTextRTAF(txtMetarCheckWX, txtTafCheckWX);
+
+            //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+            MetarUpdateCheckWX = setInterval(function () {
+                //txtMetarCheckWX = ajaxMetarCheckWX();
+                //txtTafCheckWX = ajaxTafCheckWX();
+                console.log('Update Metar&&Taf : ' + currentTime());
+            }, 1000);//60 * 1000
+        } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
+            ResetMetarTextRTAF();
+            getMetarSymbolCheckWX(txtMetarCheckWX);
+
+            //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+            MetarUpdateCheckWX = setInterval(function () {
+                //txtMetarCheckWX = ajaxMetarCheckWX();
+                //txtTafCheckWX = ajaxTafCheckWX();
+                console.log('Update Metar&&Taf : ' + currentTime());
+            }, 1000);//60 * 1000
+        } else if ($('#Wx-News-Metar-Checkwx-Icon').is(":checked")) {
+            ResetMetarTextRTAF();
         } else {
-            stationTMD = L.geoJSON(SYNOP_SITES, {
-                pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, {
-                        icon: iconTMD
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'https://api.checkwx.com/metar/' + feature.properties.icao + '',
-                        headers: {
-                            'X-API-Key': 'b3502b27075ff79e7978abae73'
-                        },
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.data.length == 0) {
-                                MetarTMD = 'Wait Update...!';
-                            } else {
-                                MetarTMD = result.data[0];
-                            }
-                            layer.bindTooltip(
-                                '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-                                '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-                                '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-                                '<b>METAR : ' + MetarTMD + '</b><br />' +
-                                '<b>TAF : Wait Update...!</b>'
-                            );
-                        }
-                    });
-                }
-            });
-        }
 
-        stationTMD.addTo(map);
+        }
 
         Swal.fire({
             toast: true,
             position: 'top-end',
             icon: 'success',
-            title: 'Add Layer Metar TMD',
+            title: 'Add Metar&&Taf CheckWX',
             showConfirmButton: false,
             padding: '7px',
             timer: 1500
         });
-    } else if ($('#Wx-News-Metar-Checkwx').is(":not(:checked)")) {
-        /* clearInterval(MetarUpdate);*/
-        map.removeLayer(stationTMD);
+    } else {
+        clearInterval(MetarUpdateCheckWX);
+        $("#collapseMetarCheckwx").slideToggle();
+        $('input[type="radio"][name="Wx-News-Metar-Checkwx-Radio"]').prop('checked', false);
+        ResetMetarTextRTAF();
         Swal.fire({
             toast: true,
             position: 'top-end',
             icon: 'error',
-            title: 'Remove Layer Metar TMD',
+            title: 'Remove Metar&&Taf CheckWX',
             showConfirmButton: false,
             padding: '7px',
             timer: 1500
@@ -222,114 +171,20 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
     }
 });
 
-$('input[type="checkbox"][id="Wx-News-Taf-Checkwx"]').click(function () {
-    if ($('#Wx-News-Taf-Checkwx').is(":checked")) {
-        if ($('#Wx-News-Metar-Checkwx').is(":checked")) {
-            stationTMD = L.geoJSON(SYNOP_SITES, {
-                pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, {
-                        icon: iconTMD
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'https://api.checkwx.com/taf/' + feature.properties.icao + '',
-                        headers: {
-                            'X-API-Key': 'b3502b27075ff79e7978abae73'
-                        },
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.data.length == 0) {
-                                TafTMD = 'Wait Update...!';
-                            } else {
-                                TafTMD = result.data[0];
-                            }
+$('input[type="radio"][name="Wx-News-Metar-Checkwx-Radio"]').change(function () {
+    if ($('#Wx-News-Metar-Checkwx-Text').is(":checked")) {
+        ResetMetarTextRTAF();
+        getMetarTafTextRTAF(txtMetarCheckWX, txtTafCheckWX);
+    } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
+        ResetMetarTextRTAF();
+        getMetarSymbolRTAF(txtMetarCheckWX);
+    } else if ($('#Wx-News-Metar-Checkwx-Icon').is(":checked")) {
+        ResetMetarTextRTAF();
+    } else {
 
-                            $.ajax({
-                                type: 'GET',
-                                url: 'https://api.checkwx.com/metar/' + feature.properties.icao + '',
-                                headers: {
-                                    'X-API-Key': 'b3502b27075ff79e7978abae73'
-                                },
-                                dataType: 'json',
-                                success: function (result) {
-                                    if (result.data.length == 0) {
-                                        MetarTMD = 'Wait Update...!';
-                                    } else {
-                                        MetarTMD = result.data[0];
-                                    }
-                                    layer.bindTooltip(
-                                        '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-                                        '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-                                        '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-                                        '<b>METAR : ' + MetarTMD + '</b><br />' +
-                                        '<b>TAF : ' + TafTMD + '</b>'
-                                    );
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        } else {
-            stationTMD = L.geoJSON(SYNOP_SITES, {
-                pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, {
-                        icon: iconTMD
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'https://api.checkwx.com/taf/' + feature.properties.icao + '',
-                        headers: {
-                            'X-API-Key': 'b3502b27075ff79e7978abae73'
-                        },
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.data.length == 0) {
-                                TafTMD = 'Wait Update...!';
-                            } else {
-                                TafTMD = result.data[0];
-                            }
-                            layer.bindTooltip(
-                                '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-                                '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-                                '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-                                '<b>METAR : Wait Update...!</b><br />' +
-                                '<b>TAF : ' + TafTMD + '</b>'
-                            );
-                        }
-                    });
-                }
-            });
-        }
-        stationTMD.addTo(map);
-
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: 'Add Layer Taf TMD',
-            showConfirmButton: false,
-            padding: '7px',
-            timer: 1500
-        });
-    } else if ($('#Wx-News-Taf-Checkwx').is(":not(:checked)")) {
-        /* clearInterval(MetarUpdate);*/
-        map.removeLayer(stationTMD);
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'error',
-            title: 'Remove Layer Taf TMD',
-            showConfirmButton: false,
-            padding: '7px',
-            timer: 1500
-        });
     }
 });
+
 /*
  * ------------------------------------------------------------------------------- *
  */

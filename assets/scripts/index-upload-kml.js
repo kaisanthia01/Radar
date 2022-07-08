@@ -52,6 +52,8 @@ $('#Map-Control-Center-Left-Sidebar-Menu-Layer-Upload-KML').on('click', function
         },
         success: function (resp) {
             if (resp != 'err') {
+                $("#progress-bar-kml").width('100%');
+                $("#progress-bar-kml").html('100%');
                 $('#FormUploadKML')[0].reset();
                 $('.block:last').before('' +
                     '<div class="form-check">' +
