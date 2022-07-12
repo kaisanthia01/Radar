@@ -55,185 +55,188 @@ L.MetarIcon = L.Icon.extend({
             /* 
              * สร้างจำนวนเมฆปกคลุม
              */
-            if (this.options.cloud >= 8 && this.options.rtaf == true) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 7) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fill();
-                ctx.stroke();
-                ctx.globalCompositeOperation = "source-over";
-                ctx.fillStyle = 'white';
-                ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
-                ctx.stroke();
-                ctx.closePath();
+            if (this.options.rtaf == true) {
+                if (this.options.cloud >= 8) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 7) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.globalCompositeOperation = "source-over";
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
+                    ctx.stroke();
+                    ctx.closePath();
 
-            } else if (this.options.cloud == 6) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                } else if (this.options.cloud == 6) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.moveTo((w / 2), (h / 2));
-                ctx.lineTo(50, 60);
-                ctx.lineTo(40, 50);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2), (h / 2));
+                    ctx.lineTo(50, 60);
+                    ctx.lineTo(40, 50);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.arc((w / 2), (h / 2), 10, 0.5 * Math.PI, 1 * Math.PI);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.arc((w / 2), (h / 2), 10, 0.5 * Math.PI, 1 * Math.PI);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
 
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 5) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 5) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.moveTo(40, 50);
-                ctx.lineTo(50, 50);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 4) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.moveTo(40, 50);
+                    ctx.lineTo(50, 50);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 4) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 3) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 3) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.fillStyle = "#000000";
-                ctx.fillRect((w / 2) - 1.5, (h / 2) - 10, 2, 20);
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.fillStyle = "#000000";
+                    ctx.fillRect((w / 2) - 1.5, (h / 2) - 10, 2, 20);
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.moveTo((w / 2), (h / 2) - 10);
-                ctx.lineTo(50, 50);
-                ctx.lineTo(60, 50);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2), (h / 2) - 10);
+                    ctx.lineTo(50, 50);
+                    ctx.lineTo(60, 50);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 2) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 2) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.moveTo((w / 2), (h / 2) - 10);
-                ctx.lineTo(50, 50);
-                ctx.lineTo(60, 50);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2), (h / 2) - 10);
+                    ctx.lineTo(50, 50);
+                    ctx.lineTo(60, 50);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
 
-                ctx.beginPath();
-                ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
-                ctx.fillStyle = "#000000";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 1) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                //ctx.globalCompositeOperation = "source-over";
-                ctx.fillStyle = "#000000";
-                ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.cloud == 0) {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
+                    ctx.beginPath();
+                    ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
+                    ctx.fillStyle = "#000000";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 1) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    //ctx.globalCompositeOperation = "source-over";
+                    ctx.fillStyle = "#000000";
+                    ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.cloud == 0) {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+
+                    ctx.beginPath();
+                    ctx.moveTo(42.5, 42.5);
+                    ctx.lineTo(55, 57.5);
+                    ctx.stroke();
+                    ctx.closePath();
+
+                    ctx.beginPath();
+                    ctx.moveTo(57, 42);
+                    ctx.lineTo(42, 57);
+                    ctx.stroke();
+                    ctx.closePath();
+                }
             } else {
-                ctx.beginPath();
-                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                ctx.fillStyle = "#FFFFFF";
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
 
-                ctx.beginPath();
-                ctx.moveTo(42.5, 42.5);
-                ctx.lineTo(55, 57.5);
-                ctx.stroke();
-                ctx.closePath();
-
-                ctx.beginPath();
-                ctx.moveTo(57, 42);
-                ctx.lineTo(42, 57);
-                ctx.stroke();
-                ctx.closePath();
             }
-
             /* 
              * -------------------------------------------------------------------
              */
@@ -244,201 +247,211 @@ L.MetarIcon = L.Icon.extend({
             ctx.fillStyle = 'black';
             ctx.font = "bolder 10px Arial";
 
-            // Show the different textAlign values
+            // อุณหภูมิ
             ctx.fillText(this.options.temp, (w / 2) - 25, (h / 2) - 10);
-            if (this.options.visibility == 28) {
-                ctx.fillText('7', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 27) {
-                ctx.fillText('6', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 26) {
-                ctx.fillText('5', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 25) {
-                ctx.fillText('4', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 24) {
-                ctx.fillText('3', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 23) {
-                ctx.fillText("2", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 22) {
-                ctx.fillText("2", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("2", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 21) {
-                ctx.fillText("2", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 20) {
-                ctx.fillText('2', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 19) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("7", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 18) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 17) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("5", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 16) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("2", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 15) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 14) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 13) {
-                ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 12) {
-                ctx.fillText('1', (w / 2) - 25, (h / 2) + 5);
-            } else if (this.options.visibility == 11) {
-                ctx.fillText("7", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 10) {
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 9) {
-                ctx.fillText("5", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 8) {
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("2", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 7) {
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 6) {
-                ctx.fillText("5", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("16", (w / 2) - 22, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 5) {
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 4) {
-                ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("16", (w / 2) - 22, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 3) {
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
-            } else if (this.options.visibility == 2) {
-                ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
-                ctx.fillText("16", (w / 2) - 22, (h / 2) + 10);
-                ctx.beginPath();
-                ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
-                ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
-                ctx.stroke();
-                ctx.closePath();
+
+            // ทัศนวิสัยของกองทัพอากาศ
+            if (this.options.rtaf == true) {
+                if (this.options.visibility == 28) {
+                    ctx.fillText('7', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 27) {
+                    ctx.fillText('6', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 26) {
+                    ctx.fillText('5', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 25) {
+                    ctx.fillText('4', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 24) {
+                    ctx.fillText('3', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 23) {
+                    ctx.fillText("2", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 22) {
+                    ctx.fillText("2", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("2", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 21) {
+                    ctx.fillText("2", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 20) {
+                    ctx.fillText('2', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 19) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("7", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 18) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 17) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("5", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 16) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("2", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 15) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 14) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 13) {
+                    ctx.fillText("1", (w / 2) - 27.5, (h / 2) + 5);
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 12) {
+                    ctx.fillText('1', (w / 2) - 25, (h / 2) + 5);
+                } else if (this.options.visibility == 11) {
+                    ctx.fillText("7", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 10) {
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 9) {
+                    ctx.fillText("5", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 8) {
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("2", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 7) {
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 6) {
+                    ctx.fillText("5", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("16", (w / 2) - 22, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 5) {
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("4", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 4) {
+                    ctx.fillText("3", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("16", (w / 2) - 22, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 3) {
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("8", (w / 2) - 19.5, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else if (this.options.visibility == 2) {
+                    ctx.fillText("1", (w / 2) - 20, (h / 2) - 1);
+                    ctx.fillText("16", (w / 2) - 22, (h / 2) + 10);
+                    ctx.beginPath();
+                    ctx.moveTo((w / 2) - 12.5, (h / 2) - 2.5);
+                    ctx.lineTo((w / 2) - 22.5, (h / 2) + 5);
+                    ctx.stroke();
+                    ctx.closePath();
+                } else {
+                    ctx.fillText('0', (w / 2) - 25, (h / 2) + 5);
+                }
             } else {
-                ctx.fillText('0', (w / 2) - 25, (h / 2) + 5);
+                // ทัศนวิสัยของ TMD
+                ctx.fillText(this.options.visibility, (w / 2) - 25, (h / 2) + 5);
             }
 
+            // อุณภภูมิจุดน้ำค้าง
             ctx.fillText(this.options.dewpoint, (w / 2) - 25, (h / 2) + 20);
 
+            // ความกดอากาศ
             ctx.font = "bolder 10px Arial";
             ctx.fillText(this.options.pressure, (w / 2) + 15, (h / 2) - 10);
 
+            // สภาพอากาศ
             ctx.fillStyle = 'red';
             ctx.font = "bolder 10px Arial";
             ctx.fillText(this.options.weather, (w / 2) + 15, (h / 2) + 5);

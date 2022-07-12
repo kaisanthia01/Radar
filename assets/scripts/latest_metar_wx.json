@@ -1,0 +1,141 @@
+{
+    "CURRENT_WEATHER": [
+        [{
+            "barometer": {
+                "hg": 29.73,
+                "hpa": 1007,
+                "kpa": 100.69,
+                "mb": 1006.92
+            },
+            "clouds": [{
+                "base_feet_agl": 2000,
+                "base_meters_agl": 610,
+                "code": "FEW",
+                "feet": 2000,
+                "meters": 610,
+                "text": "Few"
+            }],
+            "dewpoint": {
+                "celsius": 23,
+                "fahrenheit": 73
+            },
+            "elevation": {
+                "feet": 20,
+                "meters": 6
+            },
+            "flight_category": "VFR",
+            "humidity": {
+                "percent": 66
+            },
+            "icao": "VTBD",
+            "observed": "2022-07-11T04:00Z",
+            "raw_text": "VTBD 110400Z 28012KT 250V310 9999 FEW020 30/23 Q1007 NOSIG",
+            "station": {
+                "geometry": {
+                    "coordinates": [
+                        100.607002,
+                        13.9126
+                    ],
+                    "type": "Point"
+                },
+                "location": "Bangkok, TH",
+                "name": "Don Mueang International Airport",
+                "type": "Airport"
+            },
+            "temperature": {
+                "celsius": 30,
+                "fahrenheit": 86
+            },
+            "visibility": {
+                "meters": "10,000+",
+                "meters_float": 9999,
+                "miles": "Greater than 6",
+                "miles_float": 6.21
+            },
+            "wind": {
+                "degrees": 280,
+                "speed_kph": 22,
+                "speed_kts": 12,
+                "speed_mph": 14,
+                "speed_mps": 6
+            }
+        }],
+        [{
+            "barometer": {
+                "hg": 29.73,
+                "hpa": 1007,
+                "kpa": 100.69,
+                "mb": 1006.92
+            },
+            "ceiling": {
+                "base_feet_agl": 8000,
+                "base_meters_agl": 2438,
+                "code": "BKN",
+                "feet": 8000,
+                "meters": 2438,
+                "text": "Broken"
+            },
+            "clouds": [{
+                    "base_feet_agl": 2000,
+                    "base_meters_agl": 610,
+                    "code": "FEW",
+                    "feet": 2000,
+                    "meters": 610,
+                    "text": "Few"
+                },
+                {
+                    "base_feet_agl": 8000,
+                    "base_meters_agl": 2438,
+                    "code": "BKN",
+                    "feet": 8000,
+                    "meters": 2438,
+                    "text": "Broken"
+                }
+            ],
+            "dewpoint": {
+                "celsius": 22,
+                "fahrenheit": 72
+            },
+            "elevation": {
+                "feet": 3,
+                "meters": 1
+            },
+            "flight_category": "VFR",
+            "humidity": {
+                "percent": 62
+            },
+            "icao": "VTBS",
+            "observed": "2022-07-11T04:00Z",
+            "raw_text": "VTBS 110400Z 28006KT 230V340 9999 FEW020 BKN080 30/22 Q1007 NOSIG",
+            "station": {
+                "geometry": {
+                    "coordinates": [
+                        100.747002,
+                        13.6811
+                    ],
+                    "type": "Point"
+                },
+                "location": "Bangkok, TH",
+                "name": "Suvarnabhumi Airport",
+                "type": "Airport"
+            },
+            "temperature": {
+                "celsius": 30,
+                "fahrenheit": 86
+            },
+            "visibility": {
+                "meters": "10,000+",
+                "meters_float": 9999,
+                "miles": "Greater than 6",
+                "miles_float": 6.21
+            },
+            "wind": {
+                "degrees": 280,
+                "speed_kph": 11,
+                "speed_kts": 6,
+                "speed_mph": 7,
+                "speed_mps": 3
+            }
+        }]
+    ]
+}

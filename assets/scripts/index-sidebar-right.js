@@ -38,7 +38,7 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
             MetarUpdate = setInterval(function () {
                 //callMetarUpdate();
                 console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000);//60 * 1000
+            }, 1000); //60 * 1000
         } else if ($('#Wx-News-Metar-Rtaf-Symbol').is(":checked")) {
             ResetMetarTextRTAF();
             getMetarSymbolRTAF(txtMetar);
@@ -47,7 +47,7 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
             MetarUpdate = setInterval(function () {
                 //callMetarUpdate();
                 console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000);//60 * 1000
+            }, 1000); //60 * 1000
         } else if ($('#Wx-News-Metar-Rtaf-Icon').is(":checked")) {
             ResetMetarTextRTAF();
         } else {
@@ -115,22 +115,12 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
             }
         });
         txtMetarCheckWX = ajaxMetarCheckWX();
-        txtTafCheckWX = ajaxTafCheckWX();
+        //txtTafCheckWX = ajaxTafCheckWX();
         $.unblockUI();
 
         //รูปแบบข้อมูลข่าวอากาศ
         if ($('#Wx-News-Metar-Checkwx-Text').is(":checked")) {
-            ResetMetarTextRTAF();
-            getMetarTafTextRTAF(txtMetarCheckWX, txtTafCheckWX);
-
-            //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
-            MetarUpdateCheckWX = setInterval(function () {
-                //txtMetarCheckWX = ajaxMetarCheckWX();
-                //txtTafCheckWX = ajaxTafCheckWX();
-                console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000);//60 * 1000
-        } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
-            ResetMetarTextRTAF();
+            ResetMetarTextCheckWX();
             getMetarSymbolCheckWX(txtMetarCheckWX);
 
             //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
@@ -138,9 +128,19 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
                 //txtMetarCheckWX = ajaxMetarCheckWX();
                 //txtTafCheckWX = ajaxTafCheckWX();
                 console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000);//60 * 1000
+            }, 1000); //60 * 1000
+        } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
+            ResetMetarTextCheckWX();
+            getMetarSymbolCheckWX(txtMetarCheckWX);
+
+            //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+            MetarUpdateCheckWX = setInterval(function () {
+                //txtMetarCheckWX = ajaxMetarCheckWX();
+                //txtTafCheckWX = ajaxTafCheckWX();
+                console.log('Update Metar&&Taf : ' + currentTime());
+            }, 1000); //60 * 1000
         } else if ($('#Wx-News-Metar-Checkwx-Icon').is(":checked")) {
-            ResetMetarTextRTAF();
+            ResetMetarTextCheckWX();
         } else {
 
         }
@@ -158,7 +158,7 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
         clearInterval(MetarUpdateCheckWX);
         $("#collapseMetarCheckwx").slideToggle();
         $('input[type="radio"][name="Wx-News-Metar-Checkwx-Radio"]').prop('checked', false);
-        ResetMetarTextRTAF();
+        ResetMetarTextCheckWX();
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -173,13 +173,13 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
 
 $('input[type="radio"][name="Wx-News-Metar-Checkwx-Radio"]').change(function () {
     if ($('#Wx-News-Metar-Checkwx-Text').is(":checked")) {
-        ResetMetarTextRTAF();
-        getMetarTafTextRTAF(txtMetarCheckWX, txtTafCheckWX);
+        ResetMetarTextCheckWX();
+        getMetarSymbolCheckWX(txtMetarCheckWX);
     } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
-        ResetMetarTextRTAF();
+        ResetMetarTextCheckWX();
         getMetarSymbolRTAF(txtMetarCheckWX);
     } else if ($('#Wx-News-Metar-Checkwx-Icon').is(":checked")) {
-        ResetMetarTextRTAF();
+        ResetMetarTextCheckWX();
     } else {
 
     }

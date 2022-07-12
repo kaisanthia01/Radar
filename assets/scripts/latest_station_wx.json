@@ -1,0 +1,1911 @@
+{
+    VTBD: [{
+        city: "Bangkok",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 9,
+            meters: 3
+        },
+        geometry: {
+            coordinates: [
+                100.607002,
+                13.9126
+            ],
+            type: "Point"
+        },
+        iata: "DMK",
+        icao: "VTBD",
+        latitude: {
+            decimal: 13.9126,
+            degrees: "13° 54' 45.35"
+            N "
+        },
+        longitude: {
+            decimal: 100.607002,
+            degrees: "100° 36' 25.20"
+            E "
+        },
+        name: "Don Mueang International Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBS: [{
+        city: "Bangkok",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 5,
+            meters: 2
+        },
+        geometry: {
+            coordinates: [
+                100.747002,
+                13.6811
+            ],
+            type: "Point"
+        },
+        iata: "BKK",
+        icao: "VTBS",
+        latitude: {
+            decimal: 13.6811,
+            degrees: "13° 40' 51.96"
+            N "
+        },
+        longitude: {
+            decimal: 100.747002,
+            degrees: "100° 44' 49.20"
+            E "
+        },
+        name: "Suvarnabhumi Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCC: [{
+        city: "Chiang Mai",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 1036,
+            meters: 316
+        },
+        geometry: {
+            coordinates: [
+                98.962601,
+                18.7668
+            ],
+            type: "Point"
+        },
+        iata: "CNX",
+        icao: "VTCC",
+        latitude: {
+            decimal: 18.7668,
+            degrees: "18° 46' 0.479"
+            N "
+        },
+        longitude: {
+            decimal: 98.962601,
+            degrees: "98° 57' 45.36"
+            E "
+        },
+        name: "Chiang Mai International Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCT: [{
+        city: "Chiang Rai",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 1280,
+            meters: 390
+        },
+        geometry: {
+            coordinates: [
+                99.882896,
+                19.952299
+            ],
+            type: "Point"
+        },
+        iata: "CEI",
+        icao: "VTCT",
+        latitude: {
+            decimal: 19.952299,
+            degrees: "19° 57' 8.276"
+            N "
+        },
+        longitude: {
+            decimal: 99.882896,
+            degrees: "99° 52' 58.42"
+            E "
+        },
+        name: "Mae Fah Luang - Chiang Rai International Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSP: [{
+        city: "Phuket",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 82,
+            meters: 25
+        },
+        geometry: {
+            coordinates: [
+                98.316902,
+                8.1132
+            ],
+            type: "Point"
+        },
+        iata: "HKT",
+        icao: "VTSP",
+        latitude: {
+            decimal: 8.1132,
+            degrees: "8° 6' 47.52"
+            N "
+        },
+        longitude: {
+            decimal: 98.316902,
+            degrees: "98° 19' 0.847"
+            E "
+        },
+        name: "Phuket International Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSS: [{
+        city: "Hat Yai",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 90,
+            meters: 27
+        },
+        geometry: {
+            coordinates: [
+                100.392998,
+                6.93321
+            ],
+            type: "Point"
+        },
+        iata: "HDY",
+        icao: "VTSS",
+        latitude: {
+            decimal: 6.93321,
+            degrees: "6° 55' 59.55"
+            N "
+        },
+        longitude: {
+            decimal: 100.392998,
+            degrees: "100° 23' 34.79"
+            E "
+        },
+        name: "Hat Yai International Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSG: [{
+        city: "Krabi",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 82,
+            meters: 25
+        },
+        geometry: {
+            coordinates: [
+                98.986198,
+                8.09912
+            ],
+            type: "Point"
+        },
+        iata: "KBV",
+        icao: "VTSG",
+        latitude: {
+            decimal: 8.09912,
+            degrees: "8° 5' 56.83"
+            N "
+        },
+        longitude: {
+            decimal: 98.986198,
+            degrees: "98° 59' 10.31"
+            E "
+        },
+        name: "Krabi Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUK: [{
+        city: "Khon Kaen",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 670,
+            meters: 204
+        },
+        geometry: {
+            coordinates: [
+                102.783997,
+                16.4666
+            ],
+            type: "Point"
+        },
+        iata: "KKC",
+        icao: "VTUK",
+        latitude: {
+            decimal: 16.4666,
+            degrees: "16° 27' 59.75"
+            N "
+        },
+        longitude: {
+            decimal: 102.783997,
+            degrees: "102° 47' 2.389"
+            E "
+        },
+        name: "Khon Kaen Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSE: [{
+        city: "Chumphon",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 18,
+            meters: 5
+        },
+        geometry: {
+            coordinates: [
+                99.361702,
+                10.7112
+            ],
+            type: "Point"
+        },
+        iata: "CJM",
+        icao: "VTSE",
+        latitude: {
+            decimal: 10.7112,
+            degrees: "10° 42' 40.31"
+            N "
+        },
+        longitude: {
+            decimal: 99.361702,
+            degrees: "99° 21' 42.12"
+            E "
+        },
+        name: "Chumphon Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPT: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 478,
+            meters: 146
+        },
+        geometry: {
+            coordinates: [
+                99.253304,
+                16.896
+            ],
+            type: "Point"
+        },
+        iata: "TKT",
+        icao: "VTPT",
+        latitude: {
+            decimal: 16.896,
+            degrees: "16° 53' 45.60"
+            N "
+        },
+        longitude: {
+            decimal: 99.253304,
+            degrees: "99° 15' 11.89"
+            E "
+        },
+        name: "Tak Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPM: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 690,
+            meters: 210
+        },
+        geometry: {
+            coordinates: [
+                98.545097,
+                16.6999
+            ],
+            type: "Point"
+        },
+        iata: "MAQ",
+        icao: "VTPM",
+        latitude: {
+            decimal: 16.6999,
+            degrees: "16° 41' 59.63"
+            N "
+        },
+        longitude: {
+            decimal: 98.545097,
+            degrees: "98° 32' 42.34"
+            E "
+        },
+        name: "Mae Sot Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTST: [{
+        city: "Trang",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 67,
+            meters: 20
+        },
+        geometry: {
+            coordinates: [
+                99.6166,
+                7.50874
+            ],
+            type: "Point"
+        },
+        iata: "TST",
+        icao: "VTST",
+        latitude: {
+            decimal: 7.50874,
+            degrees: "7° 30' 31.46"
+            N "
+        },
+        longitude: {
+            decimal: 99.6166,
+            degrees: "99° 36' 59.76"
+            E "
+        },
+        name: "Trang Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBO: [{
+        city: "Laem Ngop",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 105,
+            meters: 32
+        },
+        geometry: {
+            coordinates: [
+                102.319,
+                12.2746
+            ],
+            type: "Point"
+        },
+        iata: "TDX",
+        icao: "VTBO",
+        latitude: {
+            decimal: 12.2746,
+            degrees: "12° 16' 28.55"
+            N "
+        },
+        longitude: {
+            decimal: 102.319,
+            degrees: "102° 19' 8.400"
+            E "
+        },
+        name: "Trat Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUW: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 587,
+            meters: 179
+        },
+        geometry: {
+            coordinates: [
+                104.642998,
+                17.383801
+            ],
+            type: "Point"
+        },
+        iata: "KOP",
+        icao: "VTUW",
+        latitude: {
+            decimal: 17.383801,
+            degrees: "17° 23' 1.683"
+            N "
+        },
+        longitude: {
+            decimal: 104.642998,
+            degrees: "104° 38' 34.79"
+            E "
+        },
+        name: "Nakhon Phanom Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUQ: [{
+        city: "Chaloem Phra Kiat",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 765,
+            meters: 233
+        },
+        geometry: {
+            coordinates: [
+                102.313004,
+                14.9495
+            ],
+            type: "Point"
+        },
+        iata: "NAK",
+        icao: "VTUQ",
+        latitude: {
+            decimal: 14.9495,
+            degrees: "14° 56' 58.20"
+            N "
+        },
+        longitude: {
+            decimal: 102.313004,
+            degrees: "102° 18' 46.81"
+            E "
+        },
+        name: "Nakhon Ratchasima Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSF: [{
+        city: "Nakhon Si Thammarat",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 13,
+            meters: 4
+        },
+        geometry: {
+            coordinates: [
+                99.944702,
+                8.53962
+            ],
+            type: "Point"
+        },
+        iata: "NST",
+        icao: "VTSF",
+        latitude: {
+            decimal: 8.53962,
+            degrees: "8° 32' 22.63"
+            N "
+        },
+        longitude: {
+            decimal: 99.944702,
+            degrees: "99° 56' 40.92"
+            E "
+        },
+        name: "Nakhon Si Thammarat Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPI: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 107,
+            meters: 33
+        },
+        geometry: {
+            coordinates: [
+                100.295998,
+                15.2773
+            ],
+            type: "Point"
+        },
+        iata: "TKH",
+        icao: "VTPI",
+        latitude: {
+            decimal: 15.2773,
+            degrees: "15° 16' 38.28"
+            N "
+        },
+        longitude: {
+            decimal: 100.295998,
+            degrees: "100° 17' 45.59"
+            E "
+        },
+        name: "Takhli Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSC: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 16,
+            meters: 5
+        },
+        geometry: {
+            coordinates: [
+                101.742996,
+                6.51992
+            ],
+            type: "Point"
+        },
+        iata: "NAW",
+        icao: "VTSC",
+        latitude: {
+            decimal: 6.51992,
+            degrees: "6° 31' 11.71"
+            N "
+        },
+        longitude: {
+            decimal: 101.742996,
+            degrees: "101° 44' 34.78"
+            E "
+        },
+        name: "Narathiwat Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCN: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 685,
+            meters: 209
+        },
+        geometry: {
+            coordinates: [
+                100.782997,
+                18.807899
+            ],
+            type: "Point"
+        },
+        iata: "NNT",
+        icao: "VTCN",
+        latitude: {
+            decimal: 18.807899,
+            degrees: "18° 48' 28.43"
+            N "
+        },
+        longitude: {
+            decimal: 100.782997,
+            degrees: "100° 46' 58.78"
+            E "
+        },
+        name: "Nan Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUO: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 590,
+            meters: 180
+        },
+        geometry: {
+            coordinates: [
+                103.252998,
+                15.2295
+            ],
+            type: "Point"
+        },
+        iata: "BFV",
+        icao: "VTUO",
+        latitude: {
+            decimal: 15.2295,
+            degrees: "15° 13' 46.19"
+            N "
+        },
+        longitude: {
+            decimal: 103.252998,
+            degrees: "103° 15' 10.79"
+            E "
+        },
+        name: "Buri Ram Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPH: [{
+        city: "Hua Hin",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 62,
+            meters: 19
+        },
+        geometry: {
+            coordinates: [
+                99.9515,
+                12.6362
+            ],
+            type: "Point"
+        },
+        iata: "HHQ",
+        icao: "VTPH",
+        latitude: {
+            decimal: 12.6362,
+            degrees: "12° 38' 10.32"
+            N "
+        },
+        longitude: {
+            decimal: 99.9515,
+            degrees: "99° 57' 5.399"
+            E "
+        },
+        name: "Hua Hin Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPP: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 154,
+            meters: 47
+        },
+        geometry: {
+            coordinates: [
+                100.278999,
+                16.7829
+            ],
+            type: "Point"
+        },
+        iata: "PHS",
+        icao: "VTPP",
+        latitude: {
+            decimal: 16.7829,
+            degrees: "16° 46' 58.44"
+            N "
+        },
+        longitude: {
+            decimal: 100.278999,
+            degrees: "100° 16' 44.39"
+            E "
+        },
+        name: "Phitsanulok Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPL: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 500,
+            meters: 152
+        },
+        geometry: {
+            coordinates: [
+                101.250999,
+                16.824301
+            ],
+            type: "Point"
+        },
+        icao: "VTPL",
+        latitude: {
+            decimal: 16.824301,
+            degrees: "16° 49' 27.48"
+            N "
+        },
+        longitude: {
+            decimal: 101.250999,
+            degrees: "101° 15' 3.596"
+            E "
+        },
+        name: "Sak Long Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCP: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 538,
+            meters: 164
+        },
+        geometry: {
+            coordinates: [
+                100.165001,
+                18.1322
+            ],
+            type: "Point"
+        },
+        iata: "PRH",
+        icao: "VTCP",
+        latitude: {
+            decimal: 18.1322,
+            degrees: "18° 7' 55.92"
+            N "
+        },
+        longitude: {
+            decimal: 100.165001,
+            degrees: "100° 9' 54.00"
+            E "
+        },
+        name: "Phrae Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCI: [{
+        city: "Mae Hong Son",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 1271,
+            meters: 387
+        },
+        geometry: {
+            coordinates: [
+                98.436996,
+                19.372
+            ],
+            type: "Point"
+        },
+        iata: "PYY",
+        icao: "VTCI",
+        latitude: {
+            decimal: 19.372,
+            degrees: "19° 22' 19.19"
+            N "
+        },
+        longitude: {
+            decimal: 98.436996,
+            degrees: "98° 26' 13.18"
+            E "
+        },
+        name: "Mae Hong Son Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCH: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 929,
+            meters: 283
+        },
+        geometry: {
+            coordinates: [
+                97.9758,
+                19.3013
+            ],
+            type: "Point"
+        },
+        iata: "HGN",
+        icao: "VTCH",
+        latitude: {
+            decimal: 19.3013,
+            degrees: "19° 18' 4.680"
+            N "
+        },
+        longitude: {
+            decimal: 97.9758,
+            degrees: "97° 58' 32.88"
+            E "
+        },
+        name: "Mae Hong Son Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUV: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 451,
+            meters: 137
+        },
+        geometry: {
+            coordinates: [
+                103.774002,
+                16.1168
+            ],
+            type: "Point"
+        },
+        iata: "ROI",
+        icao: "VTUV",
+        latitude: {
+            decimal: 16.1168,
+            degrees: "16° 7' 0.480"
+            N "
+        },
+        longitude: {
+            decimal: 103.774002,
+            degrees: "103° 46' 26.40"
+            E "
+        },
+        name: "Roi Et Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSR: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 57,
+            meters: 17
+        },
+        geometry: {
+            coordinates: [
+                98.585503,
+                9.77762
+            ],
+            type: "Point"
+        },
+        iata: "UNN",
+        icao: "VTSR",
+        latitude: {
+            decimal: 9.77762,
+            degrees: "9° 46' 39.43"
+            N "
+        },
+        longitude: {
+            decimal: 98.585503,
+            degrees: "98° 35' 7.810"
+            E "
+        },
+        name: "Ranong Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUL: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 860,
+            meters: 262
+        },
+        geometry: {
+            coordinates: [
+                101.722,
+                17.4391
+            ],
+            type: "Point"
+        },
+        iata: "LOE",
+        icao: "VTUL",
+        latitude: {
+            decimal: 17.4391,
+            degrees: "17° 26' 20.75"
+            N "
+        },
+        longitude: {
+            decimal: 101.722,
+            degrees: "101° 43' 19.19"
+            E "
+        },
+        name: "Loei Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCL: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 811,
+            meters: 247
+        },
+        geometry: {
+            coordinates: [
+                99.504204,
+                18.270901
+            ],
+            type: "Point"
+        },
+        iata: "LPT",
+        icao: "VTCL",
+        latitude: {
+            decimal: 18.270901,
+            degrees: "18° 16' 15.24"
+            N "
+        },
+        longitude: {
+            decimal: 99.504204,
+            degrees: "99° 30' 15.13"
+            E "
+        },
+        name: "Lampang Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUI: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 529,
+            meters: 161
+        },
+        geometry: {
+            coordinates: [
+                104.119003,
+                17.195101
+            ],
+            type: "Point"
+        },
+        iata: "SNO",
+        icao: "VTUI",
+        latitude: {
+            decimal: 17.195101,
+            degrees: "17° 11' 42.36"
+            N "
+        },
+        longitude: {
+            decimal: 104.119003,
+            degrees: "104° 7' 8.410"
+            E "
+        },
+        name: "Sakon Nakhon Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSH: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 12,
+            meters: 4
+        },
+        geometry: {
+            coordinates: [
+                100.608002,
+                7.18656
+            ],
+            type: "Point"
+        },
+        iata: "SGZ",
+        icao: "VTSH",
+        latitude: {
+            decimal: 7.18656,
+            degrees: "7° 11' 11.61"
+            N "
+        },
+        longitude: {
+            decimal: 100.608002,
+            degrees: "100° 36' 28.80"
+            E "
+        },
+        name: "Songkhla Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUJ: [{
+        city: "Surin",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 478,
+            meters: 146
+        },
+        geometry: {
+            coordinates: [
+                103.498001,
+                14.8683
+            ],
+            type: "Point"
+        },
+        iata: "PXR",
+        icao: "VTUJ",
+        latitude: {
+            decimal: 14.8683,
+            degrees: "14° 52' 5.879"
+            N "
+        },
+        longitude: {
+            decimal: 103.498001,
+            degrees: "103° 29' 52.80"
+            E "
+        },
+        name: "Surin Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSM: [{
+        city: "Na Thon (Ko Samui Island)",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 64,
+            meters: 20
+        },
+        geometry: {
+            coordinates: [
+                100.061996,
+                9.54779
+            ],
+            type: "Point"
+        },
+        iata: "USM",
+        icao: "VTSM",
+        latitude: {
+            decimal: 9.54779,
+            degrees: "9° 32' 52.04"
+            N "
+        },
+        longitude: {
+            decimal: 100.061996,
+            degrees: "100° 3' 43.18"
+            E "
+        },
+        name: "Samui Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTSB: [{
+        city: "Surat Thani",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 20,
+            meters: 6
+        },
+        geometry: {
+            coordinates: [
+                99.135597,
+                9.1326
+            ],
+            type: "Point"
+        },
+        iata: "URT",
+        icao: "VTSB",
+        latitude: {
+            decimal: 9.1326,
+            degrees: "9° 7' 57.36"
+            N "
+        },
+        longitude: {
+            decimal: 99.135597,
+            degrees: "99° 8' 8.149"
+            E "
+        },
+        name: "Surat Thani Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPO: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 179,
+            meters: 55
+        },
+        geometry: {
+            coordinates: [
+                99.818199,
+                17.238001
+            ],
+            type: "Point"
+        },
+        iata: "THS",
+        icao: "VTPO",
+        latitude: {
+            decimal: 17.238001,
+            degrees: "17° 14' 16.80"
+            N "
+        },
+        longitude: {
+            decimal: 99.818199,
+            degrees: "99° 49' 5.516"
+            E "
+        },
+        name: "Sukhothai Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUD: [{
+        city: "Udon Thani",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 579,
+            meters: 176
+        },
+        geometry: {
+            coordinates: [
+                102.788002,
+                17.3864
+            ],
+            type: "Point"
+        },
+        iata: "UTH",
+        icao: "VTUD",
+        latitude: {
+            decimal: 17.3864,
+            degrees: "17° 23' 11.03"
+            N "
+        },
+        longitude: {
+            decimal: 102.788002,
+            degrees: "102° 47' 16.80"
+            E "
+        },
+        name: "Udon Thani Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUU: [{
+        city: "Ubon Ratchathani",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 406,
+            meters: 124
+        },
+        geometry: {
+            coordinates: [
+                104.870003,
+                15.2513
+            ],
+            type: "Point"
+        },
+        iata: "UBP",
+        icao: "VTUU",
+        latitude: {
+            decimal: 15.2513,
+            degrees: "15° 15' 4.680"
+            N "
+        },
+        longitude: {
+            decimal: 104.870003,
+            degrees: "104° 52' 12.01"
+            E "
+        },
+        name: "Ubon Ratchathani Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBC: [{
+        city: "Khao Wua",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 102,
+            meters: 31.09
+        },
+        geometry: {
+            coordinates: [
+                102.02603,
+                12.63247
+            ],
+            type: "Point"
+        },
+        icao: "VTBC",
+        latitude: {
+            decimal: 12.63247,
+            degrees: "12° 37' 56.89"
+            N "
+        },
+        longitude: {
+            decimal: 102.02603,
+            degrees: "102° 1' 33.70"
+            E "
+        },
+        name: "Chanthaburi Airstrip",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBT: [{
+        city: "Bang Phra",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 10,
+            meters: 3
+        },
+        geometry: {
+            coordinates: [
+                100.956802,
+                13.232426
+            ],
+            type: "Point"
+        },
+        icao: "VTBT",
+        latitude: {
+            decimal: 13.232426,
+            degrees: "13° 13' 56.73"
+            N "
+        },
+        longitude: {
+            decimal: 100.956802,
+            degrees: "100° 57' 24.48"
+            E "
+        },
+        name: "Bang Phra Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCY: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        geometry: {
+            coordinates: [
+                99.11157,
+                18.6762
+            ],
+            type: "Point"
+        },
+        icao: "VTCY",
+        latitude: {
+            decimal: 18.6762,
+            degrees: "18° 40' 34.32"
+            N "
+        },
+        longitude: {
+            decimal: 99.11157,
+            degrees: "99° 6' 41.65"
+            E "
+        },
+        name: "Nok Airfield",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCR: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 1312,
+            meters: 400
+        },
+        geometry: {
+            coordinates: [
+                99.826797,
+                19.885401
+            ],
+            type: "Point"
+        },
+        icao: "VTCR",
+        latitude: {
+            decimal: 19.885401,
+            degrees: "19° 53' 7.443"
+            N "
+        },
+        longitude: {
+            decimal: 99.826797,
+            degrees: "99° 49' 36.46"
+            E "
+        },
+        name: "Chiang Rai Airport",
+        status: "Closed",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUN: [{
+        city: "Nakhon Ratchasima",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 729,
+            meters: 222
+        },
+        geometry: {
+            coordinates: [
+                102.079002,
+                14.9345
+            ],
+            type: "Point"
+        },
+        icao: "VTUN",
+        latitude: {
+            decimal: 14.9345,
+            degrees: "14° 56' 4.199"
+            N "
+        },
+        longitude: {
+            decimal: 102.079002,
+            degrees: "102° 4' 44.40"
+            E "
+        },
+        name: "Khorat Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBP: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 10,
+            meters: 3
+        },
+        geometry: {
+            coordinates: [
+                99.804703,
+                11.7884
+            ],
+            type: "Point"
+        },
+        icao: "VTBP",
+        latitude: {
+            decimal: 11.7884,
+            degrees: "11° 47' 18.23"
+            N "
+        },
+        longitude: {
+            decimal: 99.804703,
+            degrees: "99° 48' 16.93"
+            E "
+        },
+        name: "Prachuap Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPR: [{
+        city: "Photharam",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 88,
+            meters: 27
+        },
+        geometry: {
+            coordinates: [
+                99.7314,
+                13.6686
+            ],
+            type: "Point"
+        },
+        icao: "VTPR",
+        latitude: {
+            decimal: 13.6686,
+            degrees: "13° 40' 6.959"
+            N "
+        },
+        longitude: {
+            decimal: 99.7314,
+            degrees: "99° 43' 53.03"
+            E "
+        },
+        name: "Photharam Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTUR: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 459,
+            meters: 140
+        },
+        geometry: {
+            coordinates: [
+                103.646004,
+                16.0704
+            ],
+            type: "Point"
+        },
+        icao: "VTUR",
+        latitude: {
+            decimal: 16.0704,
+            degrees: "16° 4' 13.43"
+            N "
+        },
+        longitude: {
+            decimal: 103.646004,
+            degrees: "103° 38' 45.61"
+            E "
+        },
+        name: "Rob Muang Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBL: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 123,
+            meters: 37
+        },
+        geometry: {
+            coordinates: [
+                100.663002,
+                14.8746
+            ],
+            type: "Point"
+        },
+        icao: "VTBL",
+        latitude: {
+            decimal: 14.8746,
+            degrees: "14° 52' 28.55"
+            N "
+        },
+        longitude: {
+            decimal: 100.663002,
+            degrees: "100° 39' 46.80"
+            E "
+        },
+        name: "Khok Kathiam Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTCO: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 925,
+            meters: 282
+        },
+        geometry: {
+            coordinates: [
+                99.012029,
+                18.546816
+            ],
+            type: "Point"
+        },
+        icao: "VTCO",
+        latitude: {
+            decimal: 18.546816,
+            degrees: "18° 32' 48.53"
+            N "
+        },
+        longitude: {
+            decimal: 99.012029,
+            degrees: "99° 0' 43.30"
+            E "
+        },
+        name: "Lamphun Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTBW: [{
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 200,
+            meters: 61
+        },
+        geometry: {
+            coordinates: [
+                102.315002,
+                13.7688
+            ],
+            type: "Point"
+        },
+        icao: "VTBW",
+        latitude: {
+            decimal: 13.7688,
+            degrees: "13° 46' 7.680"
+            N "
+        },
+        longitude: {
+            decimal: 102.315002,
+            degrees: "102° 18' 54.00"
+            E "
+        },
+        name: "Watthana Nakhon Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }],
+    VTPU: [{
+        city: "Uttaradit",
+        country: {
+            code: "TH",
+            name: "Thailand"
+        },
+        elevation: {
+            feet: 262,
+            meters: 80
+        },
+        geometry: {
+            coordinates: [
+                100.099998,
+                17.617001
+            ],
+            type: "Point"
+        },
+        iata: "UTR",
+        icao: "VTPU",
+        latitude: {
+            decimal: 17.617001,
+            degrees: "17° 37' 1.203"
+            N "
+        },
+        longitude: {
+            decimal: 100.099998,
+            degrees: "100° 5' 59.99"
+            E "
+        },
+        name: "Uttaradit Airport",
+        status: "Operational",
+        timezone: {
+            dst: 0,
+            gmt: "+0700",
+            tzid: "Asia/Bangkok",
+            zone: "+07"
+        },
+        type: "Airport"
+    }]
+}

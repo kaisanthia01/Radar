@@ -282,9 +282,10 @@ var markerVTDT = L.marker([6.784885, 101.150122], {
 /*
  * สัญญาลักษณ์ของพลเรือน
  */
+var markerSetTMD, iconSetTMD;
 var iconTMD = L.icon({
-    iconUrl: 'assets/images/metar/IFR.png',
-    iconSize: [15, 15]
+    iconUrl: 'assets/images/logo/TMD.png',
+    iconSize: [15, 14]
 });
 var stationTMD = L.geoJSON(SYNOP_SITES, {
     pointToLayer: function (feature, latlng) {
@@ -301,87 +302,6 @@ var stationTMD = L.geoJSON(SYNOP_SITES, {
         );
     }
 });
-
-/*L.geoJSON(SYNOP_SITES, {
-    pointToLayer: function (feature, latlng) {
-        if (feature.properties.country_code == 'TH') {
-            return L.circleMarker(latlng, {
-                radius: 4,
-                fillColor: "#ff4d4d",
-                color: "#000",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        } else if (feature.properties.country_code == 'VN') {
-            return L.circleMarker(latlng, {
-                radius: 4,
-                fillColor: "#ffff4d",
-                color: "#000",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        } else if (feature.properties.country_code == 'MY') {
-            return L.circleMarker(latlng, {
-                radius: 4,
-                fillColor: "#4d4dff",
-                color: "#000",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        } else if (feature.properties.country_code == 'SG') {
-            return L.circleMarker(latlng, {
-                radius: 4,
-                fillColor: "#a64dff",
-                color: "#000",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        } else if (feature.properties.country_code == 'MM') {
-            return L.circleMarker(latlng, {
-                radius: 4,
-                fillColor: "#4dff4d",
-                color: "#000",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        } else {
-            return L.circleMarker(latlng, {
-                radius: 4,
-                fillColor: "#ff7800",
-                color: "#000",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        }
-
-    },
-    onEachFeature: function (feature, layer) {
-        layer.bindTooltip(
-            '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-            '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-            '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-            '<b>COUNTRY CODE : ' + feature.properties.country_code + '</b><br />' +
-            '<b>DETAIL : </b><b><a href="synoptic.climate4.esy.es/station/"></a></b>'
-            );
-
-layer.bindPopup(
-    '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-    '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-    '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-    '<b>COUNTRY CODE : ' + feature.properties.country_code + '</b><br />' +
-    '<b>DETAIL : <a href="station/' + feature.properties.country_code + '/' +
-    feature.properties.synop +
-    '" target="_blank">synoptic.climate4.esy.es/station/' + feature.properties
-        .country_code + '/' + feature.properties.synop + '</a></b>'
-);
-    }
-}).addTo(map);* /
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */

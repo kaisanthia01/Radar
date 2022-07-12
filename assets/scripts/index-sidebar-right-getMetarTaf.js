@@ -1445,30 +1445,40 @@ function getMetarSymbolRTAF(MetarSymbolRTAF) {
     });
 };
 
+function getMetarTafTexCheckWX(MetarTextRTAF, TafTextRTAF) {
+    iconSetTMD = L.icon({
+        iconUrl: 'assets/images/metar/' + value[0].flight_category + '.png',
+        iconSize: [15, 15]
+    });
+};
+
 function getMetarSymbolCheckWX(MetarSymbolCheckWX) {
-    $.each(MetarSymbolRTAF.CURRENT_WEATHER, function (index, value) {
-        if (value.icao == "VTNC") {
-            if (value.raw_text != "NIL") {
-                //SetTooltip VTNC
-                iconVTNC = new L.metarIcon({
-                    windDirection: value.wind.degrees,
-                    windSpeed: value.wind.speed_kts,
-                    temp: value.temperature.celsius,
-                    dewpoint: value.dewpoint.celsius,
-                    visibility: value.visibility.miles,
-                    cloud: value.clouds.code,
-                    pressure: value.barometer.hpa,
-                    weather: value.dewpoint.celsius,
-                    rtaf: false
-                });
-                markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
-            } else {
-                iconVTNC = new L.metarIcon({
-                    weather: 'NIL'
-                });
-                markerVTNC.setIcon(iconVTNC).unbindTooltip().addTo(map);
-            }
+    var txtMetarSymbolCheckWX = MetarSymbolCheckWX.CURRENT_WEATHER;
+    $.each(txtMetarSymbolCheckWX, function (index, value) {
+        var ww;
+        if (value[0].conditions) {
+            ww = value[0].conditions[0].code;
+        } else {
+            ww = '';
         }
+
+        iconSetTMD = new L.metarIcon({
+            windDirection: value[0].wind.degrees,
+            windSpeed: value[0].wind.speed_kts,
+            temp: value[0].temperature.celsius,
+            dewpoint: value[0].dewpoint.celsius,
+            visibility: Math.round(value[0].visibility.miles_float),
+            cloud: value[0].clouds,
+            pressure: value[0].barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerSetTMD = L.marker([value[0].station.geometry.coordinates[1], value[0].station.geometry.coordinates[0]], {
+            icon: iconSetTMD
+        });
+
+        markerSetTMD.unbindTooltip().addTo(map);
     });
 };
 
@@ -1735,6 +1745,11 @@ function ResetMetarTextRTAF() {
     map.removeLayer(markerVTDB);
     map.removeLayer(markerVTDS);
     map.removeLayer(markerVTDT);
+};
+
+function ResetMetarTextCheckWX() {
+    //map.removeLayer(markerSetTMD._leaflet_id);
+    //console.log(markerSetTMD);
 };
 
 function MetarProgressBarCancel() {
