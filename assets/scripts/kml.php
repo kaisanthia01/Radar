@@ -1,11 +1,11 @@
 <?php
-$upload = 'err';
+$upload = array("result" => "err", "filename" => "-");
 
 if (!empty($_FILES['formUploadFileKML'])) {
-
     // File upload configuration 
-    $targetDir = "../kml/";
-    $allowTypes = array('kml', 'kmz');
+    $targetDir = "../kml/upload/";
+    //$allowTypes = array('kml', 'kmz');
+    $allowTypes = array('kml');
 
     $fileName = basename($_FILES['formUploadFileKML']['name']);
     $targetFilePath = $targetDir . $fileName;
@@ -15,9 +15,12 @@ if (!empty($_FILES['formUploadFileKML'])) {
     if (in_array($fileType, $allowTypes)) {
         // Upload file to the server 
         if (move_uploaded_file($_FILES['formUploadFileKML']['tmp_name'], $targetFilePath)) {
-            $upload = $fileName;
+            //$upload = $fileName;
+            unset($upload);
+            $upload = array("result" => "ok", "filename" => $fileName);
         }
     }
 }
 
-echo $upload;
+// Display the output
+echo json_encode($upload);

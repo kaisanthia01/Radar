@@ -309,7 +309,8 @@ var stationTMD = L.geoJSON(SYNOP_SITES, {
 /*
  *  Load Plot ไฟล์ KML หรือ KMZ
  */
-var AjaxStop;
+var AjaxStopKML, KML_Upload_Slot = [],
+    KML_Upload_Map = [];
 var KML_VTBU, KML_VTDB, KML_VTDS, KML_VTED, KML_VTEN, KML_VTEU, KML_VTMI, KML_VTMK, KML_VTMP, KML_VTNC;
 fetch('assets/kml/area/VTBU.kml').then(res => res.text()).then(kmltext => {
     // Create new kml overlay
@@ -380,33 +381,6 @@ fetch('assets/kml/area/VTNC.kml').then(res => res.text()).then(kmltext => {
     const kml = parser.parseFromString(kmltext, 'text/xml');
     KML_VTNC = new L.KML(kml);
 });
-/*
-fetch('assets/Note/VTMD.kml')
-    .then(res => res.text())
-    .then(kmltext => {
-        // Create new kml overlay
-        const parser = new DOMParser();
-        const kml = parser.parseFromString(kmltext, 'text/xml');
-        const track = new L.KML(kml);
-        map.addLayer(track);
-
-        // Adjust map to show the kml
-        const bounds = track.getBounds();
-        map.fitBounds(bounds);
-    });
-*/
-
-// Instantiate KMZ layer (async)
-/*var kmz = L.kmzLayer().addTo(map);
-kmz.load('assets/Note/wx.kmz');
-kmz.on('load', function (e) {
-    control.addOverlay(e.layer, e.name);
-    // e.layer.addTo(map);
-});
-
-var control = L.control.layers(null, null, {
-    collapsed: false
-}).addTo(map);*/
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */
