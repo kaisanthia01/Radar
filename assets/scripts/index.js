@@ -146,7 +146,7 @@ var imageOverlaySatelliteENH = L.imageOverlay(satelliteUrlENH, latLngBoundsSatel
  * สัญญาลักษณ์ของกองบินต่างๆ
  */
 var url = 'http://radar.climate4.esy.es/assets/scripts/';
-var MetarUpdate, MetarUpdateCheckWX, txtMetar, txtTaf, txtMetarCheckWX, txtTafCheckWX;
+var MetarUpdateText, MetarUpdateSymbol, MetarUpdateCheckWXText, MetarUpdateCheckWXSymbol, txtMetar, txtTaf, txtMetarCheckWX, txtTafCheckWX;
 var iconVTNC = L.icon({
     iconUrl: 'assets/images/logo/StationRTAF/VTNC-1.png',
     iconSize: [15, 15]
@@ -282,26 +282,261 @@ var markerVTDT = L.marker([6.784885, 101.150122], {
 /*
  * สัญญาลักษณ์ของพลเรือน
  */
-var markerSetTMD, iconSetTMD;
-var iconTMD = L.icon({
-    iconUrl: 'assets/images/logo/TMD.png',
-    iconSize: [15, 14]
+var iconVTBD = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
 });
-var stationTMD = L.geoJSON(SYNOP_SITES, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: iconTMD
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        layer.bindTooltip(
-            '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
-            '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
-            '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
-            '<b>COUNTRY CODE : ' + feature.properties.country_code + '</b>'
-        );
-    }
+var markerVTBD = L.marker([13.9126, 100.607002], {
+    icon: iconVTBD
+}).bindTooltip('Don Mueang International Airport');
+
+var iconVTBS = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
 });
+var markerVTBS = L.marker([13.6811, 100.747002], {
+    icon: iconVTBS
+}).bindTooltip('Suvarnabhumi Airport');
+
+var iconVTCC = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTCC = L.marker([18.7668, 98.962601], {
+    icon: iconVTCC
+}).bindTooltip('Chiang Mai International Airport');
+
+var iconVTCT = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTCT = L.marker([19.952299, 99.882896], {
+    icon: iconVTCT
+}).bindTooltip('Mae Fah Luang - Chiang Rai International Airport');
+
+var iconVTSP = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSP = L.marker([8.1132, 98.316902], {
+    icon: iconVTSP
+}).bindTooltip('Phuket International Airport');
+
+var iconVTSS = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSS = L.marker([6.93321, 100.392998], {
+    icon: iconVTSS
+}).bindTooltip('Hat Yai International Airport');
+
+var iconVTSG = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSG = L.marker([8.09912, 98.986198], {
+    icon: iconVTSG
+}).bindTooltip('Krabi Airport');
+
+var iconVTUK = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUK = L.marker([16.4666, 102.783997], {
+    icon: iconVTUK
+}).bindTooltip('Khon Kaen Airport');
+
+var iconVTSE = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSE = L.marker([10.7112, 99.361702], {
+    icon: iconVTSE
+}).bindTooltip('Chumphon Airport');
+
+var iconVTPM = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTPM = L.marker([16.6999, 98.545097], {
+    icon: iconVTPM
+}).bindTooltip('Mae Sot Airport');
+
+var iconVTST = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTST = L.marker([7.50874, 99.6166], {
+    icon: iconVTST
+}).bindTooltip('Trang Airport');
+
+var iconVTBO = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTBO = L.marker([12.2746, 102.319], {
+    icon: iconVTBO
+}).bindTooltip('Trat Airport');
+
+var iconVTUW = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUW = L.marker([17.383801, 104.642998], {
+    icon: iconVTUW
+}).bindTooltip('Nakhon Phanom Airport');
+
+var iconVTUQ = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUQ = L.marker([14.9495, 102.313004], {
+    icon: iconVTUQ
+}).bindTooltip('Nakhon Ratchasima Airport');
+
+var iconVTSF = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSF = L.marker([8.53962, 99.944702], {
+    icon: iconVTSF
+}).bindTooltip('Nakhon Si Thammarat Airport');
+
+var iconVTSC = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSC = L.marker([6.51992, 101.742996], {
+    icon: iconVTSC
+}).bindTooltip('Narathiwat Airport');
+
+var iconVTCN = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTCN = L.marker([18.807899, 100.782997], {
+    icon: iconVTCN
+}).bindTooltip('Nan Airport');
+
+var iconVTUO = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUO = L.marker([15.2295, 103.252998], {
+    icon: iconVTUO
+}).bindTooltip('Buri Ram Airport');
+
+var iconVTPH = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTPH = L.marker([12.6362, 99.9515], {
+    icon: iconVTPH
+}).bindTooltip('Hua Hin Airport');
+
+var iconVTPP = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTPP = L.marker([16.7829, 100.278999], {
+    icon: iconVTPP
+}).bindTooltip('Phitsanulok Airport');
+
+var iconVTCP = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTCP = L.marker([18.1322, 100.165001], {
+    icon: iconVTCP
+}).bindTooltip('Phrae Airport');
+
+var iconVTCH = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTCH = L.marker([19.3013, 97.9758], {
+    icon: iconVTCH
+}).bindTooltip('Mae Hong Son Airport');
+
+var iconVTUV = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUV = L.marker([16.1168, 103.774002], {
+    icon: iconVTUV
+}).bindTooltip('Roi Et Airport');
+
+var iconVTSR = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSR = L.marker([9.77762, 98.585503], {
+    icon: iconVTSR
+}).bindTooltip('Ranong Airport');
+
+var iconVTUL = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUL = L.marker([17.4391, 101.722], {
+    icon: iconVTUL
+}).bindTooltip('Loei Airport');
+
+var iconVTCL = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTCL = L.marker([18.270901, 99.504204], {
+    icon: iconVTCL
+}).bindTooltip('Lampang Airport');
+
+var iconVTUI = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUI = L.marker([17.195101, 104.119003], {
+    icon: iconVTUI
+}).bindTooltip('Sakon Nakhon Airport');
+
+var iconVTSM = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSM = L.marker([9.54779, 100.061996], {
+    icon: iconVTSM
+}).bindTooltip('Samui Airport');
+
+var iconVTSB = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTSB = L.marker([9.1326, 99.135597], {
+    icon: iconVTSB
+}).bindTooltip('Surat Thani Airport');
+
+var iconVTPO = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTPO = L.marker([17.238001, 99.818199], {
+    icon: iconVTPO
+}).bindTooltip('Sukhothai Airport');
+
+var iconVTUD = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUD = L.marker([17.3864, 102.788002], {
+    icon: iconVTUD
+}).bindTooltip('Udon Thani Airport');
+
+var iconVTUU = L.icon({
+    iconUrl: 'assets/images/logo/AIRPORT-1.png',
+    iconSize: [15, 15]
+});
+var markerVTUU = L.marker([15.2513, 104.870003], {
+    icon: iconVTUU
+}).bindTooltip('Ubon Ratchathani Airport');
 /*
  * -------------------------------------------------------------------------------------------------------------------------
  */

@@ -25,6 +25,7 @@ document.addEventListener('readystatechange', event => {
             $("#PageLoadingProgressBar").width(i + '%');
             $("#PageLoadingProgressBar").html('Loading...' + i + '%');
             //console.log('loading is ' + i++);
+            i++;
         }, 1000);
     } else if (event.target.readyState === 'complete') {
         clearInterval(statusLoading);

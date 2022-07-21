@@ -112,3 +112,25 @@ require([
 
 
 });
+
+
+var markerSetTMD, iconSetTMD;
+var iconTMD = L.icon({
+    iconUrl: 'assets/images/logo/TMD.png',
+    iconSize: [15, 14]
+});
+var stationTMD = L.geoJSON(SYNOP_SITES, {
+    pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {
+            icon: iconTMD
+        });
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindTooltip(
+            '<b>STATION : ' + feature.properties.station_name + '</b><br />' +
+            '<b>ICAO : ' + feature.properties.icao + '</b><br />' +
+            '<b>SYNOP : ' + feature.properties.synop + '</b><br />' +
+            '<b>COUNTRY CODE : ' + feature.properties.country_code + '</b>'
+        );
+    }
+});

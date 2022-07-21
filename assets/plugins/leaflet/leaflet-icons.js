@@ -55,187 +55,183 @@ L.MetarIcon = L.Icon.extend({
             /* 
              * สร้างจำนวนเมฆปกคลุม
              */
-            if (this.options.rtaf == true) {
-                if (this.options.cloud >= 8) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 7) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.globalCompositeOperation = "source-over";
-                    ctx.fillStyle = 'white';
-                    ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
-                    ctx.stroke();
-                    ctx.closePath();
+            if (this.options.cloud >= 8) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 7) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                ctx.globalCompositeOperation = "source-over";
+                ctx.fillStyle = 'white';
+                ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
+                ctx.stroke();
+                ctx.closePath();
 
-                } else if (this.options.cloud == 6) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+            } else if (this.options.cloud == 6) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.moveTo((w / 2), (h / 2));
-                    ctx.lineTo(50, 60);
-                    ctx.lineTo(40, 50);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo((w / 2), (h / 2));
+                ctx.lineTo(50, 60);
+                ctx.lineTo(40, 50);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.arc((w / 2), (h / 2), 10, 0.5 * Math.PI, 1 * Math.PI);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.arc((w / 2), (h / 2), 10, 0.5 * Math.PI, 1 * Math.PI);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
 
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 5) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 5) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.moveTo(40, 50);
-                    ctx.lineTo(50, 50);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 4) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(40, 50);
+                ctx.lineTo(50, 50);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 4) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 3) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 3) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.fillStyle = "#000000";
-                    ctx.fillRect((w / 2) - 1.5, (h / 2) - 10, 2, 20);
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.fillStyle = "#000000";
+                ctx.fillRect((w / 2) - 1.5, (h / 2) - 10, 2, 20);
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.moveTo((w / 2), (h / 2) - 10);
-                    ctx.lineTo(50, 50);
-                    ctx.lineTo(60, 50);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo((w / 2), (h / 2) - 10);
+                ctx.lineTo(50, 50);
+                ctx.lineTo(60, 50);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 2) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 2) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.moveTo((w / 2), (h / 2) - 10);
-                    ctx.lineTo(50, 50);
-                    ctx.lineTo(60, 50);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo((w / 2), (h / 2) - 10);
+                ctx.lineTo(50, 50);
+                ctx.lineTo(60, 50);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
-                    ctx.beginPath();
-                    ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
-                    ctx.fillStyle = "#000000";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 1) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    //ctx.globalCompositeOperation = "source-over";
-                    ctx.fillStyle = "#000000";
-                    ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
-                    ctx.stroke();
-                    ctx.closePath();
-                } else if (this.options.cloud == 0) {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
-                    ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-                } else {
-                    ctx.beginPath();
-                    ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.closePath();
-
-                    ctx.beginPath();
-                    ctx.moveTo(42.5, 42.5);
-                    ctx.lineTo(55, 57.5);
-                    ctx.stroke();
-                    ctx.closePath();
-
-                    ctx.beginPath();
-                    ctx.moveTo(57, 42);
-                    ctx.lineTo(42, 57);
-                    ctx.stroke();
-                    ctx.closePath();
-                }
+                ctx.beginPath();
+                ctx.arc((w / 2) - 1, (h / 2), 10, 1.5 * Math.PI, 0 * Math.PI);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 1) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                //ctx.globalCompositeOperation = "source-over";
+                ctx.fillStyle = "#000000";
+                ctx.fillRect((w / 2) - 2.5, (h / 2) - 10, 5, 20);
+                ctx.stroke();
+                ctx.closePath();
+            } else if (this.options.cloud == 0) {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0.5 * Math.PI, 1.5 * Math.PI);
+                ctx.arc(w / 2, h / 2, 10, -0.5 * Math.PI, -1.5 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
             } else {
+                ctx.beginPath();
+                ctx.arc(w / 2, h / 2, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
 
+                ctx.beginPath();
+                ctx.moveTo(42.5, 42.5);
+                ctx.lineTo(55, 57.5);
+                ctx.stroke();
+                ctx.closePath();
+
+                ctx.beginPath();
+                ctx.moveTo(57, 42);
+                ctx.lineTo(42, 57);
+                ctx.stroke();
+                ctx.closePath();
             }
             /* 
              * -------------------------------------------------------------------

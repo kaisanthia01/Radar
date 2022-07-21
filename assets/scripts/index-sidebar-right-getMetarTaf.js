@@ -438,7 +438,7 @@ function getMetarTextRTAF(MetarTextRTAF) {
             }
         }
     });
-};
+}
 
 function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
     var ContentMetarTextVTNC = 'NIL',
@@ -1118,7 +1118,7 @@ function getMetarTafTextRTAF(MetarTextRTAF, TafTextRTAF) {
         });
         markerVTDT.setIcon(iconVTDT).unbindTooltip().addTo(map);
     }
-};
+}
 
 function getMetarSymbolRTAF(MetarSymbolRTAF) {
     $.each(MetarSymbolRTAF.CURRENT_WEATHER, function (index, value) {
@@ -1443,44 +1443,3641 @@ function getMetarSymbolRTAF(MetarSymbolRTAF) {
             }
         }
     });
-};
+}
 
-function getMetarTafTexCheckWX(MetarTextRTAF, TafTextRTAF) {
-    iconSetTMD = L.icon({
-        iconUrl: 'assets/images/metar/' + value[0].flight_category + '.png',
-        iconSize: [15, 15]
-    });
-};
+function getMetarTafTexCheckWX(MetarTextCheckWX, TafTextCheckWX) {
+    var ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD,
+        ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD,
+        ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD,
+        ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD, ContentMetarTextVTBD;
+
+    var ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD,
+        ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD,
+        ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD,
+        ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD, ContentTafTextVTBD;
+
+    var ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD,
+        ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD,
+        ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD,
+        ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD, ContentIconTextVTBD;
+
+    /* VTBD --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTBD) {
+        var txtHeader = MetarTextCheckWX.VTBD[0].observed;
+        var txtMetar = MetarTextCheckWX.VTBD[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTBD[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTBD = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTBD = txtIcon;
+    } else {
+        ContentIconTextVTBD = 'NIL';
+        ContentMetarTextVTBD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTBD) {
+        var txtHeader = TafTextCheckWX.VTBD[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTBD[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTBD[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTBD = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTBD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTBD != 'NIL') {
+        iconVTBD = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTBD.setIcon(iconVTBD).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTBD + '<hr>' + ContentTafTextVTBD + '</div></div>').addTo(map);
+    } else {
+        iconVTBD = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTBD.setIcon(iconVTBD).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTBS --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTBS) {
+        var txtHeader = MetarTextCheckWX.VTBS[0].observed;
+        var txtMetar = MetarTextCheckWX.VTBS[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTBS[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTBS = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTBS = txtIcon;
+    } else {
+        ContentIconTextVTBS = 'NIL';
+        ContentMetarTextVTBS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTBS) {
+        var txtHeader = TafTextCheckWX.VTBS[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTBS[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTBS[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTBS = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTBS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTBS != 'NIL') {
+        iconVTBS = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTBS.setIcon(iconVTBS).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTBS + '<hr>' + ContentTafTextVTBS + '</div></div>').addTo(map);
+    } else {
+        iconVTBS = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTBS.setIcon(iconVTBS).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCC --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTCC) {
+        var txtHeader = MetarTextCheckWX.VTCC[0].observed;
+        var txtMetar = MetarTextCheckWX.VTCC[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTCC[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTCC = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTCC = txtIcon;
+    } else {
+        ContentIconTextVTCC = 'NIL';
+        ContentMetarTextVTCC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTCC) {
+        var txtHeader = TafTextCheckWX.VTCC[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTCC[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTCC[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTCC = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTCC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTCC != 'NIL') {
+        iconVTCC = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCC.setIcon(iconVTCC).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTCC + '<hr>' + ContentTafTextVTCC + '</div></div>').addTo(map);
+    } else {
+        iconVTCC = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCC.setIcon(iconVTCC).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCT --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTCT) {
+        var txtHeader = MetarTextCheckWX.VTCT[0].observed;
+        var txtMetar = MetarTextCheckWX.VTCT[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTCT[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTCT = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTCT = txtIcon;
+    } else {
+        ContentIconTextVTCT = 'NIL';
+        ContentMetarTextVTCT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTCT) {
+        var txtHeader = TafTextCheckWX.VTCT[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTCT[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTCT[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTCT = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTCT = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTCT != 'NIL') {
+        iconVTCT = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCT.setIcon(iconVTCT).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTCT + '<hr>' + ContentTafTextVTCT + '</div></div>').addTo(map);
+    } else {
+        iconVTCT = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCT.setIcon(iconVTCT).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSP --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSP) {
+        var txtHeader = MetarTextCheckWX.VTSP[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSP[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSP[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSP = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSP = txtIcon;
+    } else {
+        ContentIconTextVTSP = 'NIL';
+        ContentMetarTextVTSP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSP) {
+        var txtHeader = TafTextCheckWX.VTSP[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSP[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSP[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSP = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSP != 'NIL') {
+        iconVTSP = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSP.setIcon(iconVTSP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSP + '<hr>' + ContentTafTextVTSP + '</div></div>').addTo(map);
+    } else {
+        iconVTSP = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSP.setIcon(iconVTSP).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSS --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSS) {
+        var txtHeader = MetarTextCheckWX.VTSS[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSS[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSS[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSS = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSS = txtIcon;
+    } else {
+        ContentIconTextVTSS = 'NIL';
+        ContentMetarTextVTSS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSS) {
+        var txtHeader = TafTextCheckWX.VTSS[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSS[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSS[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSS = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSS = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSS != 'NIL') {
+        iconVTSS = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSS.setIcon(iconVTSS).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSS + '<hr>' + ContentTafTextVTSS + '</div></div>').addTo(map);
+    } else {
+        iconVTSS = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSS.setIcon(iconVTSS).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSG --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSG) {
+        var txtHeader = MetarTextCheckWX.VTSG[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSG[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSG[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSG = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSG = txtIcon;
+    } else {
+        ContentIconTextVTSG = 'NIL';
+        ContentMetarTextVTSG = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSG) {
+        var txtHeader = TafTextCheckWX.VTSG[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSG[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSG[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSG = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSG = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSG != 'NIL') {
+        iconVTSG = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSG.setIcon(iconVTSG).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSG + '<hr>' + ContentTafTextVTSG + '</div></div>').addTo(map);
+    } else {
+        iconVTSG = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSG.setIcon(iconVTSG).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUK --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUK) {
+        var txtHeader = MetarTextCheckWX.VTUK[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUK[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUK[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUK = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUK = txtIcon;
+    } else {
+        ContentIconTextVTUK = 'NIL';
+        ContentMetarTextVTUK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUK) {
+        var txtHeader = TafTextCheckWX.VTUK[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUK[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUK[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUK = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUK = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUK != 'NIL') {
+        iconVTUK = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUK.setIcon(iconVTUK).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUK + '<hr>' + ContentTafTextVTUK + '</div></div>').addTo(map);
+    } else {
+        iconVTUK = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUK.setIcon(iconVTUK).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSE --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSE) {
+        var txtHeader = MetarTextCheckWX.VTSE[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSE[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSE[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSE = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSE = txtIcon;
+    } else {
+        ContentIconTextVTSE = 'NIL';
+        ContentMetarTextVTSE = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSE) {
+        var txtHeader = TafTextCheckWX.VTSE[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSE[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSE[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSE = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSE = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSE != 'NIL') {
+        iconVTSE = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSE.setIcon(iconVTSE).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSE + '<hr>' + ContentTafTextVTSE + '</div></div>').addTo(map);
+    } else {
+        iconVTSE = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSE.setIcon(iconVTSE).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPM --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTPM) {
+        var txtHeader = MetarTextCheckWX.VTPM[0].observed;
+        var txtMetar = MetarTextCheckWX.VTPM[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTPM[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTPM = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTPM = txtIcon;
+    } else {
+        ContentIconTextVTPM = 'NIL';
+        ContentMetarTextVTPM = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTPM) {
+        var txtHeader = TafTextCheckWX.VTPM[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTPM[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTPM[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTPM = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTPM = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTPM != 'NIL') {
+        iconVTPM = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPM.setIcon(iconVTPM).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTPM + '<hr>' + ContentTafTextVTPM + '</div></div>').addTo(map);
+    } else {
+        iconVTPM = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPM.setIcon(iconVTPM).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTST --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTST) {
+        var txtHeader = MetarTextCheckWX.VTST[0].observed;
+        var txtMetar = MetarTextCheckWX.VTST[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTST[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTST = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTST = txtIcon;
+    } else {
+        ContentIconTextVTST = 'NIL';
+        ContentMetarTextVTST = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTST) {
+        var txtHeader = TafTextCheckWX.VTST[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTST[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTST[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTST = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTST = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTST != 'NIL') {
+        iconVTST = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTST.setIcon(iconVTST).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTST + '<hr>' + ContentTafTextVTST + '</div></div>').addTo(map);
+    } else {
+        iconVTST = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTST.setIcon(iconVTST).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTBO --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTBO) {
+        var txtHeader = MetarTextCheckWX.VTBO[0].observed;
+        var txtMetar = MetarTextCheckWX.VTBO[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTBO[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTBO = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTBO = txtIcon;
+    } else {
+        ContentIconTextVTBO = 'NIL';
+        ContentMetarTextVTBO = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTBO) {
+        var txtHeader = TafTextCheckWX.VTBO[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTBO[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTBO[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTBO = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTBO = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTBO != 'NIL') {
+        iconVTBO = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTBO.setIcon(iconVTBO).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTBO + '<hr>' + ContentTafTextVTBO + '</div></div>').addTo(map);
+    } else {
+        iconVTBO = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTBO.setIcon(iconVTBO).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUW --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUW) {
+        var txtHeader = MetarTextCheckWX.VTUW[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUW[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUW[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUW = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUW = txtIcon;
+    } else {
+        ContentIconTextVTUW = 'NIL';
+        ContentMetarTextVTUW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUW) {
+        var txtHeader = TafTextCheckWX.VTUW[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUW[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUW[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUW = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUW = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUW != 'NIL') {
+        iconVTUW = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUW.setIcon(iconVTUW).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUW + '<hr>' + ContentTafTextVTUW + '</div></div>').addTo(map);
+    } else {
+        iconVTUW = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUW.setIcon(iconVTUW).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUQ --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUQ) {
+        var txtHeader = MetarTextCheckWX.VTUQ[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUQ[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUQ[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUQ = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUQ = txtIcon;
+    } else {
+        ContentIconTextVTUQ = 'NIL';
+        ContentMetarTextVTUQ = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUQ) {
+        var txtHeader = TafTextCheckWX.VTUQ[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUQ[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUQ[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUQ = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUQ = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUQ != 'NIL') {
+        iconVTUQ = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUQ.setIcon(iconVTUQ).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUQ + '<hr>' + ContentTafTextVTUQ + '</div></div>').addTo(map);
+    } else {
+        iconVTUQ = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUQ.setIcon(iconVTUQ).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSF --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSF) {
+        var txtHeader = MetarTextCheckWX.VTSF[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSF[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSF[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSF = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSF = txtIcon;
+    } else {
+        ContentIconTextVTSF = 'NIL';
+        ContentMetarTextVTSF = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSF) {
+        var txtHeader = TafTextCheckWX.VTSF[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSF[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSF[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSF = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSF = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSF != 'NIL') {
+        iconVTSF = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSF.setIcon(iconVTSF).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSF + '<hr>' + ContentTafTextVTSF + '</div></div>').addTo(map);
+    } else {
+        iconVTSF = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSF.setIcon(iconVTSF).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSC --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSC) {
+        var txtHeader = MetarTextCheckWX.VTSC[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSC[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSC[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSC = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSC = txtIcon;
+    } else {
+        ContentIconTextVTSC = 'NIL';
+        ContentMetarTextVTSC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSC) {
+        var txtHeader = TafTextCheckWX.VTSC[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSC[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSC[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSC = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSC = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSC != 'NIL') {
+        iconVTSC = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSC.setIcon(iconVTSC).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSC + '<hr>' + ContentTafTextVTSC + '</div></div>').addTo(map);
+    } else {
+        iconVTSC = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSC.setIcon(iconVTSC).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCN --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTCN) {
+        var txtHeader = MetarTextCheckWX.VTCN[0].observed;
+        var txtMetar = MetarTextCheckWX.VTCN[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTCN[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTCN = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTCN = txtIcon;
+    } else {
+        ContentIconTextVTCN = 'NIL';
+        ContentMetarTextVTCN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTCN) {
+        var txtHeader = TafTextCheckWX.VTCN[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTCN[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTCN[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTCN = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTCN = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTCN != 'NIL') {
+        iconVTCN = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCN.setIcon(iconVTCN).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTCN + '<hr>' + ContentTafTextVTCN + '</div></div>').addTo(map);
+    } else {
+        iconVTCN = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCN.setIcon(iconVTCN).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUO --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUO) {
+        var txtHeader = MetarTextCheckWX.VTUO[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUO[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUO[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUO = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUO = txtIcon;
+    } else {
+        ContentIconTextVTUO = 'NIL';
+        ContentMetarTextVTUO = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUO) {
+        var txtHeader = TafTextCheckWX.VTUO[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUO[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUO[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUO = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUO = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUO != 'NIL') {
+        iconVTUO = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUO.setIcon(iconVTUO).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUO + '<hr>' + ContentTafTextVTUO + '</div></div>').addTo(map);
+    } else {
+        iconVTUO = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUO.setIcon(iconVTUO).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPH --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTPH) {
+        var txtHeader = MetarTextCheckWX.VTPH[0].observed;
+        var txtMetar = MetarTextCheckWX.VTPH[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTPH[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTPH = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTPH = txtIcon;
+    } else {
+        ContentIconTextVTPH = 'NIL';
+        ContentMetarTextVTPH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTPH) {
+        var txtHeader = TafTextCheckWX.VTPH[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTPH[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTPH[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTPH = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTPH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTPH != 'NIL') {
+        iconVTPH = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPH.setIcon(iconVTPH).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTPH + '<hr>' + ContentTafTextVTPH + '</div></div>').addTo(map);
+    } else {
+        iconVTPH = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPH.setIcon(iconVTPH).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPP --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTPP) {
+        var txtHeader = MetarTextCheckWX.VTPP[0].observed;
+        var txtMetar = MetarTextCheckWX.VTPP[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTPP[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTPP = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTPP = txtIcon;
+    } else {
+        ContentIconTextVTPP = 'NIL';
+        ContentMetarTextVTPP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTPP) {
+        var txtHeader = TafTextCheckWX.VTPP[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTPP[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTPP[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTPP = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTPP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTPP != 'NIL') {
+        iconVTPP = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPP.setIcon(iconVTPP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTPP + '<hr>' + ContentTafTextVTPP + '</div></div>').addTo(map);
+    } else {
+        iconVTPP = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPP.setIcon(iconVTPP).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCP --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTCP) {
+        var txtHeader = MetarTextCheckWX.VTCP[0].observed;
+        var txtMetar = MetarTextCheckWX.VTCP[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTCP[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTCP = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTCP = txtIcon;
+    } else {
+        ContentIconTextVTCP = 'NIL';
+        ContentMetarTextVTCP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTCP) {
+        var txtHeader = TafTextCheckWX.VTCP[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTCP[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTCP[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTCP = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTCP = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTCP != 'NIL') {
+        iconVTCP = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCP.setIcon(iconVTCP).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTCP + '<hr>' + ContentTafTextVTCP + '</div></div>').addTo(map);
+    } else {
+        iconVTCP = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCP.setIcon(iconVTCP).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCH --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTCH) {
+        var txtHeader = MetarTextCheckWX.VTCH[0].observed;
+        var txtMetar = MetarTextCheckWX.VTCH[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTCH[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTCH = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTCH = txtIcon;
+    } else {
+        ContentIconTextVTCH = 'NIL';
+        ContentMetarTextVTCH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTCH) {
+        var txtHeader = TafTextCheckWX.VTCH[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTCH[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTCH[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTCH = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTCH = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTCH != 'NIL') {
+        iconVTCH = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCH.setIcon(iconVTCH).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTCH + '<hr>' + ContentTafTextVTCH + '</div></div>').addTo(map);
+    } else {
+        iconVTCH = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCH.setIcon(iconVTCH).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUV --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUV) {
+        var txtHeader = MetarTextCheckWX.VTUV[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUV[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUV[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUV = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUV = txtIcon;
+    } else {
+        ContentIconTextVTUV = 'NIL';
+        ContentMetarTextVTUV = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUV) {
+        var txtHeader = TafTextCheckWX.VTUV[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUV[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUV[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUV = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUV = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUV != 'NIL') {
+        iconVTUV = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUV.setIcon(iconVTUV).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUV + '<hr>' + ContentTafTextVTUV + '</div></div>').addTo(map);
+    } else {
+        iconVTUV = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUV.setIcon(iconVTUV).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSR --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSR) {
+        var txtHeader = MetarTextCheckWX.VTSR[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSR[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSR[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSR = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSR = txtIcon;
+    } else {
+        ContentIconTextVTSR = 'NIL';
+        ContentMetarTextVTSR = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSR) {
+        var txtHeader = TafTextCheckWX.VTSR[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSR[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSR[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSR = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSR = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSR != 'NIL') {
+        iconVTSR = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSR.setIcon(iconVTSR).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSR + '<hr>' + ContentTafTextVTSR + '</div></div>').addTo(map);
+    } else {
+        iconVTSR = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSR.setIcon(iconVTSR).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUL --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUL) {
+        var txtHeader = MetarTextCheckWX.VTUL[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUL[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUL[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUL = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUL = txtIcon;
+    } else {
+        ContentIconTextVTUL = 'NIL';
+        ContentMetarTextVTUL = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUL) {
+        var txtHeader = TafTextCheckWX.VTUL[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUL[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUL[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUL = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUL = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUL != 'NIL') {
+        iconVTUL = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUL.setIcon(iconVTUL).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUL + '<hr>' + ContentTafTextVTUL + '</div></div>').addTo(map);
+    } else {
+        iconVTUL = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUL.setIcon(iconVTUL).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCL --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTCL) {
+        var txtHeader = MetarTextCheckWX.VTCL[0].observed;
+        var txtMetar = MetarTextCheckWX.VTCL[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTCL[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTCL = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTCL = txtIcon;
+    } else {
+        ContentIconTextVTCL = 'NIL';
+        ContentMetarTextVTCL = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTCL) {
+        var txtHeader = TafTextCheckWX.VTCL[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTCL[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTCL[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTCL = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTCL = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTCL != 'NIL') {
+        iconVTCL = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCL.setIcon(iconVTCL).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTCL + '<hr>' + ContentTafTextVTCL + '</div></div>').addTo(map);
+    } else {
+        iconVTCL = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTCL.setIcon(iconVTCL).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUI --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUI) {
+        var txtHeader = MetarTextCheckWX.VTUI[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUI[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUI[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUI = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUI = txtIcon;
+    } else {
+        ContentIconTextVTUI = 'NIL';
+        ContentMetarTextVTUI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUI) {
+        var txtHeader = TafTextCheckWX.VTUI[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUI[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUI[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUI = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUI = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUI != 'NIL') {
+        iconVTUI = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUI.setIcon(iconVTUI).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUI + '<hr>' + ContentTafTextVTUI + '</div></div>').addTo(map);
+    } else {
+        iconVTUI = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUI.setIcon(iconVTUI).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSM --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSM) {
+        var txtHeader = MetarTextCheckWX.VTSM[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSM[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSM[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSM = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSM = txtIcon;
+    } else {
+        ContentIconTextVTSM = 'NIL';
+        ContentMetarTextVTSM = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSM) {
+        var txtHeader = TafTextCheckWX.VTSM[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSM[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSM[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSM = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSM = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSM != 'NIL') {
+        iconVTSM = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSM.setIcon(iconVTSM).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSM + '<hr>' + ContentTafTextVTSM + '</div></div>').addTo(map);
+    } else {
+        iconVTSM = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSM.setIcon(iconVTSM).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSB --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTSB) {
+        var txtHeader = MetarTextCheckWX.VTSB[0].observed;
+        var txtMetar = MetarTextCheckWX.VTSB[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTSB[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTSB = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTSB = txtIcon;
+    } else {
+        ContentIconTextVTSB = 'NIL';
+        ContentMetarTextVTSB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTSB) {
+        var txtHeader = TafTextCheckWX.VTSB[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTSB[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTSB[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTSB = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTSB = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTSB != 'NIL') {
+        iconVTSB = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSB.setIcon(iconVTSB).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTSB + '<hr>' + ContentTafTextVTSB + '</div></div>').addTo(map);
+    } else {
+        iconVTSB = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTSB.setIcon(iconVTSB).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPO --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTPO) {
+        var txtHeader = MetarTextCheckWX.VTPO[0].observed;
+        var txtMetar = MetarTextCheckWX.VTPO[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTPO[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTPO = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTPO = txtIcon;
+    } else {
+        ContentIconTextVTPO = 'NIL';
+        ContentMetarTextVTPO = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTPO) {
+        var txtHeader = TafTextCheckWX.VTPO[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTPO[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTPO[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTPO = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTPO = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTPO != 'NIL') {
+        iconVTPO = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPO.setIcon(iconVTPO).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTPO + '<hr>' + ContentTafTextVTPO + '</div></div>').addTo(map);
+    } else {
+        iconVTPO = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTPO.setIcon(iconVTPO).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUD --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUD) {
+        var txtHeader = MetarTextCheckWX.VTUD[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUD[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUD[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUD = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUD = txtIcon;
+    } else {
+        ContentIconTextVTUD = 'NIL';
+        ContentMetarTextVTUD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUD) {
+        var txtHeader = TafTextCheckWX.VTUD[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUD[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUD[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUD = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUD = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUD != 'NIL') {
+        iconVTUD = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUD.setIcon(iconVTUD).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUD + '<hr>' + ContentTafTextVTUD + '</div></div>').addTo(map);
+    } else {
+        iconVTUD = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUD.setIcon(iconVTUD).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUU --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarTextCheckWX.VTUU) {
+        var txtHeader = MetarTextCheckWX.VTUU[0].observed;
+        var txtMetar = MetarTextCheckWX.VTUU[0].raw_text;
+        var txtIcon = MetarTextCheckWX.VTUU[0].flight_category;
+
+        if (txtMetar.search(/BECMG/g) > -1) {
+            var position = txtMetar.search(/BECMG/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        if (txtMetar.search(/TEMPO/g) > -1) {
+            var position = txtMetar.search(/TEMPO/g);
+            txtMetar = txtMetar.substring(0, position);
+        }
+
+        var HeaderMetarText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : ' + txtHeader + '</span></h6>';
+        var BodyMetarText = '<p class="card-text mb-0"><small>' + txtMetar + '</small></p>';
+        ContentMetarTextVTUU = HeaderMetarText + BodyMetarText;
+        ContentIconTextVTUU = txtIcon;
+    } else {
+        ContentIconTextVTUU = 'NIL';
+        ContentMetarTextVTUU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">METAR : NIL</span></h6>';
+    }
+
+    if (TafTextCheckWX.VTUU) {
+        var txtHeader = TafTextCheckWX.VTUU[0].timestamp.bulletin + ' - ' + TafTextCheckWX.VTUU[0].timestamp.to;
+        var txtTaf = TafTextCheckWX.VTUU[0].raw_text;
+        var txtArray = txtTaf.split(" ");
+        var newTxtTaf = '';
+        $.each(txtArray, function (index, value) {
+            if (value == 'BECMG') {
+                newTxtTaf += "<br>" + value + " ";
+            } else if (value == 'TEMPO') {
+                newTxtTaf += "<br>" + value + " ";
+            } else {
+                newTxtTaf += value + " ";
+            }
+        });
+
+        var HeaderTafText = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : ' + txtHeader + '</span></h6>';
+        var BodyTafText = '<p class="card-text mb-0"><small>' + newTxtTaf + '</small></p>';
+        ContentTafTextVTUU = HeaderTafText + BodyTafText;
+    } else {
+        ContentTafTextVTUU = '<h6 class="card-subtitle mb-1 text-muted fw-bolder">TAF : NIL</span></h6>';
+    }
+
+    if (ContentIconTextVTUU != 'NIL') {
+        iconVTUU = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUU.setIcon(iconVTUU).bindTooltip('<div class="card m-0"><div class="card-body p-2 m-0">' + ContentMetarTextVTUU + '<hr>' + ContentTafTextVTUU + '</div></div>').addTo(map);
+    } else {
+        iconVTUU = L.icon({
+            iconUrl: 'assets/images/metar/' + txtIcon + '.png',
+            iconSize: [15, 15]
+        });
+        markerVTUU.setIcon(iconVTUU).addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+}
 
 function getMetarSymbolCheckWX(MetarSymbolCheckWX) {
-    var txtMetarSymbolCheckWX = MetarSymbolCheckWX.CURRENT_WEATHER;
-    $.each(txtMetarSymbolCheckWX, function (index, value) {
-        var ww;
-        if (value[0].conditions) {
-            ww = value[0].conditions[0].code;
+    /* VTBD --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTBD) {
+        var txtMetar = MetarSymbolCheckWX.VTBD[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
         } else {
             ww = '';
         }
 
-        iconSetTMD = new L.metarIcon({
-            windDirection: value[0].wind.degrees,
-            windSpeed: value[0].wind.speed_kts,
-            temp: value[0].temperature.celsius,
-            dewpoint: value[0].dewpoint.celsius,
-            visibility: Math.round(value[0].visibility.miles_float),
-            cloud: value[0].clouds,
-            pressure: value[0].barometer.hpa,
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTBD = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
             weather: ww,
             rtaf: false
         });
 
-        markerSetTMD = L.marker([value[0].station.geometry.coordinates[1], value[0].station.geometry.coordinates[0]], {
-            icon: iconSetTMD
+        markerVTBD.setIcon(iconVTBD).unbindTooltip().addTo(map);
+    } else {
+        iconVTBD = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTBD.setIcon(iconVTBD).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTBS --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTBS) {
+        var txtMetar = MetarSymbolCheckWX.VTBS[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTBS = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
         });
 
-        markerSetTMD.unbindTooltip().addTo(map);
-    });
-};
+        markerVTBS.setIcon(iconVTBS).unbindTooltip().addTo(map);
+    } else {
+        iconVTBS = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTBS.setIcon(iconVTBS).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCC --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTCC) {
+        var txtMetar = MetarSymbolCheckWX.VTCC[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTCC = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTCC.setIcon(iconVTCC).unbindTooltip().addTo(map);
+    } else {
+        iconVTCC = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTCC.setIcon(iconVTCC).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCT --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTCT) {
+        var txtMetar = MetarSymbolCheckWX.VTCT[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTCT = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTCT.setIcon(iconVTCT).unbindTooltip().addTo(map);
+    } else {
+        iconVTCT = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTCT.setIcon(iconVTCT).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSP --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSP) {
+        var txtMetar = MetarSymbolCheckWX.VTSP[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSP = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSP.setIcon(iconVTSP).unbindTooltip().addTo(map);
+    } else {
+        iconVTSP = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSP.setIcon(iconVTSP).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSS --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSS) {
+        var txtMetar = MetarSymbolCheckWX.VTSS[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSS = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSS.setIcon(iconVTSS).unbindTooltip().addTo(map);
+    } else {
+        iconVTSS = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSS.setIcon(iconVTSS).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSG --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSG) {
+        var txtMetar = MetarSymbolCheckWX.VTSG[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSG = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSG.setIcon(iconVTSG).unbindTooltip().addTo(map);
+    } else {
+        iconVTSG = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSG.setIcon(iconVTSG).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUK --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUK) {
+        var txtMetar = MetarSymbolCheckWX.VTUK[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUK = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUK.setIcon(iconVTUK).unbindTooltip().addTo(map);
+    } else {
+        iconVTUK = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUK.setIcon(iconVTUK).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSE --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSE) {
+        var txtMetar = MetarSymbolCheckWX.VTSE[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSE = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSE.setIcon(iconVTSE).unbindTooltip().addTo(map);
+    } else {
+        iconVTSE = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSE.setIcon(iconVTSE).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPM --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTPM) {
+        var txtMetar = MetarSymbolCheckWX.VTPM[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTPM = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTPM.setIcon(iconVTPM).unbindTooltip().addTo(map);
+    } else {
+        iconVTPM = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTPM.setIcon(iconVTPM).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTST --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTST) {
+        var txtMetar = MetarSymbolCheckWX.VTST[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTST = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTST.setIcon(iconVTST).unbindTooltip().addTo(map);
+    } else {
+        iconVTST = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTST.setIcon(iconVTST).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTBO --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTBO) {
+        var txtMetar = MetarSymbolCheckWX.VTBO[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTBO = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTBO.setIcon(iconVTBO).unbindTooltip().addTo(map);
+    } else {
+        iconVTBO = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTBO.setIcon(iconVTBO).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUW --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUW) {
+        var txtMetar = MetarSymbolCheckWX.VTUW[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUW = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUW.setIcon(iconVTUW).unbindTooltip().addTo(map);
+    } else {
+        iconVTUW = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUW.setIcon(iconVTUW).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUQ --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUQ) {
+        var txtMetar = MetarSymbolCheckWX.VTUQ[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUQ = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUQ.setIcon(iconVTUQ).unbindTooltip().addTo(map);
+    } else {
+        iconVTUQ = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUQ.setIcon(iconVTUQ).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSF --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSF) {
+        var txtMetar = MetarSymbolCheckWX.VTSF[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSF = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSF.setIcon(iconVTSF).unbindTooltip().addTo(map);
+    } else {
+        iconVTSF = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSF.setIcon(iconVTSF).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSC --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSC) {
+        var txtMetar = MetarSymbolCheckWX.VTSC[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSC = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSC.setIcon(iconVTSC).unbindTooltip().addTo(map);
+    } else {
+        iconVTSC = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSC.setIcon(iconVTSC).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCN --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTCN) {
+        var txtMetar = MetarSymbolCheckWX.VTCN[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTCN = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTCN.setIcon(iconVTCN).unbindTooltip().addTo(map);
+    } else {
+        iconVTCN = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTCN.setIcon(iconVTCN).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUO --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUO) {
+        var txtMetar = MetarSymbolCheckWX.VTUO[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUO = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUO.setIcon(iconVTUO).unbindTooltip().addTo(map);
+    } else {
+        iconVTUO = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUO.setIcon(iconVTUO).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPH --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTPH) {
+        var txtMetar = MetarSymbolCheckWX.VTPH[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTPH = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTPH.setIcon(iconVTPH).unbindTooltip().addTo(map);
+    } else {
+        iconVTPH = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTPH.setIcon(iconVTPH).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPP --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTPP) {
+        var txtMetar = MetarSymbolCheckWX.VTPP[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTPP = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTPP.setIcon(iconVTPP).unbindTooltip().addTo(map);
+    } else {
+        iconVTPP = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTPP.setIcon(iconVTPP).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCP --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTCP) {
+        var txtMetar = MetarSymbolCheckWX.VTCP[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTCP = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTCP.setIcon(iconVTCP).unbindTooltip().addTo(map);
+    } else {
+        iconVTCP = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTCP.setIcon(iconVTCP).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCH --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTCH) {
+        var txtMetar = MetarSymbolCheckWX.VTCH[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTCH = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTCH.setIcon(iconVTCH).unbindTooltip().addTo(map);
+    } else {
+        iconVTCH = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTCH.setIcon(iconVTCH).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUV --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUV) {
+        var txtMetar = MetarSymbolCheckWX.VTUV[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUV = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUV.setIcon(iconVTUV).unbindTooltip().addTo(map);
+    } else {
+        iconVTUV = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUV.setIcon(iconVTUV).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSR --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSR) {
+        var txtMetar = MetarSymbolCheckWX.VTSR[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+        iconVTSR = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSR.setIcon(iconVTSR).unbindTooltip().addTo(map);
+    } else {
+        iconVTSR = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSR.setIcon(iconVTSR).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUL --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUL) {
+        var txtMetar = MetarSymbolCheckWX.VTUL[0];
+        var ww, cc, wd;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUL = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUL.setIcon(iconVTUL).unbindTooltip().addTo(map);
+    } else {
+        iconVTUL = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUL.setIcon(iconVTUL).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTCL --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTCL) {
+        var txtMetar = MetarSymbolCheckWX.VTCL[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTCL = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTCL.setIcon(iconVTCL).unbindTooltip().addTo(map);
+    } else {
+        iconVTCL = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTCL.setIcon(iconVTCL).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUI --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUI) {
+        var txtMetar = MetarSymbolCheckWX.VTUI[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUI = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUI.setIcon(iconVTUI).unbindTooltip().addTo(map);
+    } else {
+        iconVTUI = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUI.setIcon(iconVTUI).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSM --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSM) {
+        var txtMetar = MetarSymbolCheckWX.VTSM[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSM = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSM.setIcon(iconVTSM).unbindTooltip().addTo(map);
+    } else {
+        iconVTSM = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSM.setIcon(iconVTSM).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTSB --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTSB) {
+        var txtMetar = MetarSymbolCheckWX.VTSB[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTSB = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTSB.setIcon(iconVTSB).unbindTooltip().addTo(map);
+    } else {
+        iconVTSB = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTSB.setIcon(iconVTSB).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTPO --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTPO) {
+        var txtMetar = MetarSymbolCheckWX.VTPO[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTPO = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTPO.setIcon(iconVTPO).unbindTooltip().addTo(map);
+    } else {
+        iconVTPO = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTPO.setIcon(iconVTPO).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUD --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUD) {
+        var txtMetar = MetarSymbolCheckWX.VTUD[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUD = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUD.setIcon(iconVTUD).unbindTooltip().addTo(map);
+    } else {
+        iconVTUD = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUD.setIcon(iconVTUD).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* VTUU --------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    if (MetarSymbolCheckWX.VTUU) {
+        var txtMetar = MetarSymbolCheckWX.VTUU[0];
+        var ww, cc, wd, ws;
+        if (txtMetar.conditions) {
+            ww = txtMetar.conditions[0].code;
+        } else {
+            ww = '';
+        }
+
+        if (txtMetar.raw_text.search("OVC") > -1) {
+            cc = 8;
+        } else if (txtMetar.raw_text.search("BKN") > -1) {
+            cc = 6;
+        } else if (txtMetar.raw_text.search("SCT") > -1) {
+            cc = 4;
+        } else if (txtMetar.raw_text.search("FEW") > -1) {
+            cc = 2;
+        } else {
+            cc = 0;
+        }
+
+        if (txtMetar.wind) {
+            wd = txtMetar.wind.degrees;
+            ws = txtMetar.wind.speed_kts;
+        } else {
+            wd = 0;
+            ws = 0;
+        }
+
+        iconVTUU = new L.metarIcon({
+            windDirection: wd,
+            windSpeed: ws,
+            temp: txtMetar.temperature.celsius,
+            dewpoint: txtMetar.dewpoint.celsius,
+            visibility: Math.round(txtMetar.visibility.miles_float),
+            cloud: cc,
+            pressure: txtMetar.barometer.hpa,
+            weather: ww,
+            rtaf: false
+        });
+
+        markerVTUU.setIcon(iconVTUU).unbindTooltip().addTo(map);
+    } else {
+        iconVTUU = new L.metarIcon({
+            weather: 'NIL'
+        });
+        markerVTUU.setIcon(iconVTUU).unbindTooltip().addTo(map);
+    }
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+}
 
 function currentTime() {
     var date = new Date();
@@ -1726,7 +5323,7 @@ function AddsetMetarTextRTAF() {
     markerVTDB.setIcon(iconVTDB).addTo(map);
     markerVTDS.setIcon(iconVTDS).addTo(map);
     markerVTDT.setIcon(iconVTDT).addTo(map);
-};
+}
 
 function ResetMetarTextRTAF() {
     map.removeLayer(markerVTNC);
@@ -1745,12 +5342,42 @@ function ResetMetarTextRTAF() {
     map.removeLayer(markerVTDB);
     map.removeLayer(markerVTDS);
     map.removeLayer(markerVTDT);
-};
+}
 
 function ResetMetarTextCheckWX() {
-    //map.removeLayer(markerSetTMD._leaflet_id);
-    //console.log(markerSetTMD);
-};
+    map.removeLayer(markerVTBD);
+    map.removeLayer(markerVTBS);
+    map.removeLayer(markerVTCC);
+    map.removeLayer(markerVTCT);
+    map.removeLayer(markerVTSP);
+    map.removeLayer(markerVTSS);
+    map.removeLayer(markerVTSG);
+    map.removeLayer(markerVTUK);
+    map.removeLayer(markerVTSE);
+    map.removeLayer(markerVTPM);
+    map.removeLayer(markerVTST);
+    map.removeLayer(markerVTBO);
+    map.removeLayer(markerVTUW);
+    map.removeLayer(markerVTUQ);
+    map.removeLayer(markerVTSF);
+    map.removeLayer(markerVTSC);
+    map.removeLayer(markerVTCN);
+    map.removeLayer(markerVTUO);
+    map.removeLayer(markerVTPH);
+    map.removeLayer(markerVTPP);
+    map.removeLayer(markerVTCP);
+    map.removeLayer(markerVTCH);
+    map.removeLayer(markerVTUV);
+    map.removeLayer(markerVTSR);
+    map.removeLayer(markerVTUL);
+    map.removeLayer(markerVTCL);
+    map.removeLayer(markerVTUI);
+    map.removeLayer(markerVTSM);
+    map.removeLayer(markerVTSB);
+    map.removeLayer(markerVTPO);
+    map.removeLayer(markerVTUD);
+    map.removeLayer(markerVTUU);
+}
 
 function MetarProgressBarCancel() {
     $.unblockUI();

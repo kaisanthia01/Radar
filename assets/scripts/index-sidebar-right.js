@@ -31,27 +31,42 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
 
         //รูปแบบข้อมูลข่าวอากาศ
         if ($('#Wx-News-Metar-Rtaf-Text').is(":checked")) {
+            clearInterval(MetarUpdateSymbol);
             ResetMetarTextRTAF();
             getMetarTafTextRTAF(txtMetar, txtTaf);
+            console.log('RTAF-Update Metar&&Taf : ' + currentTime());
 
             //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
-            MetarUpdate = setInterval(function () {
-                //callMetarUpdate();
-                console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000); //60 * 1000
+            MetarUpdateText = setInterval(function () {
+                txtMetar = ajaxMetarRTAF();
+                txtTaf = ajaxTafRTAF();
+
+                //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+                ResetMetarTextRTAF();
+                getMetarTafTextRTAF(txtMetar, txtTaf);
+                console.log('RTAF-Update Metar&&Taf : ' + currentTime());
+            }, 5 * 1000);
         } else if ($('#Wx-News-Metar-Rtaf-Symbol').is(":checked")) {
+            clearInterval(MetarUpdateText);
             ResetMetarTextRTAF();
             getMetarSymbolRTAF(txtMetar);
+            console.log('RTAF-Update Metar : ' + currentTime());
 
             //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
-            MetarUpdate = setInterval(function () {
-                //callMetarUpdate();
-                console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000); //60 * 1000
+            MetarUpdateSymbol = setInterval(function () {
+                txtMetar = ajaxMetarRTAF();
+
+                //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+                ResetMetarTextRTAF();
+                getMetarSymbolRTAF(txtMetar);
+                console.log('RTAF-Update Metar : ' + currentTime());
+            }, 5 * 1000);
         } else if ($('#Wx-News-Metar-Rtaf-Icon').is(":checked")) {
             ResetMetarTextRTAF();
         } else {
-
+            clearInterval(MetarUpdateText);
+            clearInterval(MetarUpdateSymbol);
+            ResetMetarTextRTAF();
         }
 
         Swal.fire({
@@ -64,11 +79,12 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
             timer: 1500
         });
     } else {
-        clearInterval(MetarUpdate);
+        clearInterval(MetarUpdateText);
+        clearInterval(MetarUpdateSymbol);
+        ResetMetarTextRTAF();
         $("#collapseMetarRTAF").slideToggle();
         $('input[type="radio"][name="Wx-News-Metar-Rtaf-Radio"]').prop('checked', false);
         $('input[type="checkbox"][id="Wx-Station-Rtaf"]').prop('checked', false);
-        ResetMetarTextRTAF();
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -83,15 +99,42 @@ $('input[type="checkbox"][id="Wx-News-Metar-Rtaf"]').click(function () {
 
 $('input[type="radio"][name="Wx-News-Metar-Rtaf-Radio"]').change(function () {
     if ($('#Wx-News-Metar-Rtaf-Text').is(":checked")) {
+        clearInterval(MetarUpdateSymbol);
         ResetMetarTextRTAF();
         getMetarTafTextRTAF(txtMetar, txtTaf);
+        console.log('RTAF-Update Metar&&Taf : ' + currentTime());
+
+        //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+        MetarUpdateText = setInterval(function () {
+            txtMetar = ajaxMetarRTAF();
+            txtTaf = ajaxTafRTAF();
+
+            //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+            ResetMetarTextRTAF();
+            getMetarTafTextRTAF(txtMetar, txtTaf);
+            console.log('RTAF-Update Metar&&Taf : ' + currentTime());
+        }, 5 * 1000);
     } else if ($('#Wx-News-Metar-Rtaf-Symbol').is(":checked")) {
+        clearInterval(MetarUpdateText);
         ResetMetarTextRTAF();
         getMetarSymbolRTAF(txtMetar);
+        console.log('RTAF-Update Metar : ' + currentTime());
+
+        //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+        MetarUpdateSymbol = setInterval(function () {
+            txtMetar = ajaxMetarRTAF();
+
+            //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+            ResetMetarTextRTAF();
+            getMetarSymbolRTAF(txtMetar);
+            console.log('RTAF-Update Metar : ' + currentTime());
+        }, 5 * 1000);
     } else if ($('#Wx-News-Metar-Rtaf-Icon').is(":checked")) {
         ResetMetarTextRTAF();
     } else {
-
+        clearInterval(MetarUpdateText);
+        clearInterval(MetarUpdateSymbol);
+        ResetMetarTextRTAF();
     }
 });
 
@@ -115,34 +158,47 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
             }
         });
         txtMetarCheckWX = ajaxMetarCheckWX();
-        //txtTafCheckWX = ajaxTafCheckWX();
+        txtTafCheckWX = ajaxTafCheckWX();
         $.unblockUI();
 
         //รูปแบบข้อมูลข่าวอากาศ
         if ($('#Wx-News-Metar-Checkwx-Text').is(":checked")) {
+            clearInterval(MetarUpdateCheckWXSymbol);
             ResetMetarTextCheckWX();
-            getMetarSymbolCheckWX(txtMetarCheckWX);
+            getMetarTafTexCheckWX(txtMetarCheckWX, txtTafCheckWX);
+            console.log('CheckWX-Update Metar&&Taf : ' + currentTime());
 
             //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
-            MetarUpdateCheckWX = setInterval(function () {
-                //txtMetarCheckWX = ajaxMetarCheckWX();
-                //txtTafCheckWX = ajaxTafCheckWX();
-                console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000); //60 * 1000
+            MetarUpdateCheckWXText = setInterval(function () {
+                txtMetarCheckWX = ajaxMetarCheckWX();
+                txtTafCheckWX = ajaxTafCheckWX();
+
+                //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+                ResetMetarTextCheckWX();
+                getMetarTafTexCheckWX(txtMetarCheckWX, txtTafCheckWX);
+                console.log('CheckWX-Update Metar&&Taf : ' + currentTime());
+            }, 5 * 1000);
         } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
+            clearInterval(MetarUpdateCheckWXText);
             ResetMetarTextCheckWX();
             getMetarSymbolCheckWX(txtMetarCheckWX);
+            console.log('CheckWX-Update Metar : ' + currentTime());
 
             //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
-            MetarUpdateCheckWX = setInterval(function () {
-                //txtMetarCheckWX = ajaxMetarCheckWX();
-                //txtTafCheckWX = ajaxTafCheckWX();
-                console.log('Update Metar&&Taf : ' + currentTime());
-            }, 1000); //60 * 1000
+            MetarUpdateCheckWXSymbol = setInterval(function () {
+                txtMetarCheckWX = ajaxMetarCheckWX();
+
+                //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+                ResetMetarTextCheckWX();
+                getMetarSymbolCheckWX(txtMetarCheckWX);
+                console.log('CheckWX-Update Metar : ' + currentTime());
+            }, 5 * 1000);
         } else if ($('#Wx-News-Metar-Checkwx-Icon').is(":checked")) {
             ResetMetarTextCheckWX();
         } else {
-
+            clearInterval(MetarUpdateCheckWXText);
+            clearInterval(MetarUpdateCheckWXSymbol);
+            ResetMetarTextCheckWX();
         }
 
         Swal.fire({
@@ -155,10 +211,11 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
             timer: 1500
         });
     } else {
-        clearInterval(MetarUpdateCheckWX);
+        clearInterval(MetarUpdateCheckWXText);
+        clearInterval(MetarUpdateCheckWXSymbol);
+        ResetMetarTextCheckWX();
         $("#collapseMetarCheckwx").slideToggle();
         $('input[type="radio"][name="Wx-News-Metar-Checkwx-Radio"]').prop('checked', false);
-        ResetMetarTextCheckWX();
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -173,18 +230,44 @@ $('input[type="checkbox"][id="Wx-News-Metar-Checkwx"]').click(function () {
 
 $('input[type="radio"][name="Wx-News-Metar-Checkwx-Radio"]').change(function () {
     if ($('#Wx-News-Metar-Checkwx-Text').is(":checked")) {
+        clearInterval(MetarUpdateCheckWXSymbol);
+        ResetMetarTextCheckWX();
+        getMetarTafTexCheckWX(txtMetarCheckWX, txtTafCheckWX);
+        console.log('CheckWX-Update Metar&&Taf : ' + currentTime());
+
+        //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+        MetarUpdateCheckWXText = setInterval(function () {
+            txtMetarCheckWX = ajaxMetarCheckWX();
+            txtTafCheckWX = ajaxTafCheckWX();
+
+            //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+            ResetMetarTextCheckWX();
+            getMetarTafTexCheckWX(txtMetarCheckWX, txtTafCheckWX);
+            console.log('CheckWX-Update Metar&&Taf : ' + currentTime());
+        }, 5 * 1000);
+    } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
+        clearInterval(MetarUpdateCheckWXText);
         ResetMetarTextCheckWX();
         getMetarSymbolCheckWX(txtMetarCheckWX);
-    } else if ($('#Wx-News-Metar-Checkwx-Symbol').is(":checked")) {
-        ResetMetarTextCheckWX();
-        getMetarSymbolRTAF(txtMetarCheckWX);
+        console.log('CheckWX-Update Metar : ' + currentTime());
+
+        //ฟังก์ชั่นอัพเดทข่าว Metar && Taf ประจำชั่วโมงใหม่
+        MetarUpdateCheckWXSymbol = setInterval(function () {
+            txtMetarCheckWX = ajaxMetarCheckWX();
+
+            //อัพเดทข้อมูลข่าวใหม่อีกครั้งทุก 30 นาที
+            ResetMetarTextCheckWX();
+            getMetarSymbolCheckWX(txtMetarCheckWX);
+            console.log('CheckWX-Update Metar : ' + currentTime());
+        }, 5 * 1000);
     } else if ($('#Wx-News-Metar-Checkwx-Icon').is(":checked")) {
         ResetMetarTextCheckWX();
     } else {
-
+        clearInterval(MetarUpdateCheckWXText);
+        clearInterval(MetarUpdateCheckWXSymbol);
+        ResetMetarTextCheckWX();
     }
 });
-
 /*
  * ------------------------------------------------------------------------------- *
  */
