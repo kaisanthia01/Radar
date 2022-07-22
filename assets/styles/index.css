@@ -41,7 +41,7 @@
 #Map-Control-Center-Left {
    height: 93.9vh;
    position: fixed;
-   top: 0px;
+   top: 50px;
    left: 0px;
    /*z-index: 9999;*/
    cursor: default;
@@ -206,7 +206,7 @@
 #Map-Control-Center-Right {
    height: 93.9vh;
    position: fixed;
-   top: 0px;
+   top: 50px;
    right: 0px;
    /*z-index: 9999;*/
    cursor: default;
